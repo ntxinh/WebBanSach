@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Vinabook.Models;
 
+using PagedList.Mvc;
+using PagedList;
+
 namespace Vinabook.Controllers
 {
     public class SachController : Controller
@@ -13,13 +16,18 @@ namespace Vinabook.Controllers
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
         public PartialViewResult SachMoiPartial()
         {
-            var lstSachMoi = db.Saches.Take(10).ToList();
+            var lstSachMoi = db.Saches.Where(n=>n.Moi==1).Take(10).ToList();
             return PartialView(lstSachMoi);
         }
-        public ViewResult Sach()
+        /// <summary>
+        /// Sach moi tren menu
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Sach(int? page)
         {
-            var lstSach = db.Saches.Take(20).ToList();
-            return View(lstSach);
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            return View(db.Saches.Where(n=>n.Moi==1).ToList().OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
         }
         public ViewResult SachTheoChuDe(int machude=1)
         {
