@@ -1,0 +1,18 @@
+﻿@using Vinabook.Models
+@model List<ChuDe>
+
+<div class="single-sidebar">
+    <h2 class="sidebar-title">Chủ đề</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+
+            <li><a href="@Url.Action("SachTheoChuDe","Sach", new {@machude=@item.MaChuDe })">@item.TenChuDe</a></li>
+        }
+       
+        @*<li><a href="">Sony Smart TV - 2015</a></li>
+            <li><a href="">Sony Smart TV - 2015</a></li>
+            <li><a href="">Sony Smart TV - 2015</a></li>
+            <li><a href="">Sony Smart TV - 2015</a></li>*@
+    </ul>
+</div>

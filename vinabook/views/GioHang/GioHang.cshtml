@@ -1,0 +1,152 @@
+﻿@using Vinabook.Models
+@model List<GioHang>
+
+    @{
+        ViewBag.Title = "GioHang";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+        
+    }
+
+
+   @* <h2>Giỏ Hàng</h2>
+    <table id="dicGioHang">
+        <tr>
+            <td>Mã Sách</td>
+            <td>Tên Sách</td>
+            <td>Ảnh Bìa</td>
+            <td>Đơn Giá</td>
+            <td>Số Lượng</td>
+            <td>Thành Tiền</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.iMaSach</td>
+                <td>@item.sTenSach</td>
+                <td><a href="@Url.Action("XemChiTiet", "Sach", new {@MaSach=item.iMaSach})"><img src="@Url.Content("/HinhAnhSP/"+item.sAnhBia)" width="50" height="50" /></a></td>
+                <td>@string.Format("{0:0,0}", item.dDongia) VNĐ</td>
+                <td>@item.iSoLuong</td>
+                <td>@string.Format("{0:0,0}", item.dThanhTien) VNĐ</td>
+            </tr>
+        }
+    </table>*@
+@*===========================================*@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Search Products</h2>
+                    <form action="#">
+                        <input type="text" placeholder="Search products...">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+
+              
+
+                <div class="single-sidebar">
+                   
+                    @Html.Action("DanhMucChuDePartial", "ChuDe")
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <form method="post" action="#">
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-remove">&nbsp;</th>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">Tên Sách</th>
+                                        <th class="product-price"> Đơn Giá</th>
+                                        <th class="product-quantity">Số Lượng</th>
+                                        <th class="product-subtotal">Thành Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model) { 
+                                    <tr class="cart_item">
+                                        
+                                        <td class="product-remove">
+                                            <a title="Remove this item" class="remove" href="#">×</a>
+                                        </td>
+
+                                        <td class="product-thumbnail">
+                                            <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@Url.Content("/Content/HinhAnhSP/"+item.sAnhBia)"></a>
+                                        </td>
+
+                                        <td class="product-name">
+                                            <a href="single-product.html">@item.sTenSach</a>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount">@string.Format("{0:0,0}", item.dDongia) VNĐ</span>
+                                        </td>
+
+                                        <td class="product-quantity">
+                                         
+                                            <span class="amount">@item.iSoLuong </span>
+                                        </td>
+
+                                        <td class="product-subtotal">
+                                            <span class="amount">@string.Format("{0:0,0}",item.dThanhTien) VNĐ</span>
+                                        </td>
+                                    </tr>
+                                    }
+                                    <tr>
+                                        <td class="actions" colspan="6">
+                                            <div class="coupon">
+                                                <label for="coupon_code">Coupon:</label>
+                                                <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
+                                                <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
+                                            </div>
+                                            <input type="submit" value="Update Cart" name="update_cart" class="button">
+                                            <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+
+                        <div class="">
+
+
+                            @Html.Action("SachGanDayPartial", "Sach")
+
+                            @* Tong Tien
+
+                                <div class="cart_totals ">
+                                <h2>Cart Totals</h2>
+
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Cart Subtotal</th>
+                                            <td><span class="amount">£15.00</span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Shipping and Handling</th>
+                                            <td>Free Shipping</td>
+                                        </tr>
+
+                                        <tr class="order-total">
+                                            <th>Order Total</th>
+                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>*@
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

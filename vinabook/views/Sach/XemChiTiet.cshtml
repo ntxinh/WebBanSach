@@ -1,0 +1,150 @@
+﻿@using Vinabook.Models;
+@model Sach
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+
+
+
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Shop</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Tìm kiếm sách</h2>
+                    <form action="">
+                        <input type="text" placeholder="Search products...">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+
+                @*San pham cung chu de*@
+                @Html.Action("SachCungChuDePartial","Sach")
+
+                @*Danh muc chu de*@
+                @Html.Action("DanhMucChuDePartial","ChuDe")
+            </div>
+
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        <a href="@Url.Content("/Home/Index/")">Trang Chủ</a>
+                        <a href="">@ViewBag.TenChuDe</a>
+                        <a href="">@Model.TenSach</a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="product-images">
+                                <div class="product-main-img">
+                                    <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)" alt="">
+                                </div>
+
+                                @*<div class="product-gallery">
+                                    <img src="~/Content/UserLayout/img/product-thumb-1.jpg" alt="">
+                                    <img src="~/Content/UserLayout/img/product-thumb-2.jpg" alt="">
+                                    <img src="~/Content/UserLayout/img/product-thumb-3.jpg" alt="">
+                                </div>*@
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="product-inner">
+                                <h2 class="product-name">@Model.TenSach</h2>
+                                <div class="product-inner-price">
+                                    <ins>@string.Format("{0:0,0}", Model.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", Model.GiaBan + (10 * Model.GiaBan / 100))</del>
+                                </div>
+
+                                <form action="" class="cart">
+                                    <div class="quantity">
+                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                    </div>
+                                    
+                                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strUrl = Request.Url.ToString() }))
+                                    {
+                                        @*<button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>*@
+                                    }
+
+                                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strUrl = Request.Url.ToString() }))
+                                    {
+                                        <input type="submit" style="cursor:pointer" value="Mua Hàng " id="btnGioHang" class="btn btn-primary" />
+                                    }
+
+                                </form>
+
+                                <div class="product-inner-category">
+                                    <p>Nhà xuất bản: <a href="">@ViewBag.NhaXuatBan</a>. Tags: <a href="">sale</a>, <a href="">book</a>. </p>
+                                </div>
+
+                                <div role="tabpanel">
+                                    <ul class="product-tab" role="tablist">
+                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
+                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                            <h2>Tóm tắt nội dung:</h2>
+                                            <p>@Model.MoTa</p>
+
+                                           
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                                            <h2>Reviews</h2>
+                                            <div class="submit-review">
+                                                <p><label for="name">Name</label> <input name="name" type="text"></p>
+                                                <p><label for="email">Email</label> <input name="email" type="email"></p>
+                                                <div class="rating-chooser">
+                                                    <p>Your rating</p>
+
+                                                    <div class="rating-wrap-post">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                                <p><input type="submit" value="Submit"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @Html.Action("SachGanDayPartial","Sach")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

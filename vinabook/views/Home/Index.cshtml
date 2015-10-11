@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<div class="maincontent-area">
+    <div class="zigzag-bottom"></div>
+    @Html.Action("SachMoiPartial", "Sach")
+</div> <!-- End main content area -->
+
+
+
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            @Html.Action("SachTiengAnhPartial","Sach")
+            @Html.Action("SachITPartial", "Sach")
+            @Html.Action("SachPhatGiaoPartial", "Sach")
+        </div>
+    </div>
+</div> <!-- End product widget area -->

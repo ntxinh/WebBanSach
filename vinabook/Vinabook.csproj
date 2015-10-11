@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3FF7140A-F9A7-4DB4-A0FC-A0433B061B95}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vinabook</RootNamespace>
+    <AssemblyName>Vinabook</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\HinhAnhSP\000001.jpg" />
+    <Content Include="Content\HinhAnhSP\000002.jpg" />
+    <Content Include="Content\HinhAnhSP\000003.jpg" />
+    <Content Include="Content\HinhAnhSP\000004.jpg" />
+    <Content Include="Content\HinhAnhSP\000005.jpg" />
+    <Content Include="Content\HinhAnhSP\000006.jpg" />
+    <Content Include="Content\HinhAnhSP\000007.jpg" />
+    <Content Include="Content\HinhAnhSP\000008.jpg" />
+    <Content Include="Content\HinhAnhSP\000009.jpg" />
+    <Content Include="Content\HinhAnhSP\000010.jpg" />
+    <Content Include="Content\HinhAnhSP\000011.jpg" />
+    <Content Include="Content\HinhAnhSP\000012.jpg" />
+    <Content Include="Content\HinhAnhSP\000013.jpg" />
+    <Content Include="Content\HinhAnhSP\000014.jpg" />
+    <Content Include="Content\HinhAnhSP\000015.jpg" />
+    <Content Include="Content\HinhAnhSP\000016.jpg" />
+    <Content Include="Content\HinhAnhSP\000017.jpg" />
+    <Content Include="Content\HinhAnhSP\000018.jpg" />
+    <Content Include="Content\HinhAnhSP\000019.jpg" />
+    <Content Include="Content\HinhAnhSP\000020.jpg" />
+    <Content Include="Content\HinhAnhSP\000021.jpg" />
+    <Content Include="Content\HinhAnhSP\000022.jpg" />
+    <Content Include="Content\HinhAnhSP\000023.jpg" />
+    <Content Include="Content\HinhAnhSP\000024.jpg" />
+    <Content Include="Content\HinhAnhSP\000025.jpg" />
+    <Content Include="Content\HinhAnhSP\000026.jpg" />
+    <Content Include="Content\HinhAnhSP\000027.jpg" />
+    <Content Include="Content\HinhAnhSP\000028.jpg" />
+    <Content Include="Content\HinhAnhSP\000029.jpg" />
+    <Content Include="Content\HinhAnhSP\000030.jpg" />
+    <Content Include="Content\HinhAnhSP\000031.jpg" />
+    <Content Include="Content\HinhAnhSP\000032.jpg" />
+    <Content Include="Content\HinhAnhSP\000033.jpg" />
+    <Content Include="Content\HinhAnhSP\000034.jpg" />
+    <Content Include="Content\HinhAnhSP\000035.jpg" />
+    <Content Include="Content\HinhAnhSP\000036.jpg" />
+    <Content Include="Content\HinhAnhSP\000037.jpg" />
+    <Content Include="Content\HinhAnhSP\000038.jpg" />
+    <Content Include="Content\HinhAnhSP\000039.jpg" />
+    <Content Include="Content\HinhAnhSP\000040.jpg" />
+    <Content Include="Content\HinhAnhSP\000041.jpg" />
+    <Content Include="Content\HinhAnhSP\000042.jpg" />
+    <Content Include="Content\HinhAnhSP\000043.jpg" />
+    <Content Include="Content\HinhAnhSP\000044.jpg" />
+    <Content Include="Content\HinhAnhSP\000045.jpg" />
+    <Content Include="Content\HinhAnhSP\000046.jpg" />
+    <Content Include="Content\HinhAnhSP\000047.jpg" />
+    <Content Include="Content\HinhAnhSP\000048.jpg" />
+    <Content Include="Content\HinhAnhSP\000049.jpg" />
+    <Content Include="Content\HinhAnhSP\000050.jpg" />
+    <Content Include="Content\HinhAnhSP\000051.jpg" />
+    <Content Include="Content\HinhAnhSP\000052.jpg" />
+    <Content Include="Content\HinhAnhSP\000053.jpg" />
+    <Content Include="Content\HinhAnhSP\000054.jpg" />
+    <Content Include="Content\HinhAnhSP\000055.jpg" />
+    <Content Include="Content\HinhAnhSP\000056.jpg" />
+    <Content Include="Content\HinhAnhSP\000057.jpg" />
+    <Content Include="Content\HinhAnhSP\000058.jpg" />
+    <Content Include="Content\HinhAnhSP\000059.jpg" />
+    <Content Include="Content\HinhAnhSP\000060.jpg" />
+    <Content Include="Content\HinhAnhSP\000061.jpg" />
+    <Content Include="Content\HinhAnhSP\000062.jpg" />
+    <Content Include="Content\HinhAnhSP\000063.jpg" />
+    <Content Include="Content\HinhAnhSP\000064.jpg" />
+    <Content Include="Content\HinhAnh\Anh1.png" />
+    <Content Include="Content\HinhAnh\Anh2.png" />
+    <Content Include="Content\HinhAnh\Anh3.png" />
+    <Content Include="Content\HinhAnh\imgSearch.png" />
+    <Content Include="Content\Login\img\bg.jpg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Register\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Register\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Register\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\Register\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\Register\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Register\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Register\css\style.css" />
+    <Content Include="Content\Register\img\backgrounds\1.jpg" />
+    <Content Include="Content\Register\img\backgrounds\2.jpg" />
+    <Content Include="Content\Register\img\backgrounds\3.jpg" />
+    <Content Include="Content\Register\img\blog.png" />
+    <Content Include="Content\Register\img\home.png" />
+    <Content Include="Content\Register\img\iphone.png" />
+    <Content Include="Content\Register\img\pattern.jpg" />
+    <Content Include="Content\Register\img\pencil.png" />
+    <Content Include="Content\Register\js\jquery-1.8.2.min.js" />
+    <Content Include="Content\Register\js\jquery.backstretch.min.js" />
+    <Content Include="Content\Register\js\scripts.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Login\css\style.css" />
+    <Content Include="Content\Login\js\prefixfree.min.js" />
+    <Content Include="Content\UserLayout\css\bootstrap.min.css" />
+    <Content Include="Content\UserLayout\css\font-awesome.min.css" />
+    <Content Include="Content\UserLayout\css\owl.carousel.css" />
+    <Content Include="Content\UserLayout\css\responsive.css" />
+    <Content Include="Content\UserLayout\css\style.css" />
+    <Content Include="Content\UserLayout\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\UserLayout\img\brand1.png" />
+    <Content Include="Content\UserLayout\img\brand2.png" />
+    <Content Include="Content\UserLayout\img\brand3.png" />
+    <Content Include="Content\UserLayout\img\brand4.png" />
+    <Content Include="Content\UserLayout\img\brand5.png" />
+    <Content Include="Content\UserLayout\img\brand6.png" />
+    <Content Include="Content\UserLayout\img\crossword.png" />
+    <Content Include="Content\UserLayout\img\h4-slide.png" />
+    <Content Include="Content\UserLayout\img\h4-slide2.png" />
+    <Content Include="Content\UserLayout\img\h4-slide3.png" />
+    <Content Include="Content\UserLayout\img\h4-slide4.png" />
+    <Content Include="Content\UserLayout\img\h4-slide7.png" />
+    <Content Include="Content\UserLayout\img\logo.png" />
+    <Content Include="Content\UserLayout\img\product-1.jpg" />
+    <Content Include="Content\UserLayout\img\product-2.jpg" />
+    <Content Include="Content\UserLayout\img\product-3.jpg" />
+    <Content Include="Content\UserLayout\img\product-4.jpg" />
+    <Content Include="Content\UserLayout\img\product-5.jpg" />
+    <Content Include="Content\UserLayout\img\product-6.jpg" />
+    <Content Include="Content\UserLayout\img\product-thumb-1.jpg" />
+    <Content Include="Content\UserLayout\img\product-thumb-2.jpg" />
+    <Content Include="Content\UserLayout\img\product-thumb-3.jpg" />
+    <Content Include="Content\UserLayout\img\product-thumb-4.jpg" />
+    <Content Include="Content\UserLayout\js\bxslider.min.js" />
+    <Content Include="Content\UserLayout\js\jquery.easing.1.3.min.js" />
+    <Content Include="Content\UserLayout\js\jquery.sticky.js" />
+    <Content Include="Content\UserLayout\js\main.js" />
+    <Content Include="Content\UserLayout\js\owl.carousel.min.js" />
+    <Content Include="Content\UserLayout\js\script.slider.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\QuanLyBanSachModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanSachModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QuanLyBanSachModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanSachModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ChuDeController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Controllers\NhaXuatbanController.cs" />
+    <Compile Include="Controllers\QuanLyChuDeController.cs" />
+    <Compile Include="Controllers\QuanLyKHController.cs" />
+    <Compile Include="Controllers\QuanLyNXBController.cs" />
+    <Compile Include="Controllers\QuanLySachController.cs" />
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Adminnistrator.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietDonHang.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChuDe.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonHang.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\KhachHang.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Metadata\ChuDe.metadata.cs" />
+    <Compile Include="Models\Metadata\KhachHang.metadata.cs" />
+    <Content Include="Content\UserLayout\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\UserLayout\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\UserLayout\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\UserLayout\fonts\FontAwesome.otf" />
+    <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="Models\QuanLyBanSachModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyBanSachModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QuanLyBanSachModel.edmx.diagram">
+      <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\SachController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Metadata\NhaXuatBan.metadata.cs" />
+    <Compile Include="Models\Metadata\Sach.metadata.cs" />
+    <Compile Include="Models\NhaXuatBan.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyBanSachModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanSachModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyBanSachModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyBanSachModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanTriVien.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sach.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TacGia.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThamGia.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\NguoiDung\Login.cshtml" />
+    <Content Include="Views\NguoiDung\Register.cshtml" />
+    <Content Include="Views\Sach\XemChiTiet.cshtml" />
+    <Content Include="Views\Sach\SachMoiPartial.cshtml" />
+    <Content Include="Views\Sach\SachTiengAnhPartial.cshtml" />
+    <Content Include="Views\Sach\SachITPartial.cshtml" />
+    <Content Include="Views\Sach\SachPhatGiaoPartial.cshtml" />
+    <Content Include="Views\Sach\SachCungChuDePartial.cshtml" />
+    <Content Include="Views\Sach\SachGanDayPartial.cshtml" />
+    <Content Include="Views\ChuDe\DanhMucChuDePartial.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\GioHang\TongSlGioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\TongTienGioHangPartial.cshtml" />
+    <Content Include="Views\Sach\Sach.cshtml" />
+    <Content Include="Views\Sach\SachTheoChuDe.cshtml" />
+    <Content Include="Views\Sach\SachTheoNhaXuatBan.cshtml" />
+    <Content Include="Views\NhaXuatban\DanhMucNhaXuatBanPartial.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\QuanLyChuDe\Index.cshtml" />
+    <Content Include="Views\QuanLyChuDe\Create.cshtml" />
+    <Content Include="Views\QuanLyChuDe\Delete.cshtml" />
+    <Content Include="Views\QuanLyChuDe\Details.cshtml" />
+    <Content Include="Views\QuanLyChuDe\Edit.cshtml" />
+    <Content Include="Views\QuanLyNXB\Index.cshtml" />
+    <Content Include="Views\QuanLySach\Index.cshtml" />
+    <Content Include="Views\QuanLyNXB\Create.cshtml" />
+    <Content Include="Views\QuanLyNXB\Delete.cshtml" />
+    <Content Include="Views\QuanLyNXB\Details.cshtml" />
+    <Content Include="Views\QuanLyNXB\Edit.cshtml" />
+    <Content Include="Views\QuanLySach\ChinhSua.cshtml" />
+    <Content Include="Views\QuanLySach\ThemMoi.cshtml" />
+    <Content Include="Views\QuanLySach\Xoa.cshtml" />
+    <Content Include="Views\QuanLyKH\Index.cshtml" />
+    <Content Include="Views\QuanLyKH\Create.cshtml" />
+    <Content Include="Views\QuanLyKH\Delete.cshtml" />
+    <Content Include="Views\QuanLyKH\Details.cshtml" />
+    <Content Include="Views\QuanLyKH\Edit.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\AdminLayout\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>17723</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:17723/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

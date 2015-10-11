@@ -1,0 +1,58 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<Vinabook.Models.NhaXuatBan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TenNXB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DienThoai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNXB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienThoai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { @MaNXB=item.MaNXB }) |
+            @Html.ActionLink("Details", "Details", new { @MaNXB = item.MaNXB }) |
+            @Html.ActionLink("Delete", "Delete", new { @MaNXB = item.MaNXB })
+        </td>
+    </tr>
+}
+
+</table>
+@* Tạo link liên kết các trang*@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

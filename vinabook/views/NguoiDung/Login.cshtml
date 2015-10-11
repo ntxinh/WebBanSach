@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "";
+}
+<script src="~/Content/Login/js/prefixfree.min.js"></script>
+<link href="~/Content/Login/css/style.css" rel="stylesheet" />
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div>Vina<span>book</span></div>
+    </div>
+    <br>
+    @ViewBag.ThongBao
+    <form class="form-horizontal" @*action="#"*@ method="post">
+        <div class="login">
+            <input type="text" placeholder="username" name="username"><br>
+            <input type="password" placeholder="password" name="password"><br>
+            @*<input type="button" value="Login">*@
+            <button type="submit" class="btnsubmit">Đăng nhập</button>
+            @*<input type="button" class="btnsubmit" value="dag nhap"/>*@
+            
+        </div>
+    </form>
+ 
+
+
+
+
+
+
+
+
+
+@*@ViewBag.ThongBao
+    <form class="form-horizontal" action="@Url.Content("/NguoiDung/Login/")" method="post">
+        <fieldset>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                <input type="text" class="form-control" name="username" placeholder="username">
+            </div>
+            <div class="clearfix"></div><br>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <div class="clearfix"></div>
+            <div class="input-prepend">
+                <label class="remember" for="remember"><input type="checkbox" id="remember"> Remember me</label>
+            </div>
+            <div class="clearfix"></div>
+            <p class="center col-md-5">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </p>
+        </fieldset>
+    </form>*@

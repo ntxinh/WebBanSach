@@ -1,0 +1,143 @@
+﻿@model Vinabook.Models.KhachHang
+
+@{
+    
+    ViewBag.Title = "Register";
+    Layout = "";
+}
+
+
+
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'>
+    <link rel="stylesheet" href="~/Content/Register/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Register/css/style.css">
+    
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="logo span4">
+                    <h1><a href="">Vinabook Register <span class="red">.</span></a></h1>
+                </div>
+                <div class="links span8">
+                    <a class="home" href="" rel="tooltip" data-placement="bottom" data-original-title="Home"></a>
+                    <a class="blog" href="" rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="register-container container">
+        <div class="row">
+            <div class="iphone span5">
+                <img src="~/Content/Register/img/iphone.png" alt="">
+            </div>
+            <div class="register span6">
+                <form action="" method="post">
+                    <h2>REGISTER TO <span class="red"><strong>VINABOOK</strong></span></h2>
+                    @*<label for="firstname">Họ Tên</label>
+                    <input type="text" id="firstname" name="hoten" placeholder="enter your full name...">
+                    <label for="lastname">Ngày Sinh</label>
+                    <input type="text" id="lastname" name="ngaysinh" placeholder="enter your date of birth...">
+                    <label for="username">Giới Tính</label>
+                    <input type="text" id="username" name="gioitinh" placeholder="choose a sex...">
+                    <label for="email">Điện Thoại</label>
+                    <input type="text" id="email" name="dienthoai" placeholder="enter your phone...">
+                    <label for="account">Tài Khoản</label>
+                    <input type="text" id="password" name="taikhoan" placeholder="enter a account...">
+                    <label for="password">Mật Khẩu</label>
+                    <input type="password" id="password" name="matkhau" placeholder="enter a password...">
+                    <label for="repassword">Nhập lại mật khẩu</label>
+                    <input type="password" id="password" name="repassword" placeholder="retype the password...">
+                    <label for="email">Email</label>
+                    <input type="text" id="password" name="email" placeholder="enter your email...">
+                    <label for="address">Địa Chỉ</label>
+                    <input type="text" id="password" name="diachi" placeholder="enter your address...">
+                    <button type="submit">REGISTER</button>*@
+                    @Html.ValidationSummary(false)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.HoTen)
+                            <span id="loiHoTen"></span>
+                            @Html.ValidationMessageFor(model => model.HoTen)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NgaySinh, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.NgaySinh)
+                            @Html.ValidationMessageFor(model => model.NgaySinh)
+                        </div>
+                        <span id="loiNgaySinh"></span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GioiTinh, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GioiTinh)
+                            @Html.ValidationMessageFor(model => model.GioiTinh)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DienThoai)
+                            @Html.ValidationMessageFor(model => model.DienThoai)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TaiKhoan, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TaiKhoan)
+                            @Html.ValidationMessageFor(model => model.TaiKhoan)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MatKhau, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MatKhau)
+                            @Html.ValidationMessageFor(model => model.MatKhau)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DiaChi)
+                            @Html.ValidationMessageFor(model => model.DiaChi)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input id="btnSubmit" type="submit" value="Đăng ký" class="btn btn-group-vertical" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript -->
+    <script src="~/Content/Register/js/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/Register/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/Register/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/Register/js/scripts.js"></script>
+
+
+
+

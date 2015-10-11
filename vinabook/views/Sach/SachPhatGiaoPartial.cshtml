@@ -1,0 +1,54 @@
+﻿@using Vinabook.Models;
+@model List<Sach>
+
+<div class="col-md-4">
+    <div class="single-product-widget">
+        <h2 class="product-wid-title">Sách phật giáo</h2>
+        <a href="#" class="wid-view-more">View All</a>
+        @foreach(var item in Model)
+        { 
+        <div class="single-wid-product">
+            <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })"><img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" alt="" class="product-thumb" /></a>
+            <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
+            <div class="product-wid-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="product-wid-price">
+                <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + (10 * item.GiaBan / 100))</del>
+            </div>
+        </div>
+        }
+        @*<div class="single-wid-product">
+            <a href="single-product.html"><img src="~/Content/UserLayout/img/product-thumb-4.jpg" alt="" class="product-thumb" /></a>
+            <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
+            <div class="product-wid-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="product-wid-price">
+                <ins>$400.00</ins> <del>$425.00</del>
+            </div>
+        </div>
+        <div class="single-wid-product">
+            <a href="single-product.html"><img src="~/Content/UserLayout/img/product-thumb-1.jpg" alt="" class="product-thumb" /></a>
+            <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
+            <div class="product-wid-rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="product-wid-price">
+                <ins>$400.00</ins> <del>$425.00</del>
+            </div>
+        </div>*@
+    </div>
+</div>
