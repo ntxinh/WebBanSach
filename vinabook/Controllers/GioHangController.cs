@@ -143,5 +143,48 @@ namespace Vinabook.Controllers
             ViewBag.TongTien = TongTien();
             return PartialView();
         }
+
+        #region Đặt hàng
+        //Xây dựng chức năng đặt hàng
+        [HttpPost]
+        public ActionResult DatHang()
+        {
+            ViewBag.KiemTra = 0;
+            //Kiểm tra đăng đăng nhập
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("Login", "NGuoiDung");
+            }
+            //Kiểm tra giỏ hàng
+            if (Session["GioHang"] == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+            //Thêm đơn hàng
+            DonHang ddh = new DonHang();
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            List<GioHang> gh = LayGioHang();
+            ddh.MaKH = kh.MaKH;
+            ddh.NgayDat = DateTime.Now;
+            db.DonHangs.Add(ddh);
+            db.SaveChanges();
+            //Thêm chi tiết đơn hàng
+            foreach (var item in gh)
+            {
+                ChiTietDonHang ctDH = new ChiTietDonHang();
+                ctDH.MaDonHang = ddh.MaDonHang;
+                ctDH.MaSach = item.iMaSach;
+                ctDH.SoLuong = item.iSoLuong;
+                ctDH.DonGia = (decimal)item.dDongia;
+                db.ChiTietDonHangs.Add(ctDH);
+            }
+            db.SaveChanges();
+            //xoa gio hang khi da them thanh cong
+            Session["GioHang"] = null;
+            //   return JavaScript("DatHangThanhCong");
+            ViewBag.KiemTra = 1;
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
     }
 }

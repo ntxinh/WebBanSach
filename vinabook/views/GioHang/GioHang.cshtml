@@ -34,7 +34,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form method="post" action="#">
+                        @*<form method="post" action="#">*@
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
@@ -83,13 +83,20 @@
                                                 <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
                                                 <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                             </div>
-                                            <input type="submit" value="Update Cart" name="update_cart" class="button">
-                                            <a href="#"><input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward"></a>
+                                            <input style="float:right;margin-left:1em" type="submit" value="Lưu" name="update_cart" class="button">
+
+                                            @using (Html.BeginForm("DatHang", "GioHang"))
+                                            {
+                                            <input onclick="DatHangThanhCong();" style="float:right" type="submit" value="Đặt hàng" name="proceed" class="checkout-button button alt wc-forward">
+                                                <div style="clear:both"></div>
+                                            }
+                                           
+
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </form>
+                        @*</form>*@
 
                         <div class="">
 
@@ -104,3 +111,14 @@
         </div>
     </div>
 </div>
+@if (ViewBag.KiemTra == 1)
+{
+<script type="text/javascript">
+    function DatHangThanhCong() {
+        
+                alert("Đặt hàng thành công!");
+            
+        };
+
+</script>
+}
