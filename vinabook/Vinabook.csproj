@@ -334,6 +334,9 @@
     <Compile Include="Models\Sach.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TacGia.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>

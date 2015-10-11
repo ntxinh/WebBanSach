@@ -23,6 +23,7 @@
         <AssociationConnector Association="QuanLyBanSachModel.FK_Sach_NhaXuatBan" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ThamGia_Sach" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ThamGia_TacGia" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.sysdiagram" Width="1.5" PointX="8.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

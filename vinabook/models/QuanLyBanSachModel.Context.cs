@@ -36,5 +36,6 @@ namespace Vinabook.Models
         public virtual DbSet<Sach> Saches { get; set; }
         public virtual DbSet<TacGia> TacGias { get; set; }
         public virtual DbSet<ThamGia> ThamGias { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
