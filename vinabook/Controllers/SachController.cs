@@ -82,5 +82,43 @@ namespace Vinabook.Controllers
             var lstSachMoi = db.Saches.Take(10).ToList();
             return PartialView(lstSachMoi);
         }
+        [HttpPost]
+        public JsonResult AddToCart(int id)
+        {
+            List<CartItem> listCartItem;
+            //Process Add To Cart
+            if (Session["ShoppingCart"] == null)
+            {
+                //Create New Shopping Cart Session
+                listCartItem = new List<CartItem>();
+                listCartItem.Add(new CartItem { Quality = 1, productOrder = db.Saches.Find(id) });
+                Session["ShoppingCart"] = listCartItem;
+            }
+            else
+            {
+                bool flag = false;
+                listCartItem = (List<CartItem>)Session["ShoppingCart"];
+                foreach (CartItem item in listCartItem)
+                {
+                    if (item.productOrder.MaSach == id)
+                    {
+                        item.Quality++;
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                    listCartItem.Add(new CartItem { Quality = 1, productOrder = db.Saches.Find(id) });
+                Session["ShoppingCart"] = listCartItem;
+            }
+            //Count item in shopping cart
+            int cartcount = 0;
+            List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
+            foreach (CartItem item in ls)
+            {
+                cartcount += item.Quality;
+            }
+            return Json(new { ItemAmount = cartcount });
+        }
     }
 }

@@ -74,8 +74,20 @@
                                         <td class="product-subtotal">
                                             <span class="amount">@string.Format("{0:0,0}",item.dThanhTien) VNĐ</span>
                                         </td>
+
+                                        <td>
+                                            <input type="submit" class="button" onclick="AddToCart('@item.iMaSach')" value="Add To Cart" />
+                                        </td>
                                     </tr>
+                                    
                                     }
+                                    @*test gio hang ajax*@
+                                    <p class="pull-right">
+                                        <button class="btn btn-warning" type="button" onclick="window.open('/Book/ShoppingCart','_self')">
+                                            Your Orders <span class="badge" id="Cart_Amount">@ViewBag.count</span>
+                                        </button>
+                                    </p>
+
                                     <tr>
                                         <td class="actions" colspan="6">
                                             <div class="coupon">
@@ -83,7 +95,8 @@
                                                 <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
                                                 <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                             </div>
-                                            <input type="submit" value="Update Cart" name="update_cart" class="button">
+                                            @*<input type="submit" value="Update Cart" name="update_cart" class="button">*@
+                                            
                                             <a href="#"><input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward"></a>
                                         </td>
                                     </tr>

@@ -15,6 +15,7 @@ namespace Vinabook.Controllers
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
         public ActionResult Index(int? page)
         {
+           
             //Tạo biến số sản phẩm trên trang
             int pageSize = 9;
             //Tạo biến số trang

@@ -10,9 +10,12 @@
     <title>Vinabook Store</title>
 
     <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css' />
+    @*<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css' />*@
+    <link href="~/Content/UserLayout/fonts/OleoScript.css" rel="stylesheet" />
+    <link href="~/Content/UserLayout/fonts/PTSans.css" rel="stylesheet" />
+    <link href="~/Content/UserLayout/fonts/TitilliumWeb.css" rel="stylesheet" />
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="~/Content/UserLayout/css/bootstrap.min.css" />
@@ -31,6 +34,24 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    
+    <!--Ajax Process-->
+    <script>
+    function AddToCart(MaSach) {
+        //debugger;
+        $.ajax({
+            type: 'POST',
+            url: '/Sach/AddToCart',
+            data: { id: MaSach },
+            success: function (data) {
+
+                $("#Cart_Amount").html(data.ItemAmount);
+            }
+        });
+    }
+    </script>
+    <!--End Ajax Process-->
 </head>
 <body>
 
@@ -92,15 +113,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="@Url.Content("/GioHang/GioHang")">
-                            Giỏ hàng - <span class="cart-amunt">@Html.Action("TongTienGioHangPartial", "GioHang")</span>
-                            <i class="fa fa-shopping-cart"></i>
-                            <span class="product-count">@Html.Action("TongSlGioHangPartial", "GioHang")</span>
-                        </a>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div> <!-- End site branding area -->
@@ -108,28 +121,37 @@
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="@Url.Content("/Home/Index/")">Vinabook</a>
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
+                                <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
+                                <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
+                                <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Khác</a></li>
+                                <li>@Html.Action("GioHangPartial", "GioHang")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                @*-----------------------------------*@
+                @*<div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
                         <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
-                        @*<li><a href="#">Sách bán chạy</a></li>*@
                         <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
                         <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
-                        <li>
-                            <a href="@Url.Content("/GioHang/GioHang/")">Giỏ hàng ( @Html.Action("TongSlGioHangPartial", "GioHang"))</a>
-                        </li>
                         <li><a href="#">Liên hệ</a></li>
                         <li><a href="#">Khác</a></li>
+                        <li>@Html.Action("GioHangPartial", "GioHang")</li>
                     </ul>
-                </div>
+                </div>*@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
@@ -264,10 +286,12 @@
         </div>
     </div> <!-- End footer bottom area -->
     <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
     <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    @*<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
     <!-- jQuery sticky menu -->
     <script src="~/Content/UserLayout/js/owl.carousel.min.js"></script>

@@ -45,12 +45,10 @@ namespace Vinabook.Controllers
                 FormsAuthentication.SetAuthCookie(usr.TaiKhoan, false);
                 Session["TaiKhoan"] = usr;
                 //lay gio hang cua khach hang 
-
-
-
                 return RedirectToAction("Index", "Home");
             }
             TempData["Message"] = "Username or password is wrong";
+            ViewBag.ThongBao = "Tên tài khoản hoặc mật khẩu không đúng!";
             return View();
             //KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.TaiKhoan == sTaiKhoan && n.MatKhau == sMatKhau);
             //if (kh != null)

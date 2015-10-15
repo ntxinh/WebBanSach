@@ -185,6 +185,8 @@
     <Content Include="Content\Register\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Content\Register\bootstrap\js\bootstrap.js" />
     <Content Include="Content\Register\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Register\css\OleoScript.css" />
+    <Content Include="Content\Register\css\PTSans.css" />
     <Content Include="Content\Register\css\style.css" />
     <Content Include="Content\Register\img\backgrounds\1.jpg" />
     <Content Include="Content\Register\img\backgrounds\2.jpg" />
@@ -207,6 +209,9 @@
     <Content Include="Content\UserLayout\css\style.css" />
     <Content Include="Content\UserLayout\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\UserLayout\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\UserLayout\fonts\OleoScript.css" />
+    <Content Include="Content\UserLayout\fonts\PTSans.css" />
+    <Content Include="Content\UserLayout\fonts\TitilliumWeb.css" />
     <Content Include="Content\UserLayout\img\brand1.png" />
     <Content Include="Content\UserLayout\img\brand2.png" />
     <Content Include="Content\UserLayout\img\brand3.png" />
@@ -264,6 +269,7 @@
     <Compile Include="Models\Adminnistrator.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\ChiTietDonHang.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
@@ -394,6 +400,7 @@
     <Content Include="Views\QuanLyKH\Delete.cshtml" />
     <Content Include="Views\QuanLyKH\Details.cshtml" />
     <Content Include="Views\QuanLyKH\Edit.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,13 +4,6 @@
     ViewBag.Title = "XemChiTiet";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
-
-
-
-
-
-
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -38,10 +31,10 @@
                 </div>
 
                 @*San pham cung chu de*@
-                @Html.Action("SachCungChuDePartial","Sach")
+                @Html.Action("SachCungChuDePartial", "Sach")
 
                 @*Danh muc chu de*@
-                @Html.Action("DanhMucChuDePartial","ChuDe")
+                @Html.Action("DanhMucChuDePartial", "ChuDe")
             </div>
 
             <div class="col-md-8">
@@ -58,12 +51,6 @@
                                 <div class="product-main-img">
                                     <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)" alt="">
                                 </div>
-
-                                @*<div class="product-gallery">
-                                    <img src="~/Content/UserLayout/img/product-thumb-1.jpg" alt="">
-                                    <img src="~/Content/UserLayout/img/product-thumb-2.jpg" alt="">
-                                    <img src="~/Content/UserLayout/img/product-thumb-3.jpg" alt="">
-                                </div>*@
                             </div>
                         </div>
 
@@ -74,22 +61,12 @@
                                     <ins>@string.Format("{0:0,0}", Model.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", Model.GiaBan + (10 * Model.GiaBan / 100))</del>
                                 </div>
 
-                                <form action="" class="cart">
-                                    <div class="quantity">
-                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                    </div>
-                                    
-                                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strUrl = Request.Url.ToString() }))
-                                    {
-                                        @*<button class="add_to_cart_button" type="submit">Thêm vào giỏ hàng</button>*@
-                                    }
-
-                                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strUrl = Request.Url.ToString() }))
-                                    {
-                                        <input type="submit" style="cursor:pointer" value="Mua Hàng " id="btnGioHang" class="btn btn-primary" />
-                                    }
-
-                                </form>
+                                @*Them vao gio hang*@
+                                <div class="quantity">
+                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                </div>
+                                <button class="add_to_cart_button" onclick="AddToCart('@Model.MaSach')" type="submit">Thêm vào giỏ hàng</button>
+                                @*ket thuc ham them vao gio hang*@
 
                                 <div class="product-inner-category">
                                     <p>Nhà xuất bản: <a href="">@ViewBag.NhaXuatBan</a>. Tags: <a href="">sale</a>, <a href="">book</a>. </p>
@@ -105,7 +82,7 @@
                                             <h2>Tóm tắt nội dung:</h2>
                                             <p>@Model.MoTa</p>
 
-                                           
+
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>
@@ -135,13 +112,12 @@
                     </div>
 
 
-                    @Html.Action("SachGanDayPartial","Sach")
+                    @Html.Action("SachGanDayPartial", "Sach")
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 

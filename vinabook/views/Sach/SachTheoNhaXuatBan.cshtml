@@ -58,11 +58,11 @@
 
                                             <div class="product-option-shop">
 
-                                                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
+                                                @*@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
                                                 {
-                                                    <input type="submit" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
-                                                }
-                                                @*</a>*@
+                                                    <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
+                                                }*@
+                                                <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
                                             </div>
                                         </div>
                                     </div>

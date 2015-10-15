@@ -9,7 +9,7 @@ namespace Vinabook.Controllers
 {
     public class GioHangController : Controller
     {
-        
+
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
         public List<GioHang> LayGioHang()
         {
@@ -22,7 +22,7 @@ namespace Vinabook.Controllers
             return lstGioHang;
         }
 
-        
+
         public ActionResult ThemGioHang(int iMaSach, string strUrl)
         {
             Sach sach = db.Saches.SingleOrDefault(n => n.MaSach == iMaSach);
@@ -97,7 +97,7 @@ namespace Vinabook.Controllers
             List<GioHang> lstGioHang = LayGioHang();
             return View(lstGioHang);
         }
-       
+
         public int TongSoLuong()
         {
             int iTongSoLuong = 0;
@@ -129,7 +129,7 @@ namespace Vinabook.Controllers
                 return PartialView();
             }
             ViewBag.TongSoLuong = TongSoLuong();
-            
+
             return PartialView();
         }
         public ActionResult TongTienGioHangPartial()
@@ -139,8 +139,22 @@ namespace Vinabook.Controllers
                 ViewBag.TongTien = 0;
                 return PartialView();
             }
-            
+
             ViewBag.TongTien = TongTien();
+            return PartialView();
+        }
+        public PartialViewResult GioHangPartial()
+        {
+            if (Session["ShoppingCart"] != null)
+            {
+                int cartcount = 0;
+                List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
+                foreach (CartItem item in ls)
+                {
+                    cartcount += item.Quality;
+                }
+                ViewBag.count = cartcount;
+            }
             return PartialView();
         }
     }

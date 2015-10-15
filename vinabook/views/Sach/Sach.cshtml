@@ -29,11 +29,12 @@
 
                         <div class="product-option-shop">
                             @*<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">*@
-                            @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
+                            @*@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
                             {
-                                <input type="submit" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
-                            }
+                                <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
+                            }*@
                             @*</a>*@
+                            <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
                         </div>
                     </div>
                 </div>

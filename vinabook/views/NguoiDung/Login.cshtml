@@ -3,8 +3,8 @@
 }
 <script src="~/Content/Login/js/prefixfree.min.js"></script>
 <link href="~/Content/Login/css/style.css" rel="stylesheet" />
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
+@*<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>*@
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
     <div class="body"></div>
     <div class="grad"></div>
@@ -12,9 +12,10 @@
         <div>Vina<span>book</span></div>
     </div>
     <br>
-    @ViewBag.ThongBao
+    
     <form class="form-horizontal" @*action="#"*@ method="post">
         <div class="login">
+            <h3>@ViewBag.ThongBao</h3>
             <input type="text" placeholder="username" name="username"><br>
             <input type="password" placeholder="password" name="password"><br>
             @*<input type="button" value="Login">*@
@@ -23,15 +24,6 @@
             
         </div>
     </form>
- 
-
-
-
-
-
-
-
-
 
 @*@ViewBag.ThongBao
     <form class="form-horizontal" action="@Url.Content("/NguoiDung/Login/")" method="post">
