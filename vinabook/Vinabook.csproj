@@ -400,6 +400,7 @@
     <Content Include="Views\QuanLyKH\Details.cshtml" />
     <Content Include="Views\QuanLyKH\Edit.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\Index1.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

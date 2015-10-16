@@ -1,4 +1,5 @@
 ﻿@using Vinabook.Models;
+
 @model List<CartItem>
 
 @{
@@ -78,11 +79,11 @@
 
                                             <td class="product-quantity">
 
-                                                <input type="text"  value="@item.Quality"/>
+                                                <input type="text" value="@item.Quality" />
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan* item.Quality) VNĐ</span>
+                                                <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan * item.Quality) VNĐ</span>
                                             </td>
 
                                             <td>
@@ -91,7 +92,7 @@
                                         </tr>
 
                                     }
-                                 
+
 
                                     <tr>
                                         <td class="actions" colspan="7">

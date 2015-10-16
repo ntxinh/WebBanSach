@@ -4,7 +4,7 @@
 <div class="col-md-4">
     <div class="single-product-widget">
         <h2 class="product-wid-title">Sách tin học</h2>
-        <a href="#" class="wid-view-more">View All</a>
+        <a href="@Url.Action("SachTheoChuDe", new { @machude=ViewBag.MaChuDe })" class="wid-view-more">Xem tất cả</a>
         @foreach(var item in Model)
         { 
         <div class="single-wid-product">

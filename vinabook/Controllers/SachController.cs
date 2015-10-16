@@ -35,25 +35,34 @@ namespace Vinabook.Controllers
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == machude).TenChuDe;
             return View(lstSach);
         } 
-        public ViewResult SachTheoNhaXuatBan(int manxb=1)
+        public ViewResult SachTheoNhaXuatBan(int manxb=1,int? page=1)
         {
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+
             ViewBag.NhaXuatBan = db.NhaXuatBans.Single(n => n.MaNXB == manxb).TenNXB;
-            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).ToList();
+            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).ToList().OrderBy(n=>n.MaSach).ToPagedList(pageNumber,pageSize);
             return View(lstSach);
         }
         public PartialViewResult SachTiengAnhPartial()
         {
-            var lstSachAV = db.Saches.Where(n => n.MaChuDe == 2).Take(3).ToList();
+            int MaChuDe = 2;
+            var lstSachAV = db.Saches.Where(n => n.MaChuDe == MaChuDe).Take(3).ToList();
+            ViewBag.MaChuDe = MaChuDe;
             return PartialView(lstSachAV);
         }
         public PartialViewResult SachITPartial()
         {
-            var lstSachIT = db.Saches.Where(n => n.MaChuDe == 1).Take(3).ToList();
+            int MaChuDe = 1;
+            var lstSachIT = db.Saches.Where(n => n.MaChuDe == MaChuDe).Take(3).ToList();
+            ViewBag.MaChuDe = MaChuDe;
             return PartialView(lstSachIT);
         }
         public PartialViewResult SachPhatGiaoPartial()
         {
-            var lstSachPG = db.Saches.Where(n => n.MaChuDe == 3).Take(3).ToList();
+            int MaChuDe = 3;
+            var lstSachPG = db.Saches.Where(n => n.MaChuDe == MaChuDe).Take(3).ToList();
+            ViewBag.MaChuDe = MaChuDe;
             return PartialView(lstSachPG);
         }
         public ViewResult XemChiTiet(int MaSach = 0)
@@ -73,6 +82,7 @@ namespace Vinabook.Controllers
         }
         public PartialViewResult SachCungChuDePartial()
         {
+
             return PartialView();
         }
         public PartialViewResult SachGanDayPartial()

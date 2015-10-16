@@ -1,5 +1,7 @@
 ﻿@using Vinabook.Models
-@model List<Sach>
+@using PagedList.Mvc
+@model PagedList.PagedList<Vinabook.Models.Sach>
+
 @{
     ViewBag.Title = "SachTheoNhaXuatBan";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -27,7 +29,7 @@
                 @*@Html.Action("DanhMucNhaXuatBanPartial", "NhaXuatban")*@
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-9" >
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
                         <a href="@Url.Content("/Home/Index/")">Trang Chủ</a>
@@ -38,7 +40,7 @@
 
                     <div class="single-product-area">
                         <div class="zigzag-bottom"></div>
-                        <div class="container">
+                        <div class="">
                             <div class="row">
                                 @foreach (var item in Model)
             {
@@ -79,7 +81,29 @@
 
                     @*@Html.Action("SachGanDayPartial", "Sach")*@
                 </div>
+             
+                    <div class="col-md-12">
+                        <div class="product-pagination text-center">
+                           
+                            @* Tạo link liên kết các trang*@
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                            <div class="MenuTrang">
+                                @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+                            </div>
+                        </div>
+                    </div>
+             
+
+
             </div>
         </div>
     </div>
 </div>
+
+
+
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
