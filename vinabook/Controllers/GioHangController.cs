@@ -9,7 +9,7 @@ namespace Vinabook.Controllers
 {
     public class GioHangController : Controller
     {
-
+        
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
         public List<GioHang> LayGioHang()
         {
@@ -22,7 +22,7 @@ namespace Vinabook.Controllers
             return lstGioHang;
         }
 
-
+        
         public ActionResult ThemGioHang(int iMaSach, string strUrl)
         {
             Sach sach = db.Saches.SingleOrDefault(n => n.MaSach == iMaSach);
@@ -97,7 +97,7 @@ namespace Vinabook.Controllers
             List<GioHang> lstGioHang = LayGioHang();
             return View(lstGioHang);
         }
-
+       
         public int TongSoLuong()
         {
             int iTongSoLuong = 0;
@@ -129,7 +129,7 @@ namespace Vinabook.Controllers
                 return PartialView();
             }
             ViewBag.TongSoLuong = TongSoLuong();
-
+            
             return PartialView();
         }
         public ActionResult TongTienGioHangPartial()
@@ -139,23 +139,52 @@ namespace Vinabook.Controllers
                 ViewBag.TongTien = 0;
                 return PartialView();
             }
-
+            
             ViewBag.TongTien = TongTien();
             return PartialView();
         }
-        public PartialViewResult GioHangPartial()
+
+        #region Đặt hàng
+        //Xây dựng chức năng đặt hàng
+        [HttpPost]
+        public ActionResult DatHang()
         {
-            if (Session["ShoppingCart"] != null)
+            ViewBag.KiemTra = 0;
+            //Kiểm tra đăng đăng nhập
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
-                int cartcount = 0;
-                List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
-                foreach (CartItem item in ls)
-                {
-                    cartcount += item.Quality;
-                }
-                ViewBag.count = cartcount;
+                return RedirectToAction("Login", "NGuoiDung");
             }
-            return PartialView();
+            //Kiểm tra giỏ hàng
+            if (Session["GioHang"] == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+            //Thêm đơn hàng
+            DonHang ddh = new DonHang();
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            List<GioHang> gh = LayGioHang();
+            ddh.MaKH = kh.MaKH;
+            ddh.NgayDat = DateTime.Now;
+            db.DonHangs.Add(ddh);
+            db.SaveChanges();
+            //Thêm chi tiết đơn hàng
+            foreach (var item in gh)
+            {
+                ChiTietDonHang ctDH = new ChiTietDonHang();
+                ctDH.MaDonHang = ddh.MaDonHang;
+                ctDH.MaSach = item.iMaSach;
+                ctDH.SoLuong = item.iSoLuong;
+                ctDH.DonGia = (decimal)item.dDongia;
+                db.ChiTietDonHangs.Add(ctDH);
+            }
+            db.SaveChanges();
+            //xoa gio hang khi da them thanh cong
+            Session["GioHang"] = null;
+            //   return JavaScript("DatHangThanhCong");
+            ViewBag.KiemTra = 1;
+            return RedirectToAction("Index", "Home");
         }
+        #endregion
     }
 }
