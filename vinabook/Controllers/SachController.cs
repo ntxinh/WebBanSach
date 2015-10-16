@@ -36,10 +36,13 @@ namespace Vinabook.Controllers
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == machude).TenChuDe;
             return View(lstSach);
         } 
-        public ViewResult SachTheoNhaXuatBan(int manxb=1)
+        public ViewResult SachTheoNhaXuatBan(int manxb=1,int? page=1)
         {
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+
             ViewBag.NhaXuatBan = db.NhaXuatBans.Single(n => n.MaNXB == manxb).TenNXB;
-            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).Take(10).ToList();
+            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).ToList().OrderBy(n=>n.MaSach).ToPagedList(pageNumber,pageSize);
             return View(lstSach);
         }
         public PartialViewResult SachTiengAnhPartial()
