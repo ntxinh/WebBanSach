@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Vinabook.Models;
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -35,9 +36,22 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    
+   
     <!--Ajax Process-->
     <script>
+        @*$(document).ready(function () {
+        @if(Session["ShoppingCart"]!=null)
+        {
+            int cartcount = 0;
+            List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
+            foreach(CartItem item in ls)
+            {
+                cartcount += item.Quality;
+        }
+            ViewBag.count = cartcount;
+        }
+        });*@
+
     function AddToCart(MaSach) {
         //debugger;
         $.ajax({
@@ -121,20 +135,18 @@
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">
-                <nav class="navbar navbar-default">
+                <nav class=" ">
                     <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="@Url.Content("/Home/Index/")">Vinabook</a>
-                        </div>
+                        
                         <div>
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
+                                <li class="active" ><a  href="@Url.Content("/Home/Index/")"><is  class="fa fa-home fa-1x" ></is></a></li>
                                 <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
                                 <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
                                 <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
                                 <li><a href="#">Liên hệ</a></li>
                                 <li><a href="#">Khác</a></li>
-                                <li>@Html.Action("GioHangPartial", "GioHang")</li>
+                                <li style="cursor:pointer">@Html.Action("GioHangPartial", "GioHang")</li>
                             </ul>
                         </div>
                     </div>

@@ -371,7 +371,6 @@
     <Content Include="Views\Sach\SachCungChuDePartial.cshtml" />
     <Content Include="Views\Sach\SachGanDayPartial.cshtml" />
     <Content Include="Views\ChuDe\DanhMucChuDePartial.cshtml" />
-    <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\GioHang\TongSlGioHangPartial.cshtml" />
     <Content Include="Views\GioHang\TongTienGioHangPartial.cshtml" />
     <Content Include="Views\Sach\Sach.cshtml" />
@@ -401,6 +400,7 @@
     <Content Include="Views\QuanLyKH\Details.cshtml" />
     <Content Include="Views\QuanLyKH\Edit.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
