@@ -10,7 +10,7 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Tìm kiếm sách</h2>
                     <form action="">
@@ -26,7 +26,7 @@
                 @Html.Action("DanhMucChuDePartial", "ChuDe")
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
                         <a href="@Url.Content("/Home/Index/")">Trang Chủ</a>
@@ -37,7 +37,7 @@
 
                     <div class="single-product-area">
                         <div class="zigzag-bottom"></div>
-                        <div class="container">
+                        @*<div class="container">*@
                             <div class="row">
                                 @foreach (var item in Model)
             {
@@ -56,11 +56,6 @@
                                             </div>
 
                                             <div class="product-option-shop">
-
-                                                @*@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
-                                                    {
-                                                        <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
-                                                    }*@
                                                 <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
                                             </div>
                                         </div>
@@ -71,7 +66,7 @@
                             </div>
 
 
-                        </div>
+                        @*</div>*@
                     </div>
 
 

@@ -31,15 +31,14 @@ namespace Vinabook.Controllers
         }
         public ViewResult SachTheoChuDe(int machude=1)
         {
-            
-            var lstSach = db.Saches.Where(n => n.MaChuDe == machude).Take(10).ToList();
+            var lstSach = db.Saches.Where(n => n.MaChuDe == machude).ToList();
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == machude).TenChuDe;
             return View(lstSach);
         } 
         public ViewResult SachTheoNhaXuatBan(int manxb=1)
         {
             ViewBag.NhaXuatBan = db.NhaXuatBans.Single(n => n.MaNXB == manxb).TenNXB;
-            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).Take(10).ToList();
+            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).ToList();
             return View(lstSach);
         }
         public PartialViewResult SachTiengAnhPartial()
@@ -74,12 +73,11 @@ namespace Vinabook.Controllers
         }
         public PartialViewResult SachCungChuDePartial()
         {
-
             return PartialView();
         }
         public PartialViewResult SachGanDayPartial()
         {
-            var lstSachMoi = db.Saches.Take(10).ToList();
+            var lstSachMoi = db.Saches.OrderBy(x=>x.NgayCapNhat).ToList();
             return PartialView(lstSachMoi);
         }
         [HttpPost]
