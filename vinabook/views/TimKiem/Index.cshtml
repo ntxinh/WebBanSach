@@ -1,0 +1,85 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Vinabook.Models.Sach>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+<div class="row">
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Tìm kiếm sách</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+&nbsp;
+
+
+
+
+<div class="container "id="divTimKiem">
+    <div class="text-primary"><h3>@ViewBag.ThongBao</h3></div>
+    @*<div class="related-products-wrapper">
+        <h2 class="related-products-title">Sách gần đây</h2>
+        <div class="related-products-carousel">*@
+    @{ int j = 0;}
+    @foreach (var item in Model)
+    {
+        
+        j++;
+        <div class="col-md-4 col-xs-2" id="SanPham" style="width:270px;">
+            <div class="single-product">
+                <div class="product-f-image">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" alt="">
+                    <div class="product-hover">
+                        <a class="add-to-cart-link" style="padding:0">
+                          
+                            <input type="submit" style="width:100%;height:100%" class="btn btn-primary" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ" id="btnGioHang" />
+                            
+                        </a>
+                        <a href="@Url.Action("XemChiTiet","Sach", new { @masach=item.MaSach })" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
+                       
+                    </div>
+                </div>
+
+                <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
+
+                <div class="product-carousel-price text-center">
+                    <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + (10 * item.GiaBan / 100))</del>
+                </div>
+            </div>
+        </div>
+        if (j % 4 == 0)
+        {
+            <div style="clear:both"></div>
+           <div class="row"></div>
+        }
+    }
+
+    @*</div>
+        </div>*@
+</div>
+
+<div style="clear:both"></div>
+
+
+@*<div class="text-danger text-center">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /@(Model.PageCount)</div>*@
+<div class="MenuTrang  text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { ViewBag.Key, page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

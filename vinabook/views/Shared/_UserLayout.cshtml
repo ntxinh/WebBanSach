@@ -12,8 +12,8 @@
 
     <!-- Google Fonts -->
     @*<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css' />*@
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css' />*@
     <link href="~/Content/UserLayout/fonts/OleoScript.css" rel="stylesheet" />
     <link href="~/Content/UserLayout/fonts/PTSans.css" rel="stylesheet" />
     <link href="~/Content/UserLayout/fonts/TitilliumWeb.css" rel="stylesheet" />
@@ -35,10 +35,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-   
     <!--Ajax Process-->
     <script>
+        
         @*$(document).ready(function () {
         @if(Session["ShoppingCart"]!=null)
         {
@@ -52,20 +51,35 @@
         }
         });*@
 
-    function AddToCart(MaSach) {
-        //debugger;
-        $.ajax({
-            type: 'POST',
-            url: '/Sach/AddToCart',
-            data: { id: MaSach },
-            success: function (data) {
+        function AddToCart(MaSach) {
 
-                $("#Cart_Amount").html(data.ItemAmount);
-            }
-        });
-    }
+            //debugger;
+            $.ajax({
+                type: 'POST',
+                url: '/Sach/AddToCart',
+                data: { id: MaSach },
+                success: function (data) {
+
+                    $("#Cart_Amount").html(data.ItemAmount);
+                }
+            });
+        }
+        //function Search(id) {
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: '/TimKiem/Index',
+        //        data: {Id:id},
+        //        success: function (data) {
+        //            $.post(data.Url, function (partial) {
+        //                $('#divTimKiem').html(partial);
+        //            });
+        //        }
+        //    });
+        //}
+
     </script>
     <!--End Ajax Process-->
+   
 </head>
 <body>
 
@@ -75,9 +89,9 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> Vinabook.com</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> Giỏ hàng ()</a></li>
+                            <li><a class="zoomhover" href="#"><i class="fa fa-user"></i> Vinabook.com</a></li>
+                            <li><a class="zoomhover" href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>
+                            <li><a class="zoomhover" href="cart.html"><i class="fa fa-user"></i> Giỏ hàng ()</a></li>
                         </ul>
                     </div>
                 </div>
@@ -88,10 +102,10 @@
                             @if (!User.Identity.IsAuthenticated)
                             {
                                 <li class="dropdown dropdown-small">
-                                    <a href="@Url.Action("Login","NguoiDung")"><span class="key"><i class="fa fa-user"></i>  Đăng nhập</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Login","NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng nhập</span></a>
                                 </li>
                                 <li class="dropdown dropdown-small">
-                                    <a href="@Url.Action("Register","NguoiDung")"><span class="key"><i class="fa fa-user"></i>  Đăng ký</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Register","NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng ký</span></a>
                                 </li>
                             }
                             else
@@ -103,12 +117,8 @@
                                 <li class="dropdown dropdown-small">
                                     <a href="@Url.Content("/NguoiDung/Logout/")"><span class="key"><i class="fa fa-user"></i>  Log out</span></a>
                                 </li>
-                                
-                                @*
-                                    //Log off su dung javascript
-                                    <li class="dropdown dropdown-small">
-                                        <a href="javascript:document.getElementById('logoutForm').submit()"><span class="key"><i class="fa fa-user"></i>  Log off</span></a>
-                                    </li>*@
+
+
                             }
 
                         </ul>
@@ -127,7 +137,7 @@
                     </div>
                 </div>
 
-               
+
             </div>
         </div>
     </div> <!-- End site branding area -->
@@ -140,13 +150,24 @@
                         
                         <div>
                             <ul class="nav navbar-nav">
-                                <li class="active" ><a  href="@Url.Content("/Home/Index/")"><is  class="fa fa-home fa-1x" ></is></a></li>
+                                <li class="active "><a href="@Url.Content("/Home/Index/")"><is class="fa fa-home fa-1x zoomhover"></is></a></li>
                                 <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
                                 <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
                                 <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
                                 <li><a href="#">Liên hệ</a></li>
                                 <li><a href="#">Khác</a></li>
                                 <li style="cursor:pointer">@Html.Action("GioHangPartial", "GioHang")</li>
+                                <li>
+                                    <div class="single-sidebar">
+                                        <form action="/TimKiem/Index" method="post">
+                                            <input id="txtTimKiem" name="txtTimKiem" style="float:left;margin-top:10px;margin-left:20px;margin-right:10px;width:auto" type="text" placeholder="Tìm Sách, NXB, CĐ...">
+                                            <input @*onclick="Search('1')"*@ class="zoomhover" style="outline:none;background-color:transparent;background-image:url('/content/HinhAnh/toolbar_find.png');background-size:contain;background-repeat:no-repeat; position:absolute; top:20px;left:180px; width:10px; height:10px; " type="submit" />
+
+                                        </form>
+                                    </div>
+
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -154,16 +175,16 @@
 
                 @*-----------------------------------*@
                 @*<div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
-                        <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
-                        <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
-                        <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
-                        <li><a href="#">Liên hệ</a></li>
-                        <li><a href="#">Khác</a></li>
-                        <li>@Html.Action("GioHangPartial", "GioHang")</li>
-                    </ul>
-                </div>*@
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
+                            <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
+                            <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
+                            <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Khác</a></li>
+                            <li>@Html.Action("GioHangPartial", "GioHang")</li>
+                        </ul>
+                    </div>*@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
@@ -217,6 +238,7 @@
         <!-- ./Slider -->
     </div> <!-- End slider area -->
     @RenderBody()
+    
 
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
@@ -277,7 +299,7 @@
         </div>
     </div> <!-- End footer top area -->
 
-    <div class="footer-bottom-area">
+    <div class="footer-bottom-area ">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -320,3 +342,17 @@
     <script type="text/javascript" src="~/Content/UserLayout/js/script.slider.js"></script>
 </body>
 </html>
+
+<style>
+    .zoomhover {
+        -moz-transition: -moz-transform 0.2s ease-in;
+        -webkit-transition: -webkit-transform 0.2s ease-in;
+        -o-transition: -o-transform 0.2s ease-in;
+    }
+
+        .zoomhover:hover {
+            -moz-transform: scale(1.5);
+            -webkit-transform: scale(1.5);
+            -o-transform: scale(1.5);
+        }
+</style>

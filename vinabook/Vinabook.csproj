@@ -177,6 +177,7 @@
     <Content Include="Content\HinhAnh\Anh2.png" />
     <Content Include="Content\HinhAnh\Anh3.png" />
     <Content Include="Content\HinhAnh\imgSearch.png" />
+    <Content Include="Content\HinhAnh\toolbar_find.png" />
     <Content Include="Content\Login\img\bg.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Register\bootstrap\css\bootstrap.css" />
@@ -263,6 +264,7 @@
     <Compile Include="Controllers\QuanLyKHController.cs" />
     <Compile Include="Controllers\QuanLyNXBController.cs" />
     <Compile Include="Controllers\QuanLySachController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Models\Admin.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
@@ -402,6 +404,8 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\Index1.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\TimKiem\Index.cshtml" />
+    <Content Include="Views\TimKiem\TimKiemPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
