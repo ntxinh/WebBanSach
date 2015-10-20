@@ -205,53 +205,27 @@ namespace Vinabook.Controllers
         [HttpGet]
         public ActionResult DatHang()
         {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult DatHang(DonHang dh)
-        {
-            if (Session["ShoppingCart"] != null)
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
-                if (ModelState.IsValid)
-                {
-                    db.DonHangs.Add(dh);
-                    db.SaveChanges();
-                }
-                List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
-                foreach (CartItem item in ls)
-                {
-                    ChiTietDonHang ct = new ChiTietDonHang();
-                    ct.MaDonHang = dh.MaDonHang;
-                    ct.MaSach = item.productOrder.MaSach;
-                    ct.SoLuong = item.Quality;
-                    ct.DonGia = item.productOrder.GiaBan;
-                    db.ChiTietDonHangs.Add(ct);
-                    db.SaveChanges();
-                    Session["ShoppingCart"] = null;
-                }
+                return RedirectToAction("Login", "NguoiDung");
             }
             return View();
         }
-        //public ActionResult DatHang(DonHang dh, ChiTietDonHang ct)
+        [HttpPost]
+        //public ActionResult DatHang(DonHang dh)
         //{
+
         //    if (Session["ShoppingCart"] != null)
         //    {
-        //        if (Session["TaiKhoan"] != null])
+        //        if (ModelState.IsValid)
         //        {
-        //            List<KhachHang> customer = (List<KhachHang>)Session["TaiKhoan"];
-        //            foreach (KhachHang item2 in customer)
-        //                if (ModelState.IsValid)
-        //                {
-        //                    dh.MaKH = item2.MaKH;
-        //                    db.DonHangs.Add(dh);
-        //                    db.SaveChanges();
-        //                }
+        //            db.DonHangs.Add(dh);
+        //            db.SaveChanges();
         //        }
-
         //        List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
         //        foreach (CartItem item in ls)
         //        {
-
+        //            ChiTietDonHang ct = new ChiTietDonHang();
         //            ct.MaDonHang = dh.MaDonHang;
         //            ct.MaSach = item.productOrder.MaSach;
         //            ct.SoLuong = item.Quality;
@@ -263,6 +237,40 @@ namespace Vinabook.Controllers
         //    }
         //    return View();
         //}
+
+
+
+        public ActionResult DatHang(DonHang dh, ChiTietDonHang ct)
+        {
+            //Them don hang
+            if (Session["TaiKhoan"] != null || Session["TaiKhoan"].ToString() == "")
+            {
+                KhachHang customer = (KhachHang)Session["TaiKhoan"];
+                if (ModelState.IsValid)
+                {
+                    dh.MaKH = customer.MaKH;
+                    dh.NgayDat = DateTime.Now;
+                    db.DonHangs.Add(dh);
+                    db.SaveChanges();
+                }
+            }
+            //Them chi tiet don hang
+            if (Session["ShoppingCart"] != null)
+            {
+                List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
+                foreach (CartItem item in ls)
+                {
+                    ct.MaDonHang = dh.MaDonHang;
+                    ct.MaSach = item.productOrder.MaSach;
+                    ct.SoLuong = item.Quality;
+                    ct.DonGia = item.productOrder.GiaBan;
+                    db.ChiTietDonHangs.Add(ct);
+                    db.SaveChanges();
+                    Session["ShoppingCart"] = null;
+                }
+            }
+            return View();
+        }
 
     }
 }
