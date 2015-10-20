@@ -43,7 +43,7 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form method="post" action="#">
+                        <form method="post" @*action="#"*@>
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
@@ -103,7 +103,10 @@
                                             </div>
                                             @*<input type="submit" value="Update Cart" name="update_cart" class="button">*@
 
-                                            <a href=""><input type="submit" value="Đặt Hàng" name="proceed" class="checkout-button button alt wc-forward"></a>
+                                            @*<a href="@Url.Action("DatHang", "GioHang")">
+                                                <input type="submit" value="Đặt Hàng" name="proceed" class="checkout-button button alt wc-forward">
+                                            </a>*@
+                                            <a href="/GioHang/DatHang/" class="btn btn-danger">Đặt hàng</a>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -260,6 +260,7 @@
     <Compile Include="Controllers\ChuDeController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\NhaXuatbanController.cs" />
+    <Compile Include="Controllers\QLDonHangController.cs" />
     <Compile Include="Controllers\QuanLyChuDeController.cs" />
     <Compile Include="Controllers\QuanLyKHController.cs" />
     <Compile Include="Controllers\QuanLyNXBController.cs" />
@@ -286,6 +287,7 @@
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\ChuDe.metadata.cs" />
+    <Compile Include="Models\Metadata\DonHang.metadata.cs" />
     <Compile Include="Models\Metadata\KhachHang.metadata.cs" />
     <Content Include="Content\UserLayout\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\UserLayout\fonts\fontawesome-webfont.ttf" />
@@ -406,6 +408,9 @@
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\TimKiem\Index.cshtml" />
     <Content Include="Views\TimKiem\TimKiemPartial.cshtml" />
+    <Content Include="Views\QLDonHang\Index.cshtml" />
+    <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\QLDonHang\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
