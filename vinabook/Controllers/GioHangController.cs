@@ -250,6 +250,8 @@ namespace Vinabook.Controllers
                 {
                     dh.MaKH = customer.MaKH;
                     dh.NgayDat = DateTime.Now;
+                    dh.TinhTrangGiaoHang = 0;
+                    dh.DaThanhToan = "Chưa thanh toán";
                     db.DonHangs.Add(dh);
                     db.SaveChanges();
                 }
