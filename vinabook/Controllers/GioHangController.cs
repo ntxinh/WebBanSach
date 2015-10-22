@@ -98,6 +98,9 @@ namespace Vinabook.Controllers
         public ActionResult CapNhat(int id, int sl)
         {
             List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
+            //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
+            //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
+
             foreach (var item in listCartItem)
             {
                 if (item.productOrder.MaSach == id)
