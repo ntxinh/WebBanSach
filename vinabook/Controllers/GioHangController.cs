@@ -75,22 +75,27 @@ namespace Vinabook.Controllers
                     db.SaveChanges();
                 }
             }
-            //Them chi tiet don hang
-            if (Session["ShoppingCart"] != null)
-            {
-                List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
-                foreach (CartItem item in ls)
+            
+
+                //Them chi tiet don hang
+                if (Session["ShoppingCart"] != null)
                 {
-                    ct.MaDonHang = dh.MaDonHang;
-                    ct.MaSach = item.productOrder.MaSach;
-                    ct.SoLuong = item.Quality;
-                    ct.DonGia = item.productOrder.GiaBan;
-                    db.ChiTietDonHangs.Add(ct);
+                    List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
+                    foreach (CartItem item in ls)
+                    {
+                    ChiTietDonHang CTDH = new ChiTietDonHang();
+                        CTDH.MaDonHang = dh.MaDonHang;
+                        CTDH.MaSach = item.productOrder.MaSach;
+                        CTDH.SoLuong = item.Quality;
+                        CTDH.DonGia = item.productOrder.GiaBan;
+                    db.ChiTietDonHangs.Add(CTDH);
                     db.SaveChanges();
                     Session["ShoppingCart"] = null;
+                    }
                 }
-            }
-            Session["ShoppingCart"] = null;
+                Session["ShoppingCart"] = null;
+            
+          
             return RedirectToAction("Index","Home");
         }
         //cap nhat gio hang
