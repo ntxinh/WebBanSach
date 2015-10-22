@@ -1,0 +1,81 @@
+﻿
+@using Vinabook.Models;
+
+@model List<CartItem>
+
+
+<table cellspacing="0" class="shop_table cart">
+    <thead>
+        <tr>
+            <th class="product-remove">&nbsp;</th>
+            <th class="product-thumbnail">&nbsp;Hình Ảnh</th>
+            <th class="product-name">Tên Sách</th>
+            <th class="product-price"> Đơn Giá</th>
+            <th class="product-quantity">Số Lượng</th>
+            <th class="product-subtotal">Thành Tiền</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr class="cart_item">
+
+                <td class="product-remove">
+                    <a style="cursor:pointer" title="Xóa sản phẩm này" class="remove" onclick="Remove('@item.productOrder.MaSach')">X</a>
+                </td>
+
+                <td class="product-thumbnail">
+                    
+                    <a href="@Url.Action("XemChiTiet","Sach", new { @masach = item.productOrder.MaSach })"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@Url.Content("/Content/HinhAnhSP/" + item.productOrder.AnhBia)"></a>
+                </td>
+
+                <td class="product-name">
+                    <a href="@Url.Action("XemChiTiet","Sach", new { @masach = item.productOrder.MaSach })">@item.productOrder.TenSach</a>
+                </td>
+
+                <td class="product-price">
+                    <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan) VNĐ</span>
+                </td>
+
+                <td class="product-quantity">
+
+                    <input  id="SoLuong[@item.productOrder.MaSach]" type="number" size="4" min="0" step="1" style="width:50px;" value="@item.Quality" />
+                </td>
+
+                <td class="product-subtotal">
+                    <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan * item.Quality) VNĐ</span>
+                </td>
+
+                <td>
+                    <input type="submit" class="button" onclick="CapNhat('@item.productOrder.MaSach')" title="Cập nhật số lượng" value="Cập nhật" />
+                </td>
+            </tr>
+
+        }
+
+        <tr>
+            <th class="actions" colspan="4">
+                <div class="coupon">
+                    <input type="text" placeholder="Mã khuyến mãi" value="" id="coupon_code" class="input-text" name="coupon_code">
+                    <input type="submit" value="Áp dụng" name="apply_coupon" class="button">
+                </div>
+
+            </th>
+            <th>Tổng:</th>
+            @{double tongTien = 0;}
+            @foreach (var item in Model)
+            {
+                tongTien += (double)item.productOrder.GiaBan * item.Quality;
+            }
+            <th>
+                <span>
+                   @string.Format("{0:0,0}", @tongTien)
+                </span>
+                VNĐ
+            </th>
+            <th><a href="/GioHang/DatHang/" class="btn btn-danger">Đặt hàng</a></th>
+        </tr>
+    </tbody>
+</table>
