@@ -90,7 +90,7 @@ namespace Vinabook.Controllers
                         CTDH.DonGia = item.productOrder.GiaBan;
                     db.ChiTietDonHangs.Add(CTDH);
                     db.SaveChanges();
-                    Session["ShoppingCart"] = null;
+                    //Session["ShoppingCart"] = null;
                     }
                 }
                 Session["ShoppingCart"] = null;
