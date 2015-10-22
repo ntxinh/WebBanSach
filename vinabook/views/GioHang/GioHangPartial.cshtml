@@ -1,15 +1,5 @@
-﻿@*<div class="shopping-item">*@
-@*<a href="@Url.Content("/GioHang/GioHang")">
-        Giỏ hàng - <span class="cart-amunt">@Html.Action("TongTienGioHangPartial", "GioHang")</span>
-        <i class="fa fa-shopping-cart"></i>
-        <span class="product-count">@Html.Action("TongSlGioHangPartial", "GioHang")</span>
-    </a>*@
-<a   style="background-color:#f0ad4e" onclick="window.open('/GioHang/','_self')">
-    Giỏ hàng <span class="badge zoomhover" id="Cart_Amount">@ViewBag.count</span>
-</a>
+﻿
+    <a style="background-color:#f0ad4e; padding:initial 5px initial 5px" onclick="window.open('/GioHang/','_self')">
+        Giỏ hàng <span class="badge zoomhover" id="Cart_Amount">@ViewBag.count</span>
+    </a>
 
-@*<button class="btn btn-warning" type="button" onclick="window.open('/Sach/ShoppingCart','_self')">
-    Your Orders <span class="badge" id="Cart_Amount">@ViewBag.count</span>
-</button>*@
-
-@*</div>*@

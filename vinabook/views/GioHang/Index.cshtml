@@ -6,6 +6,46 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+<script>
+    function CapNhat(Id) {
+        debugger;
+        var soluong = document.getElementById("SoLuong[" + Id + "]").value;
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/CapNhat',
+            data: { id: Id, sl: soluong },
+            success: function (data) {
+                $.post(data.Url, function (partial) {
+                    alert("Cập nhật xong!!!");
+                    $("#GioHang").html(partial);
+                    //$.ajax("#Cart_Amount").load;
+                    @*@{ int i = 0;}
+                    @foreach ( var item in (List<CartItem>)Session["ShoppingCart"]) {
+                        i += item.Quality;
+                    }*@
+                    //alert();
+                    //$('#Cart_Amount').html();
+                });
+            }
+        });
+        abc();
+    }
+    function Remove(Id) {
+        debugger;
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/Remove',
+            data: { id: Id },
+            success: function(data){
+                $.post(data.Url, function (partial) {
+                    $("#GioHang").html(partial);
+                });
+            }
+        });
+        
+    }
+ 
+</script>
 
 <div class="product-big-title-area">
     <div class="container">
@@ -24,13 +64,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Search Products</h2>
-                    <form action="#">
-                        <input type="text" placeholder="Search products...">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
+              
 
 
 
@@ -43,75 +77,9 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form method="post" @*action="#"*@>
-                            <table cellspacing="0" class="shop_table cart">
-                                <thead>
-                                    <tr>
-                                        <th class="product-remove">&nbsp;</th>
-                                        <th class="product-thumbnail">&nbsp;Hình Ảnh</th>
-                                        <th class="product-name">Tên Sách</th>
-                                        <th class="product-price"> Đơn Giá</th>
-                                        <th class="product-quantity">Số Lượng</th>
-                                        <th class="product-subtotal">Thành Tiền</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr class="cart_item">
-
-                                            <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">×</a>
-                                            </td>
-
-                                            <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@Url.Content("/Content/HinhAnhSP/"+item.productOrder.AnhBia)"></a>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <a href="sinile-product.html">@item.productOrder.TenSach</a>
-                                            </td>
-
-                                            <td class="product-price">
-                                                <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan) VNĐ</span>
-                                            </td>
-
-                                            <td class="product-quantity">
-
-                                                <input type="text" value="@item.Quality" />
-                                            </td>
-
-                                            <td class="product-subtotal">
-                                                <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan * item.Quality) VNĐ</span>
-                                            </td>
-
-                                            <td>
-                                                <input type="submit" class="button" onclick="UpdateCart('@item.productOrder.MaSach')" value="Cập nhật" />
-                                            </td>
-                                        </tr>
-
-                                    }
-
-
-                                    <tr>
-                                        <td class="actions" colspan="7">
-                                            <div class="coupon">
-                                                <label for="coupon_code">Coupon:</label>
-                                                <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                                            </div>
-                                            @*<input type="submit" value="Update Cart" name="update_cart" class="button">*@
-
-                                            @*<a href="@Url.Action("DatHang", "GioHang")">
-                                                <input type="submit" value="Đặt Hàng" name="proceed" class="checkout-button button alt wc-forward">
-                                            </a>*@
-                                            <a href="/GioHang/DatHang/" class="btn btn-danger">Đặt hàng</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
+                       <div id="GioHang">
+                           @{ Html.RenderPartial("Success");}
+                       </div>
 
                         <div class="">
 
