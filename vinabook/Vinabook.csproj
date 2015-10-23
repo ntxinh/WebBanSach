@@ -411,6 +411,7 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\QLDonHang\Delete.cshtml" />
     <Content Include="Views\GioHang\Success.cshtml" />
+    <Content Include="Views\GioHang\DatHangPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

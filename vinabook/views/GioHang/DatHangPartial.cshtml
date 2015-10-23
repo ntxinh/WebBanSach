@@ -1,0 +1,43 @@
+﻿
+@model Vinabook.Models.DonHang
+
+<h2 class="col-md-offset-2 ">Đặt hàng</h2>
+
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group ">
+            @Html.LabelFor(model => model.NgayGiao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                <input class="form-control text-box single-line" data-val="true" data-val-date="The field Ngày giao must be a date." id="NgayGiao" name="NgayGiao" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                @Html.ValidationMessageFor(model => model.NgayGiao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Địa chỉ</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" placeholder="Tính năng thử nghiệm" />
+                <br />
+                (Nếu địa chỉ giống với địa chỉ đã đăng ký thì không cần nhập)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10  ">
+                <button onclick="DathangSubmit()" class="btn btn-warning" >Đặt hàng</button>
+                <span id="success" class="success"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <button class="btn btn-default" onclick="BackToCart()">Trở Về Giỏ</button>
+
+    <br />
+

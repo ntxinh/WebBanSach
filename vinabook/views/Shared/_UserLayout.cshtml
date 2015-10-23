@@ -111,11 +111,11 @@
                             else
                             {
                                 <li class="dropdown dropdown-small">
-                                    <a href="@Url.Action("Details","NguoiDung")"><span class="key"><i class="fa fa-user"></i>  @User.Identity.Name</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Details","NguoiDung")"><span class="key"><i class="fa fa-user "></i>  Xin chào: @User.Identity.Name</span></a>
                                 </li>
 
                                 <li class="dropdown dropdown-small">
-                                    <a href="@Url.Content("/NguoiDung/Logout/")"><span class="key"><i class="fa fa-user"></i>  Log out</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Logout","NguoiDung",new {urlString=Request.Url.OriginalString })"><span class="key"><i class="fa fa-sign-out "></i>  Log out</span></a>
                                 </li>
 
 

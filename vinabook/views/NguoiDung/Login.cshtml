@@ -18,6 +18,7 @@
             <h3>@ViewBag.ThongBao</h3>
             <input type="text" placeholder="username" name="username"><br>
             <input type="password" placeholder="password" name="password"><br>
+            <input style="display:none" name="urlString" value="@Request.UrlReferrer" />
             @*<input type="button" value="Login">*@
             <button type="submit" class="btnsubmit">Đăng nhập</button>
             @*<input type="button" class="btnsubmit" value="dag nhap"/>*@

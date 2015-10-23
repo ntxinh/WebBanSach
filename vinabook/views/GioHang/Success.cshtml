@@ -75,7 +75,14 @@
                 </span>
                 VNĐ
             </th>
-            <th><a href="/GioHang/DatHang/" class="btn btn-danger">Đặt hàng</a></th>
+            @{ int i = 0;}
+            @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")
+            {
+                i = 1;
+            }
+            <th>
+                <button  @*href="/GioHang/DatHang/"*@ onclick="DatHang('@i')" class="btn btn-warning" >Đặt hàng</button>
+            </th>
         </tr>
     </tbody>
 </table>

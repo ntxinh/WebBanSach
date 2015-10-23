@@ -17,14 +17,8 @@
             success: function (data) {
                 $.post(data.Url, function (partial) {
                     alert("Cập nhật xong!!!");
+
                     $("#GioHang").html(partial);
-                    //$.ajax("#Cart_Amount").load;
-                    @*@{ int i = 0;}
-                    @foreach ( var item in (List<CartItem>)Session["ShoppingCart"]) {
-                        i += item.Quality;
-                    }*@
-                    //alert();
-                    //$('#Cart_Amount').html();
                 });
             }
         });
@@ -36,15 +30,60 @@
             type: 'POST',
             url: '/GioHang/Remove',
             data: { id: Id },
-            success: function(data){
+            success: function (data) {
                 $.post(data.Url, function (partial) {
                     $("#GioHang").html(partial);
                 });
             }
         });
-        
+
     }
- 
+    function DatHang(KtDangNhap) {
+        debugger;
+        if (KtDangNhap == 1) {
+            window.location.href="/NguoiDung/Login";
+        }
+        else
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/GioHang/DatHang',
+                data: {},
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#GioHang").html(partial);
+                    });
+                }
+            });
+        }
+    }
+    function DathangSubmit() {
+        debugger;
+        var ngayGiao = document.getElementById("NgayGiao").value;
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/DatHangSubmit',
+            data: {NgayGiao:ngayGiao},
+            success: function (data) {
+                $("#success").html(data.success);
+                alert(data.success);
+                window.location.href = "/Home/Index";
+        }
+        });
+    }
+    function BackToCart() {
+        debugger;
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/BackToCart',
+            data: {},
+            success: function (data) {
+                $.post(data.Url, function (partial) {
+                    $("#GioHang").html(partial);
+                });
+            }
+        });
+    }
 </script>
 
 <div class="product-big-title-area">
@@ -64,7 +103,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-              
+
 
 
 
@@ -79,9 +118,9 @@
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                       <div id="GioHang">
-                           @{ Html.RenderPartial("Success");}
-                       </div>
+                        <div id="GioHang">
+                            @{ Html.RenderPartial("Success");}
+                        </div>
 
                         <div class="">
 

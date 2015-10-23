@@ -48,20 +48,27 @@ namespace Vinabook.Controllers
 
             return PartialView();
         }
-        [HttpGet]
+        [HttpPost]
         public ActionResult DatHang()
         {
             if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
                 return RedirectToAction("Login", "NguoiDung");
             }
-            return View();
+           
+            return Json(new { Url = Url.Action("DatHangPartial") });
         }
+        
         [HttpPost]
   
-        public ActionResult DatHang(DonHang dh, ChiTietDonHang ct)
+        public ActionResult DatHangPartial()
         {
-            //Them don hang
+            return PartialView("DatHangPartial");
+        }
+        [HttpPost]
+        public ActionResult DatHangSubmit(string NgayGiao)
+        {
+            DonHang dh = new DonHang();
             if (Session["TaiKhoan"] != null || Session["TaiKhoan"].ToString() == "")
             {
                 KhachHang customer = (KhachHang)Session["TaiKhoan"];
@@ -69,34 +76,36 @@ namespace Vinabook.Controllers
                 {
                     dh.MaKH = customer.MaKH;
                     dh.NgayDat = DateTime.Now;
+                    if(NgayGiao.Trim()!="")
+                        dh.NgayGiao = Convert.ToDateTime(NgayGiao);
+                    
                     dh.TinhTrangGiaoHang = 0;
                     dh.DaThanhToan = "Chưa thanh toán";
                     db.DonHangs.Add(dh);
                     db.SaveChanges();
                 }
             }
-            
-
-                //Them chi tiet don hang
-                if (Session["ShoppingCart"] != null)
+            if (Session["ShoppingCart"] != null)
+            {
+                List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
+                foreach (CartItem item in ls)
                 {
-                    List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
-                    foreach (CartItem item in ls)
-                    {
                     ChiTietDonHang CTDH = new ChiTietDonHang();
-                        CTDH.MaDonHang = dh.MaDonHang;
-                        CTDH.MaSach = item.productOrder.MaSach;
-                        CTDH.SoLuong = item.Quality;
-                        CTDH.DonGia = item.productOrder.GiaBan;
+                    CTDH.MaDonHang = dh.MaDonHang;
+                    CTDH.MaSach = item.productOrder.MaSach;
+                    CTDH.SoLuong = item.Quality;
+                    CTDH.DonGia = item.productOrder.GiaBan;
                     db.ChiTietDonHangs.Add(CTDH);
                     db.SaveChanges();
-                    //Session["ShoppingCart"] = null;
-                    }
                 }
-                Session["ShoppingCart"] = null;
-            
-          
-            return RedirectToAction("Index","Home");
+            }
+            Session["ShoppingCart"] = null;
+            return Json(new { success = "Đặt hàng thành công!!!" });
+        }
+        [HttpPost]
+        public ActionResult BackToCart()
+        {
+            return Json(new { Url = Url.Action("Success") });
         }
         //cap nhat gio hang
         [HttpPost]
@@ -105,6 +114,7 @@ namespace Vinabook.Controllers
             List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
             //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
             //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
+            //có. cập nhật vào Session["ShoppingCart"] mà
 
             foreach (var item in listCartItem)
             {
