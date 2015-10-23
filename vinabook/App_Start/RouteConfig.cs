@@ -16,7 +16,7 @@ namespace Vinabook
             routes.MapRoute(
                 name: "login",
                 url: "dang-nhap-he-thong",
-                defaults: new { controller = "NguoiDung", action = "Login" }
+                defaults: new { controller = "Admin", action = "Login" }
             );
 
             routes.MapRoute(
