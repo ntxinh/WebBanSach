@@ -104,6 +104,7 @@ namespace Vinabook.Controllers
             }
             return RedirectToAction("Index");
         }
+        //cho nay bi j rồi
         public ActionResult XemCTDH(int madh)
         {
             ChiTietDonHang kh = db.ChiTietDonHangs.SingleOrDefault(n => n.MaDonHang == madh);
