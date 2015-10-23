@@ -56,9 +56,10 @@
             @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaDonHang }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaDonHang }) |
-            @Html.ActionLink("Delete", "Delete", new { @MaDH=item.MaDonHang })
+            @Html.ActionLink("Edit", "Edit", new { @madh = item.MaDonHang }) |
+            @Html.ActionLink("Details", "Details", new { @madh = item.MaDonHang }) |
+            @Html.ActionLink("Delete", "Delete", new { @MaDH = item.MaDonHang }) |
+            @Html.ActionLink("Xem chi tiết đơn hàng", "XemCTDH", new { @madh = item.MaDonHang })
         </td>
     </tr>
 }

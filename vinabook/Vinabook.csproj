@@ -266,6 +266,7 @@
     <Compile Include="Controllers\QuanLyNXBController.cs" />
     <Compile Include="Controllers\QuanLySachController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
+    <Compile Include="CustomHelpers\CustomDropdDownList.cs" />
     <Compile Include="Models\Admin.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
@@ -286,6 +287,7 @@
     <Compile Include="Models\KhachHang.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\ChiTietDonHang.metadata.cs" />
     <Compile Include="Models\Metadata\ChuDe.metadata.cs" />
     <Compile Include="Models\Metadata\DonHang.metadata.cs" />
     <Compile Include="Models\Metadata\KhachHang.metadata.cs" />
@@ -411,6 +413,9 @@
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\QLDonHang\Delete.cshtml" />
     <Content Include="Views\GioHang\Success.cshtml" />
+    <Content Include="Views\QLDonHang\Edit.cshtml" />
+    <Content Include="Views\QLDonHang\XemCTDH.cshtml" />
+    <Content Include="Views\QLDonHang\Details.cshtml" />
     <Content Include="Views\GioHang\DatHangPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
