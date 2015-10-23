@@ -1,5 +1,5 @@
-﻿@model Vinabook.Models.ChiTietDonHang
-
+﻿@using Vinabook.Models;
+@model List<ChiTietDonHang>
 @{
     ViewBag.Title = "XemCTDH";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,42 +10,50 @@
 <div>
     <h4>ChiTietDonHang</h4>
     <hr />
+    @foreach(var item in Model)
+    { 
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
+            Số lượng:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SoLuong)
+            @item.SoLuong
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
+            Đơn giá:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DonGia)
+            @item.DonGia
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DonHang.DaThanhToan)
+            Mã đơn hàng:
         </dt>
-
+            
         <dd>
-            @Html.DisplayFor(model => model.DonHang.DaThanhToan)
+            @item.MaDonHang
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sach.TenSach)
+            Mã sách:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sach.TenSach)
+            @item.MaSach
         </dd>
 
+        <dt>
+            Tên sách:
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.Sach.TenSach)
+        </dd>
     </dl>
+    }
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

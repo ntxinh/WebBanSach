@@ -105,15 +105,17 @@ namespace Vinabook.Controllers
             return RedirectToAction("Index");
         }
         //cho nay bi j rồi
-        public ActionResult XemCTDH(int madh)
+        public ActionResult XemCTDH(int madh, int? masach)
         {
-            ChiTietDonHang kh = db.ChiTietDonHangs.SingleOrDefault(n => n.MaDonHang == madh);
-            if (kh == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-            }
-            return View(kh);
+            //ChiTietDonHang kh = db.ChiTietDonHangs.SingleOrDefault(n => n.MaDonHang == madh);
+            //if (kh == null)
+            //{
+            //    Response.StatusCode = 404;
+            //    return null;
+            //}
+            //return View(kh);
+            var lstCTDH = db.ChiTietDonHangs.Where(n => n.MaDonHang == madh).ToList();
+            return View(lstCTDH);
         }
         public ActionResult Details(int madh)
         {

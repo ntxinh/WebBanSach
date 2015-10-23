@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Vinabook.Models.ChartData>
+@using JQChart.Web.Mvc
+@{ 
+    ViewBag.Title = "Biểu đồ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <link rel="stylesheet" type="text/css" href="~/Content/JQChart/css/jquery.jqChart.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/JQChart/css/jquery.jqRangeSlider.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/JQChart/themes/le-frog/jquery-ui-1.8.20.css" />
+    <script src="@Url.Content("~/Content/JQChart/js/jquery-1.11.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/JQChart/js/jquery.mousewheel.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/JQChart/js/jquery.jqChart.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/JQChart/js/jquery.jqRangeSlider.min.js")" type="text/javascript"></script>
+    <!--[if IE]><script lang="javascript" type="text/javascript" src="@Url.Content("~/Content/JQChart/js/excanvas.js")"></script><![endif]-->
+
+    <div>
+        @(Html.JQChart()
+                .Chart(Model)
+                .ID("jqChart")
+                .Width(500)
+                .Height(300)
+                .Title("Pie Chart")
+                .Legend(legend => legend.Title("Countries"))
+                .Border(border => border.StrokeStyle("#6ba851"))
+                .Background(background => background.LinearGradient(0, 0, 0, 1).ColorStops(stop =>
+                {
+                    stop.Add(0, "#d2e6c9");
+                    stop.Add(1, "white");
+                }))
+                .Animation(TimeSpan.FromSeconds(1))
+                .Shadows(true)
+                .Series(series =>
+                {
+                    series.Pie()
+                          .ExplodedRadius(10)
+                          .FillStyles(new object[] { "#418CF0", "#FCB441", "#E0400A", "#056492", "#BFBFBF", "#1A3B69", "#FFE382" })
+                          .DataLabels(el => el.Label)
+                          .DataValues(el => el.Value1)
+                          .ExplodedSlices(new object[] { 5 })
+                          .Labels(label => label.StringFormat("%.1f%%")
+                                                .Font("15px sans-serif")
+                                                .ValueType(LabelValueType.Percentage)
+                                                .FillStyle(System.Drawing.Color.White));
+                }
+                )
+                .Render()
+        )
+    </div>
+    <script lang="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $('#jqChart').bind('tooltipFormat', function (e, data) {
+                var percentage = data.series.getPercentage(data.value);
+                percentage = data.chart.stringFormat(percentage, '%.2f%%');
+
+                return '<b>' + data.dataItem[0] + '</b><br />' +
+                           data.value + ' (' + percentage + ')';
+            });
+        });
+    </script>
+
+
+
+
