@@ -423,6 +423,7 @@
     <Content Include="Views\QLDonHang\Details.cshtml" />
     <Content Include="Views\GioHang\DatHangPartial.cshtml" />
     <Content Include="Views\Chart\PieChart.cshtml" />
+    <Content Include="Views\Sach\_Partial_1_Sach.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

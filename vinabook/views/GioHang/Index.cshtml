@@ -16,26 +16,34 @@
             data: { id: Id, sl: soluong },
             success: function (data) {
                 $.post(data.Url, function (partial) {
-                    alert("Cập nhật xong!!!");
-
+                    debugger;
                     $("#GioHang").html(partial);
+                    $("#TongTien").attr("style", "color:red");
+                    setTimeout(function () {
+                        $("#TongTien").attr("style", "color:black");
+                    }, 600);
                 });
             }
         });
-        abc();
+
     }
+
     function Remove(Id) {
+
         debugger;
         $.ajax({
             type: 'POST',
             url: '/GioHang/Remove',
             data: { id: Id },
             success: function (data) {
-                $.post(data.Url, function (partial) {
+                $.post(data.Url, function (partial) {debugger;
                     $("#GioHang").html(partial);
                 });
             }
         });
+
+    }
+    function RemoveNull(){
 
     }
     function DatHang(KtDangNhap) {
@@ -68,7 +76,7 @@
                 $("#success").html(data.success);
                 alert(data.success);
                 window.location.href = "/Home/Index";
-        }
+            }
         });
     }
     function BackToCart() {

@@ -33,42 +33,42 @@
     @*<div class="related-products-wrapper">
         <h2 class="related-products-title">Sách gần đây</h2>
         <div class="related-products-carousel">*@
-    @{ int j = 0;}
-    @foreach (var item in Model)
-    {
-        
-        j++;
-        <div class="col-md-4 col-xs-2" id="SanPham" style="width:270px;">
-            <div class="single-product">
-                <div class="product-f-image">
-                    <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" alt="">
-                    <div class="product-hover">
-                        <a class="add-to-cart-link" style="padding:0">
-                          
-                            <input type="submit" style="width:100%;height:100%" class="btn btn-primary" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ" id="btnGioHang" />
-                            
-                        </a>
-                        <a href="@Url.Action("XemChiTiet","Sach", new { @masach=item.MaSach })" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
-                       
+    <div class="row">
+        <ul>
+            @foreach (var item in Model)
+            {
+                string title = "Tên:       " + item.TenSach + "\nNXB:      " + item.NhaXuatBan.TenNXB + "\nChủ đề: " + item.ChuDe.TenChuDe;
+                <li>
+
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div class="thumbnail no-under">
+                            <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" title="@title">
+                                <img class="img-responsive" src="@Url.Content("/Content/HinhAnhSP/"+item.AnhBia)" alt="">
+                                <div class="caption">
+                                    @* Hiển thị tên 2 dòng *@
+                                    <div style="line-height:2em; height:4em;overflow:hidden; margin:0 0 0.5em 0" class="text-center">
+                                        <h3>@item.TenSach</h3>
+                                    </div>
+
+                                    <div class="product-carousel-price">
+                                        Giá:
+                                        <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + item.GiaBan * 10 / 100)</del>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="product-option-shop text-center">
+                                <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
+                            </div>
+
+                        </div>
                     </div>
-                </div>
 
-                <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
+                </li>
+            }
+        </ul>
 
-                <div class="product-carousel-price text-center">
-                    <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + (10 * item.GiaBan / 100))</del>
-                </div>
-            </div>
-        </div>
-        if (j % 4 == 0)
-        {
-            <div style="clear:both"></div>
-           <div class="row"></div>
-        }
-    }
+    </div>
 
-    @*</div>
-        </div>*@
 </div>
 
 <div style="clear:both"></div>

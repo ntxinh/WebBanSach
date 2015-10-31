@@ -2,7 +2,7 @@
 @using Vinabook.Models;
 
 @model List<CartItem>
-
+@* day la cai partial sau khi dat hang xong *@
 
 <table cellspacing="0" class="shop_table cart">
     <thead>
@@ -36,7 +36,7 @@
                 </td>
 
                 <td class="product-price">
-                    <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan) VNĐ</span>
+                    <span  class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan) VNĐ</span>
                 </td>
 
                 <td class="product-quantity">
@@ -45,11 +45,11 @@
                 </td>
 
                 <td class="product-subtotal">
-                    <span class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan * item.Quality) VNĐ</span>
+                    <span id="ThanhTien[@item.productOrder.MaSach]" class="amount">@string.Format("{0:0,0}", item.productOrder.GiaBan * item.Quality)</span>
                 </td>
 
                 <td>
-                    <input type="submit" class="button" onclick="CapNhat('@item.productOrder.MaSach')" title="Cập nhật số lượng" value="Cập nhật" />
+                    <input id="CapNhat" type="submit" class="button" onclick="CapNhat('@item.productOrder.MaSach')" title="Cập nhật số lượng" value="Cập nhật" />
                 </td>
             </tr>
 
@@ -70,10 +70,10 @@
                 tongTien += (double)item.productOrder.GiaBan * item.Quality;
             }
             <th>
-                <span>
-                   @string.Format("{0:0,0}", @tongTien)
+                <span id="TongTien">
+                   @string.Format("{0:0,0}", @tongTien) VNĐ
                 </span>
-                VNĐ
+                
             </th>
             @{ int i = 0;}
             @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")

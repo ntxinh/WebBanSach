@@ -29,9 +29,11 @@ namespace Vinabook.Controllers
             int pageSize = 12;
             return View(db.Saches.Where(n=>n.Moi==1).ToList().OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
         }
-        public ViewResult SachTheoChuDe(int machude=1)
+        public ViewResult SachTheoChuDe(int machude=1,int?page=1)
         {
-            var lstSach = db.Saches.Where(n => n.MaChuDe == machude).ToList();
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            var lstSach = db.Saches.Where(n => n.MaChuDe == machude).ToList().OrderBy(n=>n.MaChuDe).ToPagedList(pageNumber,pageSize);
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == machude).TenChuDe;
             return View(lstSach);
         } 

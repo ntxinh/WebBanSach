@@ -21,15 +21,19 @@ namespace Vinabook.Controllers
             }
             return lstGioHang;
         }
-        
+
         public ActionResult Index()
         {
-            if (Session["ShoppingCart"] == null)
+
+            if (Session["ShoppingCart"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                if (((List<CartItem>)Session["ShoppingCart"]).Count > 0)
+                {
+                    List<CartItem> lstGioHang = LayGioHang();
+                    return View(lstGioHang);
+                }
             }
-            List<CartItem> lstGioHang = LayGioHang();
-            return View(lstGioHang);
+            return RedirectToAction("Index", "Home");
         }
         //dem so luong san pham
         public ActionResult GioHangPartial()
@@ -55,12 +59,12 @@ namespace Vinabook.Controllers
             {
                 return RedirectToAction("Login", "NguoiDung");
             }
-           
+
             return Json(new { Url = Url.Action("DatHangPartial") });
         }
-        
+
         [HttpPost]
-  
+
         public ActionResult DatHangPartial()
         {
             return PartialView("DatHangPartial");
@@ -76,9 +80,9 @@ namespace Vinabook.Controllers
                 {
                     dh.MaKH = customer.MaKH;
                     dh.NgayDat = DateTime.Now;
-                    if(NgayGiao.Trim()!="")
+                    if (NgayGiao.Trim() != "")
                         dh.NgayGiao = Convert.ToDateTime(NgayGiao);
-                    
+
                     dh.TinhTrangGiaoHang = 0;
                     dh.DaThanhToan = "Chưa thanh toán";
                     db.DonHangs.Add(dh);
@@ -96,6 +100,9 @@ namespace Vinabook.Controllers
                     CTDH.SoLuong = item.Quality;
                     CTDH.DonGia = item.productOrder.GiaBan;
                     db.ChiTietDonHangs.Add(CTDH);
+
+                    Sach sach = db.Saches.Find(item.productOrder.MaSach);
+                    sach.SoLuongTon -= item.Quality;
                     db.SaveChanges();
                 }
             }
@@ -137,8 +144,8 @@ namespace Vinabook.Controllers
         [HttpPost]
         public ActionResult Remove(int id)
         {
-            List<CartItem> listCartItem=(List<CartItem>)Session["ShoppingCart"];
-            foreach( var item in listCartItem)
+            List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
+            foreach (var item in listCartItem)
             {
                 if (item.productOrder.MaSach == id)
                 {

@@ -47,12 +47,19 @@ namespace Vinabook.Controllers
                 Session["TaiKhoan"] = usr;
                 //lay gio hang cua khach hang 
                 if (urlString.Trim() != "")
-                    return Redirect(urlString);
+                {
+                    string[] url = urlString.Split('/');
+                    if (url[url.Length-1] == "Login")
+                        return RedirectToAction("Index", "Home");
+                    else
+                        return Redirect(urlString);
+                }
+                else
                 return RedirectToAction("Index", "Home");
             }
             TempData["Message"] = "Username or password is wrong";
             ViewBag.ThongBao = "Tên tài khoản hoặc mật khẩu không đúng!";
-            
+
             return View();
             //KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.TaiKhoan == sTaiKhoan && n.MatKhau == sMatKhau);
             //if (kh != null)
@@ -67,7 +74,7 @@ namespace Vinabook.Controllers
             //return View();
 
         }
-        
+
         [HttpGet]
         public ActionResult Register()
         {
@@ -93,7 +100,7 @@ namespace Vinabook.Controllers
             Session["TaiKhoan"] = null;
             if (urlString.Trim() != "")
                 return Redirect(urlString);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

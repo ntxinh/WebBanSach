@@ -14,13 +14,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="single-sidebar">
+                @*<div class="single-sidebar">
                     <h2 class="sidebar-title">Tìm kiếm sách</h2>
                     <form action="">
                         <input type="text" placeholder="Search products...">
                         <input type="submit" value="Search">
                     </form>
-                </div>
+                </div>*@
 
                 @*San pham cung chu de*@
                 @*@Html.Action("SachCungChuDePartial", "Sach")*@
@@ -37,49 +37,9 @@
                         @*<a href="">@Model.TenSach</a>*@
                     </div>
 
+                    @Html.Partial("_Partial_1_Sach", Model)                
+    @*@Html.Action("SachGanDayPartial", "Sach")*@
 
-                    <div class="single-product-area">
-                        <div class="zigzag-bottom"></div>
-                        <div class="">
-                            <div class="row">
-                                @foreach (var item in Model)
-            {
-                                    <div class="col-md-3 col-sm-6">
-                                        <div class="single-shop-product">
-                                            <div class="product-upper">
-                                                <img src="@Url.Content("/Content/HinhAnhSP/"+item.AnhBia)" alt="" width="195" height="243">
-                                            </div>
-                                            @*ten sach hien thi 2 dong *@
-                                            <div style="line-height:2em; height:4em;overflow:hidden; margin:0 0 0.5em 0">
-                                                <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
-                                            </div>
-
-                                            <div class="product-carousel-price">
-                                                <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + 10000)</del>
-                                            </div>
-
-                                            <div class="product-option-shop">
-
-                                                @*@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
-                                                {
-                                                    <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
-                                                }*@
-                                                <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @if (Model.Count == 0)
-                                { <h3>Không có sách nào thuộc Nhà xuất bản này</h3>}
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
-
-                    @*@Html.Action("SachGanDayPartial", "Sach")*@
                 </div>
              
                     <div class="col-md-12">

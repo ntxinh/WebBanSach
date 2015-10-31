@@ -6,25 +6,21 @@
         <div class="col-md-12">
             <div class="latest-product">
                 <h2 class="section-title">Latest Products</h2>
-                <div class="product-carousel">
+                <div class="product-carousel" >
                     @foreach (var item in Model)
                     {
-                        <div class="single-product">
+                        <div class="single-product"  >
                             <div class="product-f-image">
-                                <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" @*src="~/Content/UserLayout/img/product-1.jpg"*@ alt="" />
+                                <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)"  alt="" />
                                 <div class="product-hover">
 
                                     <a class="add-to-cart-link" style="padding:0">
 
-                                        @*@using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
-                                            {*@
-                                        @*<span class="fa fa-shopping-cart "></span>*@
                                         <input type="submit" style="width:100%;height:100%" class="btn btn-primary" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ" id="btnGioHang" />
-                                        @*<input type="submit" class="btn btn-danger" onclick="AddToCart('@item.MaSach')" value="Add To Cart" />*@
-                                       
+                                  
                                     </a>
 
-                                    <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
                                 </div>
                             </div>
 
