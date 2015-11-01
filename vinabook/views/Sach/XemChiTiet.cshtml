@@ -63,7 +63,7 @@
 
                                 @*Them vao gio hang*@
                                 <div class="quantity">
-                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                    <input id="chiTietSl" type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                 </div>
                                 <button class="add_to_cart_button" onclick="AddToCart('@Model.MaSach')" type="submit">Thêm vào giỏ hàng</button>
                                 @*ket thuc ham them vao gio hang*@
@@ -73,10 +73,11 @@
                                 </div>
 
                                 <div role="tabpanel">
-                                    <ul class="product-tab" role="tablist">
+                                    <ul class="product-tab" style="border:none" role="tablist">
                                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
                                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a></li>
                                     </ul>
+                                    <div class="page-header"></div>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                                             <h2>Tóm tắt nội dung:</h2>

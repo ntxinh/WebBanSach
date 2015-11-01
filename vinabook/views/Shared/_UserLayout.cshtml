@@ -38,44 +38,56 @@
     <!--Ajax Process-->
     <script>
         
-        @*$(document).ready(function () {
-        @if(Session["ShoppingCart"]!=null)
-        {
-            int cartcount = 0;
-            List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];
-            foreach(CartItem item in ls)
-            {
-                cartcount += item.Quality;
-        }
-            ViewBag.count = cartcount;
-        }
-        });*@
+      
 
         function AddToCart(MaSach) {
-
-            //debugger;
+            debugger;
+            //lay controller kiem tra  dang trong gio hang k
+            var ktController = '@ViewContext.RouteData.Values["Controller"].ToString()';
+            var ChiTietSoLuong = 0;
+            if (document.getElementById("chiTietSl") != null)
+                ChiTietSoLuong = document.getElementById("chiTietSl").value;
+            else
+                ChiTietSoLuong = 1;
+            //alert(ChiTietSoLuong);
+            
             $.ajax({
                 type: 'POST',
                 url: '/Sach/AddToCart',
-                data: { id: MaSach },
+                data: { id: MaSach,chiTietSl:ChiTietSoLuong },
                 success: function (data) {
 
                     $("#Cart_Amount").html(data.ItemAmount);
+                   
+                    if (ktController == "GioHang")//kiem tra dang trong gio hang thi cap nhat 
+                        capNhatGiohang();
                 }
             });
         }
-        //function Search(id) {
-        //    $.ajax({
-        //        type: 'POST',
-        //        url: '/TimKiem/Index',
-        //        data: {Id:id},
-        //        success: function (data) {
-        //            $.post(data.Url, function (partial) {
-        //                $('#divTimKiem').html(partial);
-        //            });
-        //        }
-        //    });
-        //}
+        function capNhatGiohang() {
+            debugger;
+            $.ajax({
+                type: 'POST',
+                url: '/GioHang/CapNhat',
+                data: { id: -1,sl:0 },
+                success: function (data) {
+                    $("#Cart_Amount").html(data.sl);
+                    $.post(data.Url, function (partial) {
+                        debugger;
+                        $("#GioHang").html(partial);
+                        //AddToCart(-1);
+                        $("#TongTien").attr("style", "color:red");
+                        setTimeout(function () {
+                            $("#TongTien").attr("style", "color:black");
+                        }, 600);
+                    });
+                }
+            });
+
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
     </script>
     <!--End Ajax Process-->

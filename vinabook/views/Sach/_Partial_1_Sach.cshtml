@@ -11,7 +11,7 @@
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="thumbnail no-under">
-                        <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" title="@title">
+                        <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" title="@title" data-toggle="tooltip">
                             <img class="img-responsive" src="@Url.Content("/Content/HinhAnhSP/"+item.AnhBia)" alt="">
                             <div class="caption">
                                 @* Hiển thị tên 2 dòng *@

@@ -16,7 +16,7 @@ namespace Vinabook.Controllers
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
         public PartialViewResult SachMoiPartial()
         {
-            var lstSachMoi = db.Saches.Where(n=>n.Moi==1).Take(10).ToList();
+            var lstSachMoi = db.Saches.Where(n => n.Moi == 1).Take(10).ToList();
             return PartialView(lstSachMoi);
         }
         /// <summary>
@@ -27,23 +27,23 @@ namespace Vinabook.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 12;
-            return View(db.Saches.Where(n=>n.Moi==1).ToList().OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+            return View(db.Saches.Where(n => n.Moi == 1).ToList().OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
         }
-        public ViewResult SachTheoChuDe(int machude=1,int?page=1)
+        public ViewResult SachTheoChuDe(int machude = 1, int? page = 1)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 12;
-            var lstSach = db.Saches.Where(n => n.MaChuDe == machude).ToList().OrderBy(n=>n.MaChuDe).ToPagedList(pageNumber,pageSize);
+            var lstSach = db.Saches.Where(n => n.MaChuDe == machude).ToList().OrderBy(n => n.MaChuDe).ToPagedList(pageNumber, pageSize);
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == machude).TenChuDe;
             return View(lstSach);
-        } 
-        public ViewResult SachTheoNhaXuatBan(int manxb=1,int? page=1)
+        }
+        public ViewResult SachTheoNhaXuatBan(int manxb = 1, int? page = 1)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 12;
 
             ViewBag.NhaXuatBan = db.NhaXuatBans.Single(n => n.MaNXB == manxb).TenNXB;
-            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).ToList().OrderBy(n=>n.MaSach).ToPagedList(pageNumber,pageSize);
+            var lstSach = db.Saches.Where(n => n.MaNXB == manxb).ToList().OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize);
             return View(lstSach);
         }
         public PartialViewResult SachTiengAnhPartial()
@@ -89,11 +89,11 @@ namespace Vinabook.Controllers
         }
         public PartialViewResult SachGanDayPartial()
         {
-            var lstSachMoi = db.Saches.OrderBy(x=>x.NgayCapNhat).ToList();
+            var lstSachMoi = db.Saches.OrderBy(x => x.NgayCapNhat).ToList();
             return PartialView(lstSachMoi);
         }
         [HttpPost]
-        public JsonResult AddToCart(int id)
+        public JsonResult AddToCart(int? id, int chiTietSl)
         {
             List<CartItem> listCartItem;
             //Process Add To Cart
@@ -101,7 +101,7 @@ namespace Vinabook.Controllers
             {
                 //Create New Shopping Cart Session
                 listCartItem = new List<CartItem>();
-                listCartItem.Add(new CartItem { Quality = 1, productOrder = db.Saches.Find(id) });
+                listCartItem.Add(new CartItem { Quality = chiTietSl, productOrder = db.Saches.Find(id) });
                 Session["ShoppingCart"] = listCartItem;
             }
             else
@@ -112,15 +112,16 @@ namespace Vinabook.Controllers
                 {
                     if (item.productOrder.MaSach == id)
                     {
-                        item.Quality++;
+                        item.Quality += chiTietSl;
                         flag = true;
                         break;
                     }
                 }
                 if (!flag)
-                    listCartItem.Add(new CartItem { Quality = 1, productOrder = db.Saches.Find(id) });
+                    listCartItem.Add(new CartItem { Quality = chiTietSl, productOrder = db.Saches.Find(id) });
                 Session["ShoppingCart"] = listCartItem;
             }
+
             //Count item in shopping cart
             int cartcount = 0;
             List<CartItem> ls = (List<CartItem>)Session["ShoppingCart"];

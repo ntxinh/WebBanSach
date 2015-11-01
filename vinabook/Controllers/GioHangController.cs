@@ -118,21 +118,24 @@ namespace Vinabook.Controllers
         [HttpPost]
         public ActionResult CapNhat(int id, int sl)
         {
-            List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
-            //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
-            //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
-            //có. cập nhật vào Session["ShoppingCart"] mà
-
-            foreach (var item in listCartItem)
-            {
-                if (item.productOrder.MaSach == id)
+                List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
+                //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
+                //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
+                //có. cập nhật vào Session["ShoppingCart"] mà
+                int cartcount = 0;
+                foreach (var item in listCartItem)
                 {
-                    item.Quality = sl;
-                    break;
+                    if (item.productOrder.MaSach == id)
+                    {
+                        item.Quality = sl;
+                        // break;
+
+                    }
+                    cartcount += item.Quality;
                 }
-            }
-            Session["ShoppingCart"] = listCartItem;
-            return Json(new { Url = Url.Action("Success") });
+                Session["ShoppingCart"] = listCartItem;
+            
+            return Json(new { Url = Url.Action("Success") ,sl=cartcount});
         }
         [HttpPost]
         public ActionResult Success()
@@ -144,6 +147,7 @@ namespace Vinabook.Controllers
         [HttpPost]
         public ActionResult Remove(int id)
         {
+            int cartCount = 0;
             List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
             foreach (var item in listCartItem)
             {
@@ -153,8 +157,12 @@ namespace Vinabook.Controllers
                     break;
                 }
             }
+            foreach(var item in listCartItem)
+            {
+                cartCount += item.Quality;
+            }
             Session["ShoppingCart"] = listCartItem;
-            return Json(new { Url = Url.Action("Success") });
+            return Json(new { Url = Url.Action("Success"),sl=cartCount });
         }
     }
 }

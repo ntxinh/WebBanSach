@@ -7,6 +7,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <script>
+   
     function CapNhat(Id) {
         debugger;
         var soluong = document.getElementById("SoLuong[" + Id + "]").value;
@@ -15,9 +16,11 @@
             url: '/GioHang/CapNhat',
             data: { id: Id, sl: soluong },
             success: function (data) {
+                $("#Cart_Amount").html(data.sl);    //sl navbar
                 $.post(data.Url, function (partial) {
                     debugger;
                     $("#GioHang").html(partial);
+                    //AddToCart(-1);
                     $("#TongTien").attr("style", "color:red");
                     setTimeout(function () {
                         $("#TongTien").attr("style", "color:black");
@@ -36,23 +39,24 @@
             url: '/GioHang/Remove',
             data: { id: Id },
             success: function (data) {
-                $.post(data.Url, function (partial) {debugger;
+                $("#Cart_Amount").html(data.sl);    //sl navbar
+                $.post(data.Url, function (partial) {
+                    debugger;
                     $("#GioHang").html(partial);
                 });
             }
         });
 
     }
-    function RemoveNull(){
+    function RemoveNull() {
 
     }
     function DatHang(KtDangNhap) {
         debugger;
         if (KtDangNhap == 1) {
-            window.location.href="/NguoiDung/Login";
+            window.location.href = "/NguoiDung/Login";
         }
-        else
-        {
+        else {
             $.ajax({
                 type: 'POST',
                 url: '/GioHang/DatHang',
@@ -71,7 +75,7 @@
         $.ajax({
             type: 'POST',
             url: '/GioHang/DatHangSubmit',
-            data: {NgayGiao:ngayGiao},
+            data: { NgayGiao: ngayGiao },
             success: function (data) {
                 $("#success").html(data.success);
                 alert(data.success);
@@ -110,12 +114,7 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-
-
-
-
-
+            <div class="col-md-3">
                 <div class="single-sidebar">
 
                     @Html.Action("DanhMucChuDePartial", "ChuDe")
@@ -123,7 +122,7 @@
             </div>
 
 
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="product-content-right">
                     <div class="woocommerce">
                         <div id="GioHang">
@@ -144,3 +143,22 @@
     </div>
 </div>
 
+<script>
+    window.onload = function () {
+        pageScroll();
+    };
+    function pageScroll() {
+        window.scrollBy(0, 80); // horizontal and vertical scroll increments
+        //scrolldelay = setTimeout('pageScroll()', 10); // scrolls every 100 milliseconds
+        scrolldelay = setTimeout(function () {
+            pageScroll();
+            var scrollPosition = $(window).scrollTop();
+            if (scrollPosition > 680)
+                stopTimeOut();
+        }, 1);  
+    }
+    function stopTimeOut() {
+       // debugger;
+        clearTimeout(scrolldelay);
+    }
+</script>
