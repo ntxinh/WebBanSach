@@ -127,7 +127,6 @@ namespace Vinabook.Controllers
             db.ChuDes.Remove(cd);
             db.SaveChanges();
             return RedirectToAction("Index");
-
         }
     }
 }
