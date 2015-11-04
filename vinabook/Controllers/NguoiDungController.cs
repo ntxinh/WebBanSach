@@ -40,10 +40,11 @@ namespace Vinabook.Controllers
             var usr = (from u in db.KhachHangs
                        where u.TaiKhoan == sTaiKhoan && u.MatKhau == sMatKhau
                        select u).FirstOrDefault();
+            //TempData["UserName"] = usr.TaiKhoan;
             if (usr != null)
             {
                 //create seession/ token for loged in user
-                FormsAuthentication.SetAuthCookie(usr.TaiKhoan, false);
+               // FormsAuthentication.SetAuthCookie(usr.TaiKhoan, false);
                 Session["TaiKhoan"] = usr;
                 //lay gio hang cua khach hang 
                 if (urlString.Trim() != "")
@@ -57,6 +58,7 @@ namespace Vinabook.Controllers
                 else
                 return RedirectToAction("Index", "Home");
             }
+            
             TempData["Message"] = "Username or password is wrong";
             ViewBag.ThongBao = "Tên tài khoản hoặc mật khẩu không đúng!";
 
@@ -96,7 +98,7 @@ namespace Vinabook.Controllers
         }
         public ActionResult Logout(string urlString)
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
             Session["TaiKhoan"] = null;
             if (urlString.Trim() != "")
                 return Redirect(urlString);

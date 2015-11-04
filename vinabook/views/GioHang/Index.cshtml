@@ -148,14 +148,14 @@
         pageScroll();
     };
     function pageScroll() {
-        window.scrollBy(0, 80); // horizontal and vertical scroll increments
+        window.scrollBy(0, 30); // horizontal and vertical scroll increments
         //scrolldelay = setTimeout('pageScroll()', 10); // scrolls every 100 milliseconds
         scrolldelay = setTimeout(function () {
             pageScroll();
             var scrollPosition = $(window).scrollTop();
             if (scrollPosition > 680)
                 stopTimeOut();
-        }, 1);  
+        }, 10);  
     }
     function stopTimeOut() {
        // debugger;
