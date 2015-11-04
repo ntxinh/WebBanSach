@@ -8,8 +8,15 @@
 }
 
 <h2>Index</h2>
-
-
+<div class="ExportSection">
+    @*@Html.ActionLink("Export to Excel", "ExportClientsListToExcel")*@
+    <p>
+        <a href="@Url.Action("ExportClientsListToExcel")" class="btn btn-success">
+            <i class="glyphicon glyphicon-download-alt"></i>
+            Export to Excel
+        </a>
+    </p>
+</div>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed table-hover table-striped">
         <thead>
@@ -108,10 +115,3 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
         display: inline;
     }
 </style>
-<div class="ExportSection">
-    @*@Html.ActionLink("Export to Excel", "ExportClientsListToExcel")*@
-    <a href="@Url.Action("ExportClientsListToExcel")" class="btn btn-success">
-        <i class="glyphicon glyphicon-download-alt"></i>
-        Export to Excel
-    </a>
-</div>
