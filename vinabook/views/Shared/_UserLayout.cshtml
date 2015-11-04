@@ -111,23 +111,24 @@
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                            @if (!User.Identity.IsAuthenticated)
+                            @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")//!User.Identity.IsAuthenticated)
                             {
                                 <li class="dropdown dropdown-small">
-                                    <a class="zoomhover" href="@Url.Action("Login","NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng nhập</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Login", "NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng nhập</span></a>
                                 </li>
                                 <li class="dropdown dropdown-small">
-                                    <a class="zoomhover" href="@Url.Action("Register","NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng ký</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Register", "NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng ký</span></a>
                                 </li>
                             }
                             else
                             {
+                                KhachHang kh=  Session["TaiKhoan"] as KhachHang;
                                 <li class="dropdown dropdown-small">
-                                    <a class="zoomhover" href="@Url.Action("Details","NguoiDung")"><span class="key"><i class="fa fa-user "></i>  Xin chào: @User.Identity.Name</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Details", "NguoiDung")"><span class="key"><i class="fa fa-user "></i>  Xin chào: @kh.TaiKhoan @*@User.Identity.Name*@</span></a>
                                 </li>
 
                                 <li class="dropdown dropdown-small">
-                                    <a class="zoomhover" href="@Url.Action("Logout","NguoiDung",new {urlString=Request.Url.OriginalString })"><span class="key"><i class="fa fa-sign-out "></i>  Log out</span></a>
+                                    <a class="zoomhover" href="@Url.Action("Logout", "NguoiDung", new { urlString = Request.Url.OriginalString })"><span class="key"><i class="fa fa-sign-out "></i>  Log out</span></a>
                                 </li>
 
 
