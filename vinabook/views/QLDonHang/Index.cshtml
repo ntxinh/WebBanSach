@@ -75,3 +75,6 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
         display: inline;
     }
 </style>
+<div class="ExportSection">
+    @Html.ActionLink("Export to Excel", "ExportClientsListToExcel")
+</div>

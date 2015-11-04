@@ -9,6 +9,9 @@ using PagedList.Mvc;
 using System.Net;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Vinabook.Controllers
 {
@@ -117,6 +120,11 @@ namespace Vinabook.Controllers
             var lstCTDH = db.ChiTietDonHangs.Where(n => n.MaDonHang == madh).ToList();
             return View(lstCTDH);
         }
+        public PartialViewResult XemCTDHPartial(int madh, int? masach)
+        {
+            var lstCTDH = db.ChiTietDonHangs.Where(n => n.MaDonHang == madh).ToList();
+            return PartialView(lstCTDH);
+        }
         public ActionResult Details(int madh)
         {
             DonHang kh = db.DonHangs.SingleOrDefault(n => n.MaDonHang == madh);
@@ -126,6 +134,33 @@ namespace Vinabook.Controllers
                 return null;
             }
             return View(kh);
+        }
+        public ActionResult ExportClientsListToExcel()
+        {
+            var products = (from s in db.DonHangs
+                            select s).ToList();
+
+            var grid = new GridView();
+            grid.DataSource = products;
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=DonHang.xls");
+            Response.ContentType = "application/ms-excel";
+
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            grid.RenderControl(htw);
+
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return View("MyView");
+
         }
     }
 }
