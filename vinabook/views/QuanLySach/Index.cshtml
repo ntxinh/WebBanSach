@@ -99,11 +99,11 @@
                             @Html.ActionLink("Hiển thị", "HienThi", new { @MaSach = item.MaSach }) |
                             @Html.ActionLink("Xoa", "Xoa", new { @MaSach = item.MaSach })*@
 
-                        <a href="/QuanLySach/ChinhSua?MaSach=@item.MaSach" class="btn btn-default btn-sm btn-color-primary"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="/QuanLySach/ChinhSua?MaSach=@item.MaSach" class="btn btn-warning btn-sm btn-color-primary"><i class="glyphicon glyphicon-edit"></i></a>
                         <br />
-                        <a href="/QuanLySach/HienThi?MaSach=@item.MaSach" class="btn btn-default btn-sm btn-color-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="/QuanLySach/HienThi?MaSach=@item.MaSach" class="btn btn-primary btn-sm btn-color-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
                         <br />
-                        <a href="/QuanLySach/Xoa?MaSach=@item.MaSach" class="btn btn-default btn-sm btn-color-primary"><i class="glyphicon glyphicon-trash"></i></a>
+                        <a href="/QuanLySach/Xoa?MaSach=@item.MaSach" class="btn btn-danger btn-sm btn-color-primary"><i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
             }

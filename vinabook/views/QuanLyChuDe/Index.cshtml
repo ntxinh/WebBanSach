@@ -45,19 +45,19 @@
                         @Html.DisplayFor(modelItem => item.TenChuDe)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit", new { @MaCD = item.MaChuDe })" class="btn btn-default btn-sm btn-color-primary">
+                        <a href="@Url.Action("Edit", new { @MaCD = item.MaChuDe })" class="btn btn-warning btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-pencil"></i>
                             <span class="sr-only">Edit</span>
                         </a>
                     </td>
                     <td>
-                        <a href="@Url.Action("Details", new { @MaCD = item.MaChuDe })" class="btn btn-default btn-sm btn-color-primary">
+                        <a href="@Url.Action("Details", new { @MaCD = item.MaChuDe })" class="btn btn-primary btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-eye-open"></i>
                             <span class="sr-only">Details</span>
                         </a>
                     </td>
                     <td>
-                        <a href="@Url.Action("Delete", new { @MaCD = item.MaChuDe })" class="btn btn-default btn-sm btn-color-primary">
+                        <a href="@Url.Action("Delete", new { @MaCD = item.MaChuDe })" class="btn btn-danger btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-trash"></i>
                             <span class="sr-only">Delete</span>
                         </a>

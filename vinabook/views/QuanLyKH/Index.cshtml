@@ -89,17 +89,17 @@
                         @*@Html.ActionLink("Edit", "Edit", new { @MaKH = item.MaKH }) |
                         @Html.ActionLink("Details", "Details", new { @MaKH = item.MaKH }) |
                         @Html.ActionLink("Delete", "Delete", new { @MaKH = item.MaKH })*@
-                        <a href="@Url.Action("Edit", new { @MaKH=item.MaKH})" class="btn btn-default btn-sm btn-color-primary">
+                        <a href="@Url.Action("Edit", new { @MaKH=item.MaKH})" class="btn btn-warning btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="@Url.Action("Details", new { @MaKH=item.MaKH})" class="btn btn-default btn-sm btn-color-primary">
+                        <a href="@Url.Action("Details", new { @MaKH=item.MaKH})" class="btn btn-primary btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-eye-open"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="@Url.Action("Delete", new { @MaKH=item.MaKH})" class="btn btn-default btn-sm btn-color-primary">
+                        <a href="@Url.Action("Delete", new { @MaKH=item.MaKH})" class="btn btn-danger btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>

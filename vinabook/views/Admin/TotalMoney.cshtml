@@ -1,0 +1,26 @@
+﻿@using Vinabook.Models;
+@{ 
+    QuanLyBanSachEntities db = new QuanLyBanSachEntities();
+    var sum = (from s in db.ChiTietDonHangs
+               join k in db.DonHangs on s.MaDonHang equals k.MaDonHang
+               where k.DaThanhToan == "Đã thanh toán"
+               select s.DonGia).Sum();
+    var sumTong = (from s in db.ChiTietDonHangs
+                   join k in db.DonHangs on s.MaDonHang equals k.MaDonHang
+                   where k.DaThanhToan == "Chưa thanh toán"
+                   select s.DonGia).Sum();
+}
+<div class="col-md-3 col-sm-3 col-xs-6">
+    <a data-toggle="tooltip" title="$34 new sales." class="well top-block" href="#">
+        <i class="glyphicon glyphicon-shopping-cart yellow"></i>
+        <div>Tổng tiền</div>
+        <div>
+            @{string money = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN").NumberFormat, "{0:c}", sum);} 
+            @money
+        </div>
+        <span class="notification yellow">
+        @{string money2 = String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN").NumberFormat, "{0:c}", sumTong);}
+        + @money2
+        </span>
+    </a>
+</div>
