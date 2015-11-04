@@ -1,0 +1,91 @@
+﻿@model Vinabook.Models.Sach
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>HienThi</h2>
+
+<div>
+    <h4>Sach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaBan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCapNhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCapNhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnhBia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnhBia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongTon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhaXuatBan.TenNXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

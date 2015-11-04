@@ -425,6 +425,7 @@
     <Content Include="Views\Chart\PieChart.cshtml" />
     <Content Include="Views\Sach\_Partial_1_Sach.cshtml" />
     <Content Include="Views\QLDonHang\XemCTDHPartial.cshtml" />
+    <Content Include="Views\QuanLySach\HienThi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

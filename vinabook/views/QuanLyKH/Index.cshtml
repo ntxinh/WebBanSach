@@ -12,70 +12,102 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().HoTen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().NgaySinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().GioiTinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DienThoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().TaiKhoan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().MatKhau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DiaChi)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgaySinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GioiTinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DienThoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaiKhoan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatKhau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { @MaKH=item.MaKH }) |
-            @Html.ActionLink("Details", "Details", new { @MaKH = item.MaKH }) |
-            @Html.ActionLink("Delete", "Delete", new { @MaKH = item.MaKH })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaKH)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().HoTen)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().NgaySinh)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().GioiTinh)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().DienThoai)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().TaiKhoan)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MatKhau)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().Email)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().DiaChi)</span>
+                </th>
+                <th>
+                    <span class="text-primary">Sửa</span>
+                </th>
+                <th>
+                    <span class="text-primary">Chi Tiết</span>
+                </th>
+                <th>
+                    <span class="text-primary">Xóa</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgaySinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GioiTinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaiKhoan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { @MaKH = item.MaKH }) |
+                        @Html.ActionLink("Details", "Details", new { @MaKH = item.MaKH }) |
+                        @Html.ActionLink("Delete", "Delete", new { @MaKH = item.MaKH })*@
+                        <a href="@Url.Action("Edit", new { @MaKH=item.MaKH})" class="btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", new { @MaKH=item.MaKH})" class="btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { @MaKH=item.MaKH})" class="btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @* Tạo link liên kết các trang*@
 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
 <div class="MenuTrang">

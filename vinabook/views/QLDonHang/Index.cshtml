@@ -12,59 +12,94 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().MaDonHang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().NgayGiao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().NgayDat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DaThanhToan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().TinhTrangGiaoHang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().KhachHang.HoTen)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaDonHang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayGiao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayDat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DaThanhToan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { @madh = item.MaDonHang }) |
-            @Html.ActionLink("Details", "Details", new { @madh = item.MaDonHang }) |
-            @Html.ActionLink("Delete", "Delete", new { @MaDH = item.MaDonHang }) |
-            @Html.ActionLink("Xem chi tiết đơn hàng", "XemCTDH", new { @madh = item.MaDonHang})
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaDonHang)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().NgayGiao)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().NgayDat)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().DaThanhToan)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().TinhTrangGiaoHang)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().KhachHang.HoTen)</span>
+                </th>
+                <th>
+                    <span class="text-primary">Sửa</span>
+                </th>
+                <th>
+                    <span class="text-primary">Chi Tiết</span>
+                </th>
+                <th>
+                    <span class="text-primary">Xóa</span>
+                </th>
+                <th>
+                    <span class="text-primary">Chi tiết đơn hàng</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaDonHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayGiao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DaThanhToan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KhachHang.HoTen)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { @madh = item.MaDonHang }) |
+                        @Html.ActionLink("Details", "Details", new { @madh = item.MaDonHang }) |
+                        @Html.ActionLink("Delete", "Delete", new { @MaDH = item.MaDonHang }) |
+                        @Html.ActionLink("Xem chi tiết đơn hàng", "XemCTDH", new { @madh = item.MaDonHang })*@
+                        @*<a href="/QLDonHang/XemCTDH?madh=@item.MaDonHang" data-toggle="modal" data-target="#myModal">Xem chi tiết đơn hàng</a>*@
+                        <a href="@Url.Action("Edit", new { @madh=item.MaDonHang})" class="btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", new { @madh=item.MaDonHang})" class="btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { @madh=item.MaDonHang})" class="btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("XemCTDH", new { @madh=item.MaDonHang})" class=" btn btn-default btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @* Tạo link liên kết các trang*@
 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
 <div class="MenuTrang">
