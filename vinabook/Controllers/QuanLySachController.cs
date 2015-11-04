@@ -29,7 +29,7 @@ namespace Vinabook.Controllers
         {
             //Đưa dữ liệu vào dropdownlist
             ViewBag.MaChuDe = new SelectList(db.ChuDes.ToList().OrderBy(n => n.TenChuDe), "MaChuDe", "TenChuDe");
-            ViewBag.MaNXB = new SelectList(db.NhaXuatBans.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB"); ;
+            ViewBag.MaNXB = new SelectList(db.NhaXuatBans.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB"); 
             return View();
         }
         [HttpPost]
