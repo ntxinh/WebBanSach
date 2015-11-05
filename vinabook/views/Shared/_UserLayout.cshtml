@@ -41,7 +41,6 @@
 
 
         function AddToCart(MaSach) {
-            debugger;
             //lay controller kiem tra  dang trong gio hang k
             var ktController = '@ViewContext.RouteData.Values["Controller"].ToString()';
             var ChiTietSoLuong = 0;
@@ -65,7 +64,6 @@
             });
         }
         function capNhatGiohang() {
-            debugger;
             $.ajax({
                 type: 'POST',
                 url: '/GioHang/CapNhat',
@@ -85,8 +83,44 @@
             });
 
         }
-        function HoTro() {
+
+        function HoTro(ktdangnhap) {
+            if (ktdangnhap == 1) {
+                // alert('chua dang nhap');
+            }
+            else {
+                // alert('dang nhap r');
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/HoTro',
+                    data: {},
+                    success: function (data) {
+                        $.post(data.Url, function (partial) {
+                            $("#All_Dialog").html(partial)
+                        });
+                    }
+                });
+            }
             $("#myModal").modal();
+        }
+        function HoTroDetials(maDonHang) {
+            debugger;
+            $.ajax({
+                type: 'POST',
+                url: '/Home/HoTroDetails',
+                data: { MaDonHang: maDonHang },
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#All_Dialog").html(partial)
+                    });
+                }
+            });
+        }
+        function Check() {
+            $("#All_Dialog").html("Hello")
+        }
+        function editDialog() {
+
         }
     </script>
     <!--End Ajax Process-->
@@ -95,337 +129,350 @@
 <body>
 
     @* Hỗ trợ Ho Tro *@
-   
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
+    @{ int i = 0;string tenkh = "Bạn";}
+    @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")
+    {
+        i = 1;
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header" style="padding:30px 30px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="" id="headerDialog"><span class="glyphicon glyphicon-user"></span> Hỗ trợ</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="" style="padding:20px 30px">
-                            <div style="color:#008340;font-size:18px">Kiểm tra đơn hàng</div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="row margin-b margin-t">
-                                        <label>Mã đơn hàng</label>
-                                        <input id="maDonHang_Dialog" type="text" placeholder="Mã đơn hàng" />
-                                    </div>
+    }
+    else
+    {
+        KhachHang kh = Session["TaiKhoan"] as KhachHang;
+        tenkh = kh.TaiKhoan;
+    }
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog text-center">
 
-                                    <div class="row margin-b">
-                                        <label>Số điện thoại</label>
-                                        <input id="soDienThoai_Dialog" type="text" placeholder="Số điện thoại" />
-                                    </div>
-                                    <br />
-                                    <div class="text-center">
-                                        <button class="btn btn-success "><span class="glyphicon glyphicon-check"></span> Kiểm tra</button>
-                                    </div>
+            <!-- Modal content-->
+            <div class="modal-content" @*style="width:130%"*@>
+                <div class="zoomhover" style="position:absolute;right:15px;top:80px;color:white"><i class="fa fa-smile-o "></i> Chào @tenkh !</div>
+                <div class="modal-header" style="padding:30px 30px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="" id="headerDialog"><span class="glyphicon glyphicon-user"></span> Hỗ trợ</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div id="All_Dialog" class="" style="padding:20px 30px">
+                        <div style="color:#008340;font-size:18px">Kiểm tra đơn hàng</div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row margin-b margin-t">
+                                    <label>Mã đơn hàng</label>
+                                    <input id="maDonHang_Dialog" type="text" placeholder="Mã đơn hàng" />
                                 </div>
-                                <div class="col-md-5">
-                                    <p class="text-center"><img class="img-responsive  " src="~/Content/HinhAnh/icon_hotline.png" /></p>
-                                    <p><strong>HOTLINE </strong><span><strong style="color:blue">1900-0199</strong></span></p>
-                                    <p>Tổng đài chăm sóc và Hỗ trợ Khách hàng hoạt động từ 7:30 - 20:00 mỗi ngày (riêng Chủ Nhật, ngày lễ đến 17:00)</p>
+
+                                <div class="row margin-b margin-t">
+                                    <label>Số điện thoại</label>
+                                    <input id="soDienThoai_Dialog" type="text" placeholder="Số điện thoại" />
                                 </div>
+                                <br />
+                                <div class="text-center">
+                                    <button onclick="Check()" class="btn btn-success "><span class="glyphicon glyphicon-check"></span> Kiểm tra</button>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <p class="text-center"><img class="img-responsive  " src="~/Content/HinhAnh/icon_hotline.png" /></p>
+                                <p><strong>HOTLINE </strong><span><strong style="color:blue">1900-0199</strong></span></p>
+                                <p>Tổng đài chăm sóc và Hỗ trợ Khách hàng hoạt động từ 7:30 - 20:00 mỗi ngày (riêng Chủ Nhật, ngày lễ đến 17:00)</p>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        
-                        <div class="col-md-3 hover">
-                            <a >
-                                <img src="~/Content/HinhAnh/logo_fb.png" /> FaceBook
-                            </a>
-                        </div>
-                        <div class="col-md-3 hover">
-                            <a >
-                                <img src="~/Content/HinhAnh/icon_google_plus.png" />Google Plus
-                            </a>
-                        </div>
-                        <div class="col-md-3 hover">
-                            <a>
-                                <img src="~/Content/HinhAnh/icon_twitter.png" /> Twitter
-                            </a>
-                        </div>
-                        <div class="col-md-3 hover">
-                            <a>
-                                <img src="~/Content/HinhAnh/icon_printerest.png" />Printerest
-                            </a>
-                        </div>
-                        @*<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                            <p>Not a member? <a href="#">Sign Up</a></p>
-                            <p>Forgot <a href="#">Password?</a></p>*@
+                </div>
+                <div class="modal-footer">
+
+                    <div class="col-md-3 hover">
+                        <a>
+                            <img src="~/Content/HinhAnh/logo_fb.png" /> FaceBook
+                        </a>
                     </div>
+                    <div class="col-md-3 hover">
+                        <a>
+                            <img src="~/Content/HinhAnh/icon_google_plus.png" />Google Plus
+                        </a>
+                    </div>
+                    <div class="col-md-3 hover">
+                        <a>
+                            <img src="~/Content/HinhAnh/icon_twitter.png" /> Twitter
+                        </a>
+                    </div>
+                    <div class="col-md-3 hover">
+                        <a>
+                            <img src="~/Content/HinhAnh/icon_printerest.png" />Printerest
+                        </a>
+                    </div>
+                    @*<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <p>Not a member? <a href="#">Sign Up</a></p>
+                        <p>Forgot <a href="#">Password?</a></p>*@
+                </div>
 
 
+            </div>
+        </div>
+    </div>
+
+    @* header *@
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        <ul>
+                            <li><a class="zoomhover" href="#"><i class="fa fa-user"></i> Vinabook.com</a></li>
+                            <li><a class="zoomhover" href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>
+                            <li><a class="zoomhover" href="#"><i class="fa fa-user"></i> Giỏ hàng ()</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")//!User.Identity.IsAuthenticated)
+                            {
+                                <li class="dropdown dropdown-small">
+                                    <a class="zoomhover" href="@Url.Action("Login", "NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng nhập</span></a>
+                                </li>
+                                <li class="dropdown dropdown-small">
+                                    <a class="zoomhover" href="@Url.Action("Register", "NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng ký</span></a>
+                                </li>
+                            }
+                            else
+                            {
+                                KhachHang kh = Session["TaiKhoan"] as KhachHang;
+                                <li class="dropdown dropdown-small">
+                                    <a class="zoomhover"><span class="key"><i class="fa fa-user "></i>  Xin chào: @kh.TaiKhoan @*@User.Identity.Name*@</span></a>
+                                </li>
+
+                                <li class="dropdown dropdown-small">
+                                    <a class="zoomhover" href="@Url.Action("Logout", "NguoiDung", new { urlString = Request.Url.OriginalString })"><span class="key"><i class="fa fa-sign-out "></i>  Log out</span></a>
+                                </li>
+
+
+                            }
+
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+    </div> <!-- End header area -->
 
-        @* header *@
-        <div class="header-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="user-menu">
-                            <ul>
-                                <li><a class="zoomhover" href="#"><i class="fa fa-user"></i> Vinabook.com</a></li>
-                                <li><a class="zoomhover" href="#"><i class="fa fa-heart"></i> Danh sách yêu thích</a></li>
-                                <li><a class="zoomhover" href="cart.html"><i class="fa fa-user"></i> Giỏ hàng ()</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="header-right">
-                            <ul class="list-unstyled list-inline">
-                                @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")//!User.Identity.IsAuthenticated)
-                                {
-                                    <li class="dropdown dropdown-small">
-                                        <a class="zoomhover" href="@Url.Action("Login", "NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng nhập</span></a>
-                                    </li>
-                                    <li class="dropdown dropdown-small">
-                                        <a class="zoomhover" href="@Url.Action("Register", "NguoiDung")"><span class="key "><i class="fa fa-user"></i>  Đăng ký</span></a>
-                                    </li>
-                                }
-                                else
-                                {
-                                    KhachHang kh = Session["TaiKhoan"] as KhachHang;
-                                    <li class="dropdown dropdown-small">
-                                        <a class="zoomhover" href="@Url.Action("Details", "NguoiDung")"><span class="key"><i class="fa fa-user "></i>  Xin chào: @kh.TaiKhoan @*@User.Identity.Name*@</span></a>
-                                    </li>
-
-                                    <li class="dropdown dropdown-small">
-                                        <a class="zoomhover" href="@Url.Action("Logout", "NguoiDung", new { urlString = Request.Url.OriginalString })"><span class="key"><i class="fa fa-sign-out "></i>  Log out</span></a>
-                                    </li>
-
-
-                                }
-
-                            </ul>
-                        </div>
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <h1><a href="./"><img src="~/Content/UserLayout/img/logo.png" /></a></h1>
                     </div>
                 </div>
+
+
             </div>
-        </div> <!-- End header area -->
+        </div>
+    </div> <!-- End site branding area -->
+    @* menu chính *@
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <nav class=" ">
+                    <div class="container-fluid">
 
-        <div class="site-branding-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="logo">
-                            <h1><a href="./"><img src="~/Content/UserLayout/img/logo.png" /></a></h1>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div> <!-- End site branding area -->
-
-        <div class="mainmenu-area">
-            <div class="container">
-                <div class="row">
-                    <nav class=" ">
-                        <div class="container-fluid">
-
-                            <div>
-                                <ul class="nav navbar-nav">
-                                    <li class="active "><a href="@Url.Content("/Home/Index/")"><is class="fa fa-home fa-1x zoomhover"></is></a></li>
-                                    <li><a href="@Url.Content("/Sach/Sach")">  Sách</a></li>
-                                    <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Chủ Đề</a></li>
-                                    <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Nhà Phát Hành</a></li>
-                                    <li><a href="@Url.Content("/Sach/SachTheoTacGia")">Tác Giả</a></li>
-                                    <li><a href="#">Liên hệ</a></li>
-                                    <li class="hover"><a onclick="HoTro()">Hỗ Trợ</a></li>
-                                    <li style="cursor:pointer">@Html.Action("GioHangPartial", "GioHang")</li>
-                                    <li>
-                                        <div class="single-sidebar">
-                                            <form action="/TimKiem/Index" method="post">
-                                                <input id="txtTimKiem" name="txtTimKiem" style="float:left;margin-top:10px;margin-left:20px;margin-right:10px;width:auto" type="text" placeholder="Tìm Sách, NXB, CĐ...">
-                                                <input @*onclick="Search('1')"*@ class="zoomhover" style="outline:none;background-color:transparent;background-image:url('/content/HinhAnh/toolbar_find.png');background-size:contain;background-repeat:no-repeat; position:absolute; top:20px;left:180px; width:10px; height:10px; " type="submit" />
-
-                                            </form>
-                                        </div>
-
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-
-                    @*-----------------------------------*@
-                    @*<div class="navbar-collapse collapse">
+                        <div>
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
-                                <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
-                                <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
-                                <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
+                                <li class="active "><a href="@Url.Content("/Home/Index/")"><is class="fa fa-home fa-1x zoomhover"></is></a></li>
+                                <li><a href="@Url.Content("/Sach/Sach")">  Sách</a></li>
+                                <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Chủ Đề</a></li>
+                                <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Nhà Phát Hành</a></li>
+                                <li><a href="@Url.Content("/Sach/SachTheoTacGia")">Tác Giả</a></li>
                                 <li><a href="#">Liên hệ</a></li>
-                                <li><a href="#">Khác</a></li>
-                                <li>@Html.Action("GioHangPartial", "GioHang")</li>
-                            </ul>
-                        </div>*@
-                </div>
-            </div>
-        </div> <!-- End mainmenu area -->
 
-        <div class="slider-area">
-            <!-- Slider -->
-            <div class="block-slider block-slider4">
-                <ul class="" id="bxslider-home4">
-                    <li>
-                        <img src="~/Content/UserLayout/img/h4-slide.png" alt="Slide" />
-                        <div class="caption-group">
-                            <h2 class="caption title">
-                                Hồng <span class="primary"> <strong>Nhan</strong></span>
-                            </h2>
-                            <h4 class="caption subtitle">Nguyễn Mai Dung</h4>
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="~/Content/UserLayout/img/h4-slide2.png" alt="Slide">
-                        <div class="caption-group">
-                            <h2 class="caption title">
-                                iPhone <span class="primary">6 <strong>Plus</strong></span>
-                            </h2>
-                            <h4 class="caption subtitle">Dual SIM</h4>
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                        </div>
-                    </li>
+                                <li class="hover"><a onclick="HoTro('@i')">Hỗ Trợ</a></li>
+                                <li style="cursor:pointer">@Html.Action("GioHangPartial", "GioHang")</li>
+                                <li>
+                                    <div class="single-sidebar">
+                                        <form action="/TimKiem/Index" method="post">
+                                            <input id="txtTimKiem" name="txtTimKiem" style="float:left;margin-top:10px;margin-left:20px;margin-right:10px;width:auto" type="text" placeholder="Tìm Sách, NXB, CĐ...">
+                                            <input @*onclick="Search('1')"*@ class="zoomhover" style="outline:none;background-color:transparent;background-image:url('/content/HinhAnh/toolbar_find.png');background-size:contain;background-repeat:no-repeat; position:absolute; top:20px;left:180px; width:10px; height:10px; " type="submit" />
 
-                    @*<li>
-                            <img src="~/Content/UserLayout/img/h4-slide2.png" alt="Slide" />
-                            <div class="caption-group">
-                                <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="~/Content/UserLayout/img/h4-slide3.png" alt="Slide" />
-                            <div class="caption-group">
-                                <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="~/Content/UserLayout/img/h4-slide4.png" alt="Slide" />
-                            <div class="caption-group">
-                                <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            </div>
-                        </li>*@
-                </ul>
-            </div>
-            <!-- ./Slider -->
-        </div> <!-- End slider area -->
-        @RenderBody()
+                                        </form>
+                                    </div>
 
+                                </li>
 
-        <div class="footer-top-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footer-about-us">
-                            <h2>u<span>Stora</span></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                            <div class="footer-social">
-                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footer-menu">
-                            <h2 class="footer-wid-title">User Navigation </h2>
-                            <ul>
-                                <li><a href="#">My account</a></li>
-                                <li><a href="#">Order history</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Vendor contact</a></li>
-                                <li><a href="#">Front page</a></li>
                             </ul>
                         </div>
                     </div>
+                </nav>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footer-menu">
-                            <h2 class="footer-wid-title">Categories</h2>
-                            <ul>
-                                <li><a href="#">Mobile Phone</a></li>
-                                <li><a href="#">Home accesseries</a></li>
-                                <li><a href="#">LED TV</a></li>
-                                <li><a href="#">Computer</a></li>
-                                <li><a href="#">Gadets</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footer-newsletter">
-                            <h2 class="footer-wid-title">Newsletter</h2>
-                            <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                            <div class="newsletter-form">
-                                <form action="#">
-                                    <input type="email" placeholder="Type your email" />
-                                    <input type="submit" value="Subscribe" />
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @*-----------------------------------*@
+                @*<div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="@Url.Content("/Home/Index/")">Trang Chủ</a></li>
+                            <li><a href="@Url.Content("/Sach/Sach")">Sách mới</a></li>
+                            <li><a href="@Url.Content("/Sach/SachTheoChuDe")">Sách theo chủ đề</a></li>
+                            <li><a href="@Url.Content("/Sach/SachTheoNhaXuatBan")">Sách theo nhà xuất bản</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Khác</a></li>
+                            <li>@Html.Action("GioHangPartial", "GioHang")</li>
+                        </ul>
+                    </div>*@
             </div>
-        </div> <!-- End footer top area -->
+        </div>
+    </div> <!-- End mainmenu area -->
 
-        <div class="footer-bottom-area ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="copyright">
-                            <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="footer-card-icon">
-                            <i class="fa fa-cc-discover"></i>
-                            <i class="fa fa-cc-mastercard"></i>
-                            <i class="fa fa-cc-paypal"></i>
-                            <i class="fa fa-cc-visa"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End footer bottom area -->
-        <!-- Latest jQuery form server -->
-        @*<script src="https://code.jquery.com/jquery.min.js"></script>*@
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-        <!-- Bootstrap JS form CDN -->
-        @*<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
-        <script src="~/Scripts/bootstrap.min.js"></script>
-
-        <!-- jQuery sticky menu -->
-        <script src="~/Content/UserLayout/js/owl.carousel.min.js"></script>
-        <script src="~/Content/UserLayout/js/jquery.sticky.js"></script>
-
-        <!-- jQuery easing -->
-        <script src="~/Content/UserLayout/js/jquery.easing.1.3.min.js"></script>
-
-        <!-- Main Script -->
-        <script src="~/Content/UserLayout/js/main.js"></script>
-
+    <div class="slider-area">
         <!-- Slider -->
-        <script type="text/javascript" src="~/Content/UserLayout/js/bxslider.min.js"></script>
-        <script type="text/javascript" src="~/Content/UserLayout/js/script.slider.js"></script>
+        <div class="block-slider block-slider4">
+            <ul class="" id="bxslider-home4">
+                <li>
+                    <img src="~/Content/UserLayout/img/h4-slide.png" alt="Slide" />
+                    <div class="caption-group">
+                        <h2 class="caption title">
+                            Hồng <span class="primary"> <strong>Nhan</strong></span>
+                        </h2>
+                        <h4 class="caption subtitle">Nguyễn Mai Dung</h4>
+                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/Content/UserLayout/img/h4-slide2.png" alt="Slide">
+                    <div class="caption-group">
+                        <h2 class="caption title">
+                            iPhone <span class="primary">6 <strong>Plus</strong></span>
+                        </h2>
+                        <h4 class="caption subtitle">Dual SIM</h4>
+                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                    </div>
+                </li>
+
+                @*<li>
+                        <img src="~/Content/UserLayout/img/h4-slide2.png" alt="Slide" />
+                        <div class="caption-group">
+                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="~/Content/UserLayout/img/h4-slide3.png" alt="Slide" />
+                        <div class="caption-group">
+                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="~/Content/UserLayout/img/h4-slide4.png" alt="Slide" />
+                        <div class="caption-group">
+                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                        </div>
+                    </li>*@
+            </ul>
+        </div>
+        <!-- ./Slider -->
+    </div> <!-- End slider area -->
+    @RenderBody()
+
+
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>u<span>Stora</span></h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <ul>
+                            <li><a href="#">My account</a></li>
+                            <li><a href="#">Order history</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                            <li><a href="#">Vendor contact</a></li>
+                            <li><a href="#">Front page</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Categories</h2>
+                        <ul>
+                            <li><a href="#">Mobile Phone</a></li>
+                            <li><a href="#">Home accesseries</a></li>
+                            <li><a href="#">LED TV</a></li>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Gadets</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">Newsletter</h2>
+                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="email" placeholder="Type your email" />
+                                <input type="submit" value="Subscribe" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer top area -->
+
+    <div class="footer-bottom-area ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="footer-card-icon">
+                        <i class="fa fa-cc-discover"></i>
+                        <i class="fa fa-cc-mastercard"></i>
+                        <i class="fa fa-cc-paypal"></i>
+                        <i class="fa fa-cc-visa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
+    <!-- Latest jQuery form server -->
+    @*<script src="https://code.jquery.com/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap JS form CDN -->
+    @*<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- jQuery sticky menu -->
+    <script src="~/Content/UserLayout/js/owl.carousel.min.js"></script>
+    <script src="~/Content/UserLayout/js/jquery.sticky.js"></script>
+
+    <!-- jQuery easing -->
+    <script src="~/Content/UserLayout/js/jquery.easing.1.3.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="~/Content/UserLayout/js/main.js"></script>
+
+    <!-- Slider -->
+    <script type="text/javascript" src="~/Content/UserLayout/js/bxslider.min.js"></script>
+    <script type="text/javascript" src="~/Content/UserLayout/js/script.slider.js"></script>
 </body>
 </html>
 
@@ -464,7 +511,7 @@
         text-decoration: none;
     }
 
-    .modal-header ,#headerDialog  {
+    .modal-header, #headerDialog {
         background-color: #5cb85c;
         color: white !important;
         text-align: center;
@@ -478,4 +525,16 @@
     .hover a:hover {
         cursor: pointer;
     }
+
+    .modal-dialog {
+        width: 60%;
+        height: 100%;
+    }
+
+    /*.modal-content {
+        height: 100%;
+        border-radius: 0;
+        color: white;
+        overflow: auto;
+    }*/
 </style>

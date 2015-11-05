@@ -1,0 +1,36 @@
+﻿@using Vinabook.Models
+@model List<ChiTietDonHang>
+<div class="row margin-b">
+        <div class="pull-right"><button class="btn btn-info" onclick="HoTro()">Trở Về</button></div>
+</div>
+<div class="row">
+    <div class="panel panel-warning text-left">
+        <div class="panel-heading text-center"><STRONG>DANH SÁCH CHI TIẾT (MÃ ĐH: @ViewBag.MaDonHang)</STRONG></div>
+        <table class="table table-responsive">
+            <tr>
+                <th>Hình Ảnh</th>
+                <th class="text-center">Tên Sách</th>
+                <th>Số Lượng</th>
+                <th>Đơn Giá</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img width="50" height="50" alt="poster_1_up" src="@Url.Content("/Content/HinhAnhSP/" +item.Sach.AnhBia)"></td>
+                    <td >@item.Sach.TenSach</td>
+                    <td>@item.SoLuong</td>
+                    <td><span class="amount">@string.Format("{0:0,0}", item.DonGia) VNĐ</span></td>
+                </tr>
+            }
+            @{double tongTien = 0;}
+            @foreach (var item in Model)
+            {
+                tongTien += (double)(item.DonGia * item.SoLuong);
+            }
+            <tr>
+                <td colspan="2" class="text-right"><strong>Tổng Tiền:</strong></td>
+                <td colspan="2" style="color:red" class="text-center"><strong>@string.Format("{0:0,0}", @tongTien) VNĐ</strong></td>
+            </tr>
+        </table>
+    </div>
+</div>

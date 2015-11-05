@@ -445,6 +445,8 @@
     <Content Include="Views\Admin\TotalMoney.cshtml" />
     <Content Include="Views\Admin\TotalBook.cshtml" />
     <Content Include="Views\Admin\TotalDHChuaThanhToan.cshtml" />
+    <Content Include="Views\Home\HoTroSuccess_Partial.cshtml" />
+    <Content Include="Views\Home\HoTroDetailsSuccess_Partial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

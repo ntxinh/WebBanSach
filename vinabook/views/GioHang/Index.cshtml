@@ -78,8 +78,10 @@
             data: { NgayGiao: ngayGiao },
             success: function (data) {
                 $("#success").html(data.success);
-                alert(data.success);
-                window.location.href = "/Home/Index";
+              
+                    alert(data.success+"\nKiểm tra đơn hàng tại Menu Hỗ Trợ.");
+                    window.location.href = "/Home/Index";
+                
             }
         });
     }

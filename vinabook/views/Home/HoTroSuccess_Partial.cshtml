@@ -1,0 +1,33 @@
+﻿@using Vinabook.Models
+@model List<DonHang>
+
+<div class="panel panel-warning text-left">
+    <div class="panel-heading text-center"><STRONG>DANH SÁCH ĐƠN HÀNG</STRONG></div>
+    <table class="table table-responsive">
+        <tr>
+            <th>Mã ĐH</th>
+            <th>Khách Hàng</th>
+            <th>Ngày Đặt</th>
+            <th>Ngày Giao</th>
+            <th>Tình trạng</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaDonHang</td>
+                <td>@item.KhachHang.HoTen</td>
+                <td>@item.NgayDat</td>
+                <td> @String.Format("{0:dd/MM/yyyy}", item.NgayGiao)</td>
+                <td>@item.DaThanhToan</td>
+                <td><button class="btn btn-danger" onclick="HoTroDetials('@item.MaDonHang')"><i class="glyphicon glyphicon-list"></i></button></td>
+            </tr>
+        }
+        @if(Model.Count==0)
+        {
+            <tr>
+                <td colspan="5" class="text-center"><h4><strong>Bạn Chưa Đặt hàng!!!</strong></h4></td>
+            </tr>
+        }
+    </table>
+</div>
+
