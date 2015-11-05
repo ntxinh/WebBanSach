@@ -19,7 +19,8 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenSach, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Tên sách(*)</strong></span>
+                @*@Html.LabelFor(model => model.TenSach, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenSach)
                 @Html.ValidationMessageFor(model => model.TenSach)
@@ -27,7 +28,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Giá bán(*)</strong></span>
+            @*@Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaBan)
                 @Html.ValidationMessageFor(model => model.GiaBan)
@@ -37,7 +39,8 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Ngày cập nhật(*)</strong></span>
+            @*@Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NgayCapNhat)
                 @Html.ValidationMessageFor(model => model.NgayCapNhat)
@@ -45,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AnhBia, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Ảnh bìa(*)</strong></span>
             <div class="col-md-10">
                 @*Name của thẻ input file phải trùng tên với tham số bên controller*@
                 <input type="file" name="fileUpload">
@@ -55,7 +58,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuongTon, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Số lượng tồn(*)</strong></span>
+            @*@Html.LabelFor(model => model.SoLuongTon, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoLuongTon)
                 @Html.ValidationMessageFor(model => model.SoLuongTon)
@@ -63,7 +67,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaChuDe, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Chủ đề(*)</strong></span>
+            @*@Html.LabelFor(model => model.MaChuDe, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.DropDownList("MaChuDe")
 
@@ -71,7 +76,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Nhà xuất bản(*)</strong></span>
+            @*@Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.DropDownList("MaNXB")
 
@@ -79,7 +85,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Moi, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Mới(*)</strong></span>
+            @*@Html.LabelFor(model => model.Moi, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Moi)
                 
@@ -93,14 +100,15 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2"><strong>Mô tả(*)</strong></span>
+            @*@Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 <textarea name="MoTa">Easy! You should check out MoxieManager!</textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn btn-default" />
+                <input type="submit" value="Thêm mới" class="btn btn-success" />
             </div>
         </div>
 

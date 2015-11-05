@@ -1,0 +1,17 @@
+﻿@using Vinabook.Models;
+@{ 
+    QuanLyBanSachEntities db = new QuanLyBanSachEntities();
+    var sum = (from s in db.Saches
+               select s.MaSach).Count();
+    var sumMoi = (from s in db.Saches
+                  where s.Moi == 1
+               select s.MaSach).Count();
+}
+<div class="col-md-3 col-sm-3 col-xs-6">
+    <a data-toggle="tooltip" title="4 new pro members." class="well top-block" href="#">
+        <i class="glyphicon glyphicon-book green"></i>
+        <div>Tổng sách</div>
+        <div>@sum</div>
+        <span class="notification green">@sumMoi mới</span>
+    </a>
+</div>

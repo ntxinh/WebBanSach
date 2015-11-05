@@ -438,6 +438,13 @@
     <Content Include="Views\Sach\SachTheoTacGia.cshtml" />
     <Content Include="Views\Sach\SachCoTheBanQuanTam_Partial.cshtml" />
     <Content Include="Views\Sach\sachCungChuDePartial.cshtml" />
+    <Content Include="Views\Sach\_Partial_1_Sach.cshtml" />
+    <Content Include="Views\QLDonHang\XemCTDHPartial.cshtml" />
+    <Content Include="Views\QuanLySach\HienThi.cshtml" />
+    <Content Include="Views\Admin\TotalMember.cshtml" />
+    <Content Include="Views\Admin\TotalMoney.cshtml" />
+    <Content Include="Views\Admin\TotalBook.cshtml" />
+    <Content Include="Views\Admin\TotalDHChuaThanhToan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

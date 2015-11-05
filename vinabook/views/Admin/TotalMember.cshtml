@@ -1,0 +1,16 @@
+﻿@using Vinabook.Models;
+@{ 
+    QuanLyBanSachEntities db = new QuanLyBanSachEntities();
+    var sum = (from s in db.KhachHangs
+               select s).Count();
+    var sumAdmin = (from s in db.Adminnistrators
+               select s).Count();
+}
+<div class="col-md-3 col-sm-3 col-xs-6">
+    <a data-toggle="tooltip" title="6 new members." class="well top-block" href="#">
+        <i class="glyphicon glyphicon-user blue"></i>
+        <div>Tổng thành viên</div>
+        <div>@sum</div>
+        <span class="notification">@sumAdmin Admin</span>
+    </a>
+</div>

@@ -1,21 +1,16 @@
 ﻿@model Vinabook.Models.Sach
+
 @{
-    ViewBag.Title = "Xoa";
+    ViewBag.Title = "HienThi";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h3>Bạn có thật sự muốn xóa quyển sách này?</h3>
-<div>
 
+<h2>HienThi</h2>
+
+<div>
+    <h4>Sach</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaSach)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaSach)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.TenSach)
         </dt>
@@ -65,6 +60,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Moi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moi)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
         </dt>
 
@@ -80,25 +83,9 @@
             @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Moi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Moi)
-        </dd>
-
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Xóa" class="btn btn-danger" /> |
-            @Html.ActionLink("Trở về", "Index")
-        </div>
-    }
 </div>
-
-
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSach }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

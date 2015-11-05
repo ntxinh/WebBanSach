@@ -63,5 +63,21 @@ namespace Vinabook.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+        public PartialViewResult TotalMember()
+        {
+            return PartialView();
+        }
+        public PartialViewResult TotalBook()
+        {
+            return PartialView();
+        }
+        public PartialViewResult TotalMoney()
+        {   
+            return PartialView();
+        }
+        public PartialViewResult TotalDHChuaThanhToan()
+        {
+            return PartialView();
+        }
     }
 }

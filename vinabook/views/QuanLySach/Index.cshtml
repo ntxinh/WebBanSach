@@ -10,92 +10,115 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Thêm mới sách", "ThemMoi")
+    @*@Html.ActionLink("Thêm mới sách", "ThemMoi")*@
+    <a href="@Url.Action("ThemMoi")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Thêm sách</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().MaSach)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().TenSach)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().GiaBan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().MoTa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().NgayCapNhat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().AnhBia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().SoLuongTon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().MaChuDe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().MaNXB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Moi)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaSach)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().TenSach)</span>
+                    
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().GiaBan)</span>
+                    
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MoTa)</span>
+                   
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().NgayCapNhat)</span>
+                   
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().AnhBia)</span>
+                    
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().SoLuongTon)</span>
+                   
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaChuDe)</span>
+                    
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaNXB)</span>
+                    
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().Moi)</span>
+                   
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.MaSach)
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.TenSach)
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td class="col-md-2">
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                    </td>
+                    <td class="col-md-1">
+                        <div id="AnhBia">
+                            <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" class="img-responsive" />
+                        </div>
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.SoLuongTon)
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.ChuDe.TenChuDe)
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)
+                    </td>
+                    <td class="col-md-1">
+                        @Html.DisplayFor(modelItem => item.Moi)
+                    </td>
+                    <td class="col-md-1">
+                        @*@Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @MaSach = item.MaSach }) |
+                            @Html.ActionLink("Hiển thị", "HienThi", new { @MaSach = item.MaSach }) |
+                            @Html.ActionLink("Xoa", "Xoa", new { @MaSach = item.MaSach })*@
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaSach)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenSach)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiaBan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayCapNhat)
-            </td>
-            <td>
-                <div id="AnhBia"><img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" width="100" height="100" /></div>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuongTon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaChuDe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Moi)
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @MaSach = item.MaSach }) |
-                @Html.ActionLink("Hiển thị", "HienThi", new { @MaSach = item.MaSach }) |
-                @Html.ActionLink("Xoa", "Xoa", new { @MaSach = item.MaSach })
-            </td>
-        </tr>
-    }
-
-</table>
-@* Tạo link liên kết các trang*@
-Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
-<div class="MenuTrang">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                        <a href="/QuanLySach/ChinhSua?MaSach=@item.MaSach" class="btn btn-warning btn-sm btn-color-primary"><i class="glyphicon glyphicon-edit"></i></a>
+                        <br />
+                        <a href="/QuanLySach/HienThi?MaSach=@item.MaSach" class="btn btn-primary btn-sm btn-color-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <br />
+                        <a href="/QuanLySach/Xoa?MaSach=@item.MaSach" class="btn btn-danger btn-sm btn-color-primary"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<style>
-    .MenuTrang li {
-        display: inline;
-    }
-</style>
+
+    @* Tạo link liên kết các trang*@
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>

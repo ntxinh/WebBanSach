@@ -10,49 +10,83 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="@Url.Action("Create")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Thêm NXB</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().TenNXB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DiaChi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DienThoai)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenNXB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DienThoai)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { @MaNXB=item.MaNXB }) |
-            @Html.ActionLink("Details", "Details", new { @MaNXB = item.MaNXB }) |
-            @Html.ActionLink("Delete", "Delete", new { @MaNXB = item.MaNXB })
-        </td>
-    </tr>
-}
-
-</table>
-@* Tạo link liên kết các trang*@
-Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
-<div class="MenuTrang">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaNXB)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().TenNXB)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().DiaChi)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().DienThoai)</span>
+                </th>
+                <th>
+                    <span class="text-primary">Sửa</span>
+                </th>
+                <th>
+                    <span class="text-primary">Chi tiết</span>
+                </th>
+                <th>
+                    <span class="text-primary">Xóa</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNXB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNXB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DienThoai)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { @MaNXB = item.MaNXB }) |
+                        @Html.ActionLink("Details", "Details", new { @MaNXB = item.MaNXB }) |
+                        @Html.ActionLink("Delete", "Delete", new { @MaNXB = item.MaNXB })*@
+                        <a href="@Url.Action("Edit", new { @MaNXB = item.MaNXB })" class="btn btn-warning btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", new { @MaNXB = item.MaNXB })" class="btn btn-primary btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { @MaNXB = item.MaNXB })" class="btn btn-danger btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<style>
-    .MenuTrang li {
-        display: inline;
-    }
-</style>
+    @* Tạo link liên kết các trang*@
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
