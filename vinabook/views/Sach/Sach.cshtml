@@ -9,23 +9,31 @@
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
-        <div class="row">
-            <h2 class="section-title">Sách mới</h2>
-           
-            @Html.Partial("_Partial_1_Sach",Model)
-
+        <h3 class="section-title">Sách Mới</h3>
+        <div class="col-lg-9">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="product-pagination text-center">
+               
+                @Html.Partial("_Partial_1_Sach",Model)
 
-                        @* Tạo link liên kết các trang*@
-                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
-                        <div class="MenuTrang">
-                            @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-pagination text-center">
+
+                            @* Tạo link liên kết các trang*@
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                            <div class="MenuTrang">
+                                @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3">
+           @* Sach moi nhap ve*@
+            @Html.Action("SachMoiNhapVe_Partial")
+            @* sach moi nhap ve *@
+           @Html.Action("SachGiamGia_Partial")
         </div>
     </div>
 

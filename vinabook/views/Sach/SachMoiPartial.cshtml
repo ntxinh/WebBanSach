@@ -1,39 +1,16 @@
-﻿@using Vinabook.Models;
-@*Định nghĩa kiểu dữ liệu cho biến Model*@
-@model List<Sach>
+﻿@model List<Vinabook.Models.Sach>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="latest-product">
-                <h2 class="section-title">Latest Products</h2>
-                <div class="product-carousel" >
-                    @foreach (var item in Model)
-                    {
-                        <div class="single-product"  >
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)"  alt="" />
-                                <div class="product-hover">
-
-                                    <a class="add-to-cart-link" style="padding:0">
-
-                                        <input type="submit" style="width:100%;height:100%" class="btn btn-primary" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ" id="btnGioHang" />
-                                  
-                                    </a>
-
-                                    <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
-                                </div>
-                            </div>
-
-                            <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
-
-                            <div class="product-carousel-price">
-                                <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + (10 * item.GiaBan / 100))</del>
-                            </div>
-                        </div>
-                    }
-
-                </div>
-            </div>
+            <h3 class="lead" style="color:#008340;border-bottom:1px dashed #15582b">Sách Mới</h3>
+            @Html.Action("SachMoi_Partial", "Home")
+            
+            <h3 class="lead" style="color:#008340;border-bottom:1px dashed #15582b">Sách Bán Chạy</h3>
+            @Html.Action("SachbanChay_Partial", "Home")
+            
+            <h3 class="lead" style="color:#008340;border-bottom:1px dashed #15582b">Có Thể Bạn Quan Tâm</h3>
+            @Html.Action("CoTheBanQuanTam_Partial", "Home")
+            
         </div>
     </div>
 </div>

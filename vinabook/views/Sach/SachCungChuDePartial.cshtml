@@ -1,15 +1,27 @@
 ﻿
+@model List<Vinabook.Models.Sach>
 
 <div class="single-sidebar">
     <h2 class="sidebar-title">Sách cùng chủ đề</h2>
-   
-        <div class="thubmnail-recent">
-            <img src="~/Content/UserLayout/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-            <h2><a href="">TenSach</a></h2>
-            <div class="product-sidebar-price">
-                <ins>$700.00</ins> <del>$100.00</del>
-            </div>
+    @foreach (var item in Model)
+    {
+        string title = "Tên:           " + item.TenSach + "\nNXB:          " + item.NhaXuatBan.TenNXB + "\nChủ đề:     " + item.ChuDe.TenChuDe + "\nNội dung: " + item.MoTa;
+        <div class="thubmnail-recent" title="@title" data-toggle="tooltip">
+            <img src="~/content/HinhAnhSP/@item.AnhBia" class="recent-thumb" alt="">
+            <h2 style="line-height:2em; height:2em;overflow:hidden; margin:0 0 0.5em 0; color:black">
+                <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">
+                    @item.TenSach
+            </a>
+        </h2>
+
+        <div style="color:black">
+            Giá:<strong>
+                <ins class="text-danger active">@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins>
+            </strong>
         </div>
-    
-  
+    </div>
+
+    }
 </div>
+
+

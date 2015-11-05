@@ -115,10 +115,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="single-sidebar">
-
-                    @Html.Action("DanhMucChuDePartial", "ChuDe")
-                </div>
+                @*<div class="single-sidebar">*@
+                    @* co the ban quan tam *@
+                    @*@Html.Partial("_Partial_1_Sach_Min");*@
+                    @Html.Action("SachCoTheBanQuanTam_Partial", "Sach")
+                    @*@Html.Action("DanhMucChuDePartial", "ChuDe")*@
+                @*</div>*@
             </div>
 
 

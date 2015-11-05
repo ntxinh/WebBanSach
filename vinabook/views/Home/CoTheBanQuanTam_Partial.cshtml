@@ -1,0 +1,36 @@
+﻿
+@using Vinabook.Models;
+@*Định nghĩa kiểu dữ liệu cho biến Model*@
+@model List<Sach>
+
+
+<div class="latest-product">
+
+    <div class="product-carousel">
+        @foreach (var item in Model)
+        {
+            <div class="single-product">
+                <div class="product-f-image">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)" alt="" />
+                    <div class="product-hover">
+
+                        <a class="add-to-cart-link" style="padding:0">
+
+                            <input type="submit" style="width:100%;height:100%" class="btn btn-primary" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ" id="btnGioHang" />
+
+                        </a>
+
+                        <a href="@Url.Action("XemChiTiet","Sach", new { @masach=item.MaSach })" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
+                    </div>
+                </div>
+
+                <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
+
+                <div class="product-carousel-price">
+                    <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + (10 * item.GiaBan / 100))</del>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

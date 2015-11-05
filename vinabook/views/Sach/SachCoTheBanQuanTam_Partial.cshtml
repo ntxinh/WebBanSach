@@ -1,0 +1,36 @@
+﻿
+@model List<Vinabook.Models.Sach>
+
+<div class="panel panel-@ViewBag.skin">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+    <div class="panel-body">
+        @foreach (var item in Model)
+        {
+            string title = "Tên:           " + item.TenSach + "\nNXB:          " + item.NhaXuatBan.TenNXB + "\nChủ đề:     " + item.ChuDe.TenChuDe + "\nNội dung: " + item.MoTa;
+            <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" title="@title" data-toggle="tooltip">
+                <div class="row no-under">
+
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="~/content/HinhAnhSP/@item.AnhBia" />
+                    </div>
+                    <div class="col-md-8">
+                        @* Hiển thị tên 2 dòng *@
+                        <div style="line-height:2em; height:2.65em;overflow:hidden; margin:0 0 0.5em 0; color:black">
+                            <h4>@item.TenSach</h4>
+                        </div>
+
+                        <div style="color:black">
+                            Giá:<strong>
+                                <ins class="text-danger active">@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins>
+                            </strong>
+                            @*<del>@string.Format("{0:0,0}", item.GiaBan + item.GiaBan * 10 / 100)</del>*@
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <br />
+        }
+    </div>
+</div>

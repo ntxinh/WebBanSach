@@ -1,6 +1,7 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 @model PagedList.PagedList<Vinabook.Models.Sach>
+    
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -29,57 +30,52 @@
 
 
 <div class="container "id="divTimKiem">
-    <div class="text-primary"><h3>@ViewBag.ThongBao</h3></div>
-    @*<div class="related-products-wrapper">
-        <h2 class="related-products-title">Sách gần đây</h2>
-        <div class="related-products-carousel">*@
     <div class="row">
-        <ul>
-            @foreach (var item in Model)
-            {
-                string title = "Tên:       " + item.TenSach + "\nNXB:      " + item.NhaXuatBan.TenNXB + "\nChủ đề: " + item.ChuDe.TenChuDe;
-                <li>
-
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                        <div class="thumbnail no-under">
-                            <a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })" title="@title">
-                                <img class="img-responsive" src="@Url.Content("/Content/HinhAnhSP/"+item.AnhBia)" alt="">
-                                <div class="caption">
-                                    @* Hiển thị tên 2 dòng *@
-                                    <div style="line-height:2em; height:4em;overflow:hidden; margin:0 0 0.5em 0" class="text-center">
-                                        <h3>@item.TenSach</h3>
-                                    </div>
-
-                                    <div class="product-carousel-price">
-                                        Giá:
-                                        <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + item.GiaBan * 10 / 100)</del>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="product-option-shop text-center">
-                                <input type="submit" onclick="AddToCart('@item.MaSach')" value="Thêm vào giỏ " id="btnGioHang" class="btn btn-primary " />
-                            </div>
-
-                        </div>
-                    </div>
-
-                </li>
-            }
-        </ul>
-
+        <div class="col-md-9">
+            <div class="text-primary"><h3>@ViewBag.ThongBao</h3></div>
+            <div class="row">
+                @Html.Partial("_Partial_1_Sach", Model)
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3>&nbsp;</h3>
+            @Html.Action("SachCoTheBanQuanTam_Partial", "Sach")
+            @* @Html.Partial("_Partial_1_Sach_Min");*@
+        </div>
     </div>
-
 </div>
 
 <div style="clear:both"></div>
 
-
-@*<div class="text-danger text-center">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /@(Model.PageCount)</div>*@
 <div class="MenuTrang  text-center">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { ViewBag.Key, page = page }))
+    <div class="col-md-9">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { ViewBag.Key, page = page }))
+    </div>
 </div>
+<div style="clear:both"></div>
+
 <style>
     .MenuTrang li {
         display: inline;
     }
 </style>
+
+<script>
+    window.onload = function () {
+        pageScroll();
+    };
+    function pageScroll() {
+        window.scrollBy(0, 30); // horizontal and vertical scroll increments
+        //scrolldelay = setTimeout('pageScroll()', 10); // scrolls every 100 milliseconds
+        scrolldelay = setTimeout(function () {
+            pageScroll();
+            var scrollPosition = $(window).scrollTop();
+            if (scrollPosition > 680)
+                stopTimeOut();
+        }, 10);
+    }
+    function stopTimeOut() {
+       // debugger;
+        clearTimeout(scrolldelay);
+    }
+</script>

@@ -179,7 +179,12 @@
     <Content Include="Content\HinhAnh\Anh1.png" />
     <Content Include="Content\HinhAnh\Anh2.png" />
     <Content Include="Content\HinhAnh\Anh3.png" />
+    <Content Include="Content\HinhAnh\icon_google_plus.png" />
+    <Content Include="Content\HinhAnh\icon_hotline.png" />
+    <Content Include="Content\HinhAnh\icon_printerest.png" />
+    <Content Include="Content\HinhAnh\icon_twitter.png" />
     <Content Include="Content\HinhAnh\imgSearch.png" />
+    <Content Include="Content\HinhAnh\logo_fb.png" />
     <Content Include="Content\HinhAnh\toolbar_find.png" />
     <Content Include="Content\Login\img\bg.jpg" />
     <Content Include="Content\PagedList.css" />
@@ -269,6 +274,7 @@
     <Compile Include="Controllers\QuanLyKHController.cs" />
     <Compile Include="Controllers\QuanLyNXBController.cs" />
     <Compile Include="Controllers\QuanLySachController.cs" />
+    <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="CustomHelpers\CustomDropdDownList.cs" />
     <Compile Include="Models\Admin.cs">
@@ -379,7 +385,6 @@
     <Content Include="Views\Sach\SachTiengAnhPartial.cshtml" />
     <Content Include="Views\Sach\SachITPartial.cshtml" />
     <Content Include="Views\Sach\SachPhatGiaoPartial.cshtml" />
-    <Content Include="Views\Sach\SachCungChuDePartial.cshtml" />
     <Content Include="Views\Sach\SachGanDayPartial.cshtml" />
     <Content Include="Views\ChuDe\DanhMucChuDePartial.cshtml" />
     <Content Include="Views\GioHang\TongSlGioHangPartial.cshtml" />
@@ -423,7 +428,16 @@
     <Content Include="Views\QLDonHang\Details.cshtml" />
     <Content Include="Views\GioHang\DatHangPartial.cshtml" />
     <Content Include="Views\Chart\PieChart.cshtml" />
-    <Content Include="Views\Sach\_Partial_1_Sach.cshtml" />
+    <Content Include="Views\Shared\_Partial_1_Sach.cshtml" />
+    <Content Include="Views\Home\SachbanChay_Partial.cshtml" />
+    <Content Include="Views\Home\CoTheBanQuanTam_Partial.cshtml" />
+    <Content Include="Views\Home\SachMoi_Partial.cshtml" />
+    <Content Include="Views\Sach\SachMoiNhapVe_Partial.cshtml" />
+    <Content Include="Views\Sach\SachGiamGia_Partial.cshtml" />
+    <Content Include="Views\TacGia\DanhMucTacGia_Partial.cshtml" />
+    <Content Include="Views\Sach\SachTheoTacGia.cshtml" />
+    <Content Include="Views\Sach\SachCoTheBanQuanTam_Partial.cshtml" />
+    <Content Include="Views\Sach\sachCungChuDePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

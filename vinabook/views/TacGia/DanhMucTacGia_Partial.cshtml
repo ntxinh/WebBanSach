@@ -1,0 +1,16 @@
+﻿
+@using Vinabook.Models
+@model List<TacGia>
+
+<div class="single-sidebar">
+    <h2 class="sidebar-title">Tác Giả</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+
+            <li><a href="@Url.Action("SachTheoTacGia","Sach", new {@matacgia=@item.MaTacGia })">@item.TenTacGia</a></li>
+        }
+
+    </ul>
+</div>
+

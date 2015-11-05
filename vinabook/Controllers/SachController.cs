@@ -19,6 +19,24 @@ namespace Vinabook.Controllers
             var lstSachMoi = db.Saches.Where(n => n.Moi == 1).Take(10).ToList();
             return PartialView(lstSachMoi);
         }
+        public ActionResult SachMoiNhapVe_Partial()
+        {
+            ViewBag.skin = "primary";
+            ViewBag.Title = "Sách Mới Nhập Về";
+            return PartialView(db.Saches.OrderBy(n => n.NgayCapNhat).Take(5).ToList());
+        }
+        public ActionResult SachGiamGia_Partial()
+        {
+            ViewBag.skin = "warning";
+            ViewBag.Title = "Sách Giảm Giá";
+            return PartialView(db.Saches.OrderByDescending(n => n.GiaBan).Take(5).ToList());
+        }
+        public ActionResult SachCoTheBanQuanTam_Partial()
+        {
+            ViewBag.skin = "warning";
+            ViewBag.Title = "Có Thể Bạn Quan Tâm";
+            return PartialView(db.Saches.OrderBy(n => Guid.NewGuid()).Take(10).ToList());
+        }
         /// <summary>
         /// Sach moi tren menu
         /// </summary>
@@ -28,6 +46,27 @@ namespace Vinabook.Controllers
             int pageNumber = (page ?? 1);
             int pageSize = 12;
             return View(db.Saches.Where(n => n.Moi == 1).ToList().OrderBy(n => n.MaSach).ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult SachTheoTacGia(int matacgia = 1, int? page = 1)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSize = 12;
+            var list = (from s in db.ThamGias
+                        where s.MaTacGia == matacgia
+                        select s).ToList();
+            var listSach = new List<Sach>();
+            foreach (var item in list)
+            {
+                var Sachs = (from s in db.Saches
+                             where s.MaSach == item.MaSach
+                             select s).ToList();
+                foreach(var iteamsach in Sachs)
+                {
+                    listSach.Add(iteamsach);
+                }
+            }
+            ViewBag.TenTacGia = db.TacGias.Single(n => n.MaTacGia == matacgia).TenTacGia;
+            return View(listSach.OrderBy(n => n.TenSach).ToPagedList(pageNumber, pageSize));
         }
         public ViewResult SachTheoChuDe(int machude = 1, int? page = 1)
         {
@@ -78,14 +117,18 @@ namespace Vinabook.Controllers
             }
             //ChuDe cd = db.ChuDes.Single(n => n.MaChuDe == sach.MaChuDe);
             //ViewBag.TenCD = cd.TenChuDe;
+
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == sach.MaChuDe).TenChuDe;
             ViewBag.NhaXuatBan = db.NhaXuatBans.Single(n => n.MaNXB == sach.MaNXB).TenNXB;
             return View(sach);
         }
-        public PartialViewResult SachCungChuDePartial()
+    
+        public ActionResult sachCungChuDePartial(int machude)
         {
-
-            return PartialView();
+            int id = Convert.ToInt16(TempData["MaChuDe"]);
+           
+            var listsach = db.Saches.Where(n=>n.MaChuDe== machude).Take(10).ToList();
+            return PartialView(listsach);
         }
         public PartialViewResult SachGanDayPartial()
         {

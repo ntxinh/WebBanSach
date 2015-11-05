@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "SachTheoTacGia";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+@using Vinabook.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<Vinabook.Models.Sach>
+
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+            
+                @Html.Action("DanhMucTacGia_Partial", "TacGia")
+            </div>
+
+            <div class="col-md-9">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        <a href="@Url.Content("/Home/Index/")">Trang Chủ</a>
+                        <a href="">@ViewBag.TenTacGia</a>
+                    </div>
+
+                    @Html.Partial("_Partial_1_Sach", Model)
+                </div>
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+                        <div class="MenuTrang">
+                            @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

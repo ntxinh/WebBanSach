@@ -6,7 +6,34 @@
     <ul>
         @foreach (var item in Model)
         {
-            string title = "Tên:           " + item.TenSach + "\nNXB:          " + item.NhaXuatBan.TenNXB + "\nChủ đề:     " + item.ChuDe.TenChuDe + "\nNội dung: " + item.MoTa;
+            string tenTacGia="",xuonghang= "\n                 ";
+            using (Vinabook.Models.QuanLyBanSachEntities db = new Vinabook.Models.QuanLyBanSachEntities())
+            {
+                var listThamGia = from s in db.ThamGias
+                                  where s.MaSach == item.MaSach
+                                  select s;
+                int i = 0;
+                foreach (var Tacgiatg in listThamGia)
+                {
+                    i++;
+                    var listtacgia = from s in db.TacGias
+                                     where s.MaTacGia == Tacgiatg.MaTacGia
+                                     select s;
+
+                    foreach(var tacgia in listtacgia)
+                    {
+
+                        tenTacGia += "- "+ tacgia.TenTacGia;
+                    }
+                    if (i < Convert.ToInt16(listThamGia.Count()))
+                    {
+                        tenTacGia += xuonghang;
+                    }
+                }
+
+            }
+
+            string title = "Tên:           " + item.TenSach + "\nNXB:          " + item.NhaXuatBan.TenNXB + "\nChủ đề:     " + item.ChuDe.TenChuDe +"\nTác Giả:   "+tenTacGia+ "\nNội dung: " + item.MoTa ;
             <li>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
@@ -37,4 +64,3 @@
     </ul>
 
 </div>
-
