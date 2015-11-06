@@ -1,7 +1,14 @@
 ﻿@using Vinabook.Models
 @model List<ChiTietDonHang>
 <div class="row margin-b">
+    @if (Session["TaiKhoan"] != null)
+    {
         <div class="pull-right"><button class="btn btn-info" onclick="HoTro()">Trở Về</button></div>
+    }
+    else
+    {
+          <div class="pull-right"><button class="btn btn-info" onclick="Check()">Trở Về</button></div>
+    }
 </div>
 <div class="row">
     <div class="panel panel-warning text-left">

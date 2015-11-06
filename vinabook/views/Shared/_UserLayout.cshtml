@@ -71,7 +71,6 @@
                 success: function (data) {
                     $("#Cart_Amount").html(data.sl);
                     $.post(data.Url, function (partial) {
-                        debugger;
                         $("#GioHang").html(partial);
                         //AddToCart(-1);
                         $("#TongTien").attr("style", "color:red");
@@ -104,7 +103,6 @@
             $("#myModal").modal();
         }
         function HoTroDetials(maDonHang) {
-            debugger;
             $.ajax({
                 type: 'POST',
                 url: '/Home/HoTroDetails',
@@ -116,11 +114,47 @@
                 }
             });
         }
-        function Check() {
-            $("#All_Dialog").html("Hello")
+        var madh, sdt;
+        function get() {
+            debugger;
+            madh = document.getElementById("maDonHang_Dialog").value;
+            sdt = document.getElementById("soDienThoai_Dialog").value;
+            //xoa khoang trang
+            var s = madh.replace(/\s+/g, '').length;
+            var sx = sdt.replace(/\s+/g, '').length;;
+            if (s == 0 && sx == 0) {
+                alert('Bạn chưa nhập dữ liệu!');
+            }
+            else
+                Check();
         }
-        function editDialog() {
-
+        //goi check trong _Partial_Body_Dialog
+        function Check() {
+            debugger;
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Check',
+                data: { MaDH:madh,Sdt:sdt},
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#All_Dialog").html(partial)
+                    });
+                }
+            });
+        }
+        function TroVe() {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/TroVe',
+                data: { },
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#All_Dialog").html(partial)
+                        madh = null;
+                        sdt = null;
+                    });
+                }
+            });
         }
     </script>
     <!--End Ajax Process-->
@@ -154,32 +188,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <div id="All_Dialog" class="" style="padding:20px 30px">
-                        <div style="color:#008340;font-size:18px">Kiểm tra đơn hàng</div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="row margin-b margin-t">
-                                    <label>Mã đơn hàng</label>
-                                    <input id="maDonHang_Dialog" type="text" placeholder="Mã đơn hàng" />
-                                </div>
-
-                                <div class="row margin-b margin-t">
-                                    <label>Số điện thoại</label>
-                                    <input id="soDienThoai_Dialog" type="text" placeholder="Số điện thoại" />
-                                </div>
-                                <br />
-                                <div class="text-center">
-                                    <button onclick="Check()" class="btn btn-success "><span class="glyphicon glyphicon-check"></span> Kiểm tra</button>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <p class="text-center"><img class="img-responsive  " src="~/Content/HinhAnh/icon_hotline.png" /></p>
-                                <p><strong>HOTLINE </strong><span><strong style="color:blue">1900-0199</strong></span></p>
-                                <p>Tổng đài chăm sóc và Hỗ trợ Khách hàng hoạt động từ 7:30 - 20:00 mỗi ngày (riêng Chủ Nhật, ngày lễ đến 17:00)</p>
-                            </div>
-                        </div>
-                    </div>
+                    @Html.Partial("_Partial_Body_Dialog")
                 </div>
                 <div class="modal-footer">
 

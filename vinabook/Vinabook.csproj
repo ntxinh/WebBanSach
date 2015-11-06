@@ -447,6 +447,8 @@
     <Content Include="Views\Admin\TotalDHChuaThanhToan.cshtml" />
     <Content Include="Views\Home\HoTroSuccess_Partial.cshtml" />
     <Content Include="Views\Home\HoTroDetailsSuccess_Partial.cshtml" />
+    <Content Include="Views\Home\Check_Success_Partial.cshtml" />
+    <Content Include="Views\Shared\_Partial_Body_Dialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
