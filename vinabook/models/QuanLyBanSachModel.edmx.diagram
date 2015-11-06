@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="38cf3c72dbbe4c5d84aa5bcaad6b8ffb" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyBanSachModel.Admin" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanSachModel.Adminnistrator" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.ChuDe" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.DonHang" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
@@ -24,6 +23,7 @@
         <AssociationConnector Association="QuanLyBanSachModel.FK_ThamGia_Sach" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ThamGia_TacGia" ManuallyRouted="false" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.sysdiagram" Width="1.5" PointX="8.375" PointY="7.75" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.Adminnistrator" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

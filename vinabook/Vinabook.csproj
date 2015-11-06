@@ -252,6 +252,16 @@
     <Content Include="Content\UserLayout\js\script.slider.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\QuanLyBanSachModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
@@ -278,25 +288,25 @@
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="CustomHelpers\CustomDropdDownList.cs" />
     <Compile Include="Models\Admin.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Adminnistrator.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\ChartData.cs" />
     <Compile Include="Models\ChiTietDonHang.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChuDe.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DonHang.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\KhachHang.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\ChiTietDonHang.metadata.cs" />
     <Compile Include="Models\Metadata\ChuDe.metadata.cs" />
@@ -316,7 +326,16 @@
     <Content Include="Models\QuanLyBanSachModel.edmx.diagram">
       <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
     </Content>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -333,8 +352,23 @@
     </Compile>
     <Compile Include="Models\Metadata\NhaXuatBan.metadata.cs" />
     <Compile Include="Models\Metadata\Sach.metadata.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\NhaXuatBan.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuanLyBanSachModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -352,20 +386,21 @@
       <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\QuanTriVien.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sach.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TacGia.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThamGia.cs">
-      <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ThongKeDoanhThuTheoNam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -449,6 +484,8 @@
     <Content Include="Views\Home\HoTroDetailsSuccess_Partial.cshtml" />
     <Content Include="Views\Home\Check_Success_Partial.cshtml" />
     <Content Include="Views\Shared\_Partial_Body_Dialog.cshtml" />
+    <Content Include="Views\Chart\Chart.cshtml" />
+    <Content Include="Views\Chart\ThongKeDoanhThu_Chart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

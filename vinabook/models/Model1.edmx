@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QuanLyBanSachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyBanSachModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -128,12 +128,6 @@
           <Property Name="VaiTro" Type="nvarchar" MaxLength="50" />
           <Property Name="ViTri" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ThongKeDoanhThuTheoNam_View">
-          <Property Name="Nam" Type="int" />
-          <Property Name="TongTien" Type="decimal" Precision="38" Scale="0" />
-        </EntityType>-->
         <Association Name="FK_ChiTietDonHang_DonHang">
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
           <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
@@ -218,7 +212,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyBanSachModelStoreContainer">
+        <EntityContainer Name="QuanLyBanSachModel1StoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adminnistrator" EntityType="Self.Adminnistrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
@@ -260,10 +254,11 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             <End Role="ThamGia" EntitySet="ThamGia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QuanLyBanSachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QuanLyBanSachModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -271,6 +266,15 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
           <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="Binary" MaxLength="50" FixedLength="false" />
           <Property Name="Password" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Adminnistrator">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="ChiTietDonHang">
@@ -358,6 +362,16 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
           <NavigationProperty Name="ChuDe" Relationship="Self.FK_Sach_ChuDe" FromRole="Sach" ToRole="ChuDe" />
           <NavigationProperty Name="NhaXuatBan" Relationship="Self.FK_Sach_NhaXuatBan" FromRole="Sach" ToRole="NhaXuatBan" />
           <NavigationProperty Name="ThamGias" Relationship="Self.FK_ThamGia_Sach" FromRole="Sach" ToRole="ThamGia" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TacGia">
           <Key>
@@ -466,8 +480,9 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyBanSachEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QuanLyBanSachEntities_Tes" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Adminnistrators" EntityType="Self.Adminnistrator" />
           <EntitySet Name="ChiTietDonHangs" EntityType="Self.ChiTietDonHang" />
           <EntitySet Name="ChuDes" EntityType="Self.ChuDe" />
           <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
@@ -475,6 +490,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
           <EntitySet Name="NhaXuatBans" EntityType="Self.NhaXuatBan" />
           <EntitySet Name="QuanTriViens" EntityType="Self.QuanTriVien" />
           <EntitySet Name="Saches" EntityType="Self.Sach" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TacGias" EntityType="Self.TacGia" />
           <EntitySet Name="ThamGias" EntityType="Self.ThamGia" />
           <AssociationSet Name="FK_ChiTietDonHang_DonHang" Association="Self.FK_ChiTietDonHang_DonHang">
@@ -505,36 +521,15 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             <End Role="TacGia" EntitySet="TacGias" />
             <End Role="ThamGia" EntitySet="ThamGias" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="QuanLyBanSachModel.sysdiagram" />
-          <EntitySet Name="Adminnistrators" EntityType="QuanLyBanSachModel.Adminnistrator" />
         </EntityContainer>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Adminnistrator">
-          <Key>
-            <PropertyRef Name="AdminID" />
-          </Key>
-          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLyBanSachModelStoreContainer" CdmEntityContainer="QuanLyBanSachEntities">
+        <EntityContainerMapping StorageEntityContainer="QuanLyBanSachModel1StoreContainer" CdmEntityContainer="QuanLyBanSachEntities_Tes">
           <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.Admin">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -543,8 +538,18 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Adminnistrators">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.Adminnistrator">
+              <MappingFragment StoreEntitySet="Adminnistrator">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ChiTietDonHangs">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.ChiTietDonHang">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.ChiTietDonHang">
               <MappingFragment StoreEntitySet="ChiTietDonHang">
                 <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
                 <ScalarProperty Name="MaSach" ColumnName="MaSach" />
@@ -554,7 +559,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChuDes">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.ChuDe">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.ChuDe">
               <MappingFragment StoreEntitySet="ChuDe">
                 <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
                 <ScalarProperty Name="TenChuDe" ColumnName="TenChuDe" />
@@ -562,7 +567,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonHangs">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.DonHang">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
                 <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
                 <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
@@ -574,7 +579,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KhachHangs">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.KhachHang">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.KhachHang">
               <MappingFragment StoreEntitySet="KhachHang">
                 <ScalarProperty Name="MaKH" ColumnName="MaKH" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
@@ -589,7 +594,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NhaXuatBans">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.NhaXuatBan">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.NhaXuatBan">
               <MappingFragment StoreEntitySet="NhaXuatBan">
                 <ScalarProperty Name="MaNXB" ColumnName="MaNXB" />
                 <ScalarProperty Name="TenNXB" ColumnName="TenNXB" />
@@ -599,7 +604,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuanTriViens">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.QuanTriVien">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.QuanTriVien">
               <MappingFragment StoreEntitySet="QuanTriVien">
                 <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -609,7 +614,7 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Saches">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.Sach">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.Sach">
               <MappingFragment StoreEntitySet="Sach">
                 <ScalarProperty Name="MaSach" ColumnName="MaSach" />
                 <ScalarProperty Name="TenSach" ColumnName="TenSach" />
@@ -624,8 +629,19 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TacGias">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.TacGia">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.TacGia">
               <MappingFragment StoreEntitySet="TacGia">
                 <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
                 <ScalarProperty Name="TenTacGia" ColumnName="TenTacGia" />
@@ -636,33 +652,12 @@ warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' doe
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThamGias">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.ThamGia">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel1.ThamGia">
               <MappingFragment StoreEntitySet="ThamGia">
                 <ScalarProperty Name="MaSach" ColumnName="MaSach" />
                 <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
                 <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
                 <ScalarProperty Name="ViTri" ColumnName="ViTri" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Adminnistrators">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.Adminnistrator">
-              <MappingFragment StoreEntitySet="Adminnistrator">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
