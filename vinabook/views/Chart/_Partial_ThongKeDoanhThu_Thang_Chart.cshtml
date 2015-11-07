@@ -1,0 +1,75 @@
+﻿
+
+@using Vinabook.Models;
+@model List<ThongKeDoanhThuTheoThang>
+@{
+    ViewBag.Title = "Thong Ke Doanh Thu Qua Cac Thang";
+
+}
+<div class="col-md-10 col-md-offset-1">
+    <div class="text-left"><strong>&nbsp;    VNĐ</strong></div>
+    <div class="row">
+        <canvas id="MyChart" width="800" height="400"></canvas>
+        <strong>Tháng</strong>
+    </div>
+</div>
+
+@{ int i = 0;
+    string listNam = "", listTongTien = "";
+    foreach (var item in Model)
+    {
+        listNam += item.Thang;
+        listTongTien += string.Format("{0:0,c}", item.TongTien);
+        if (i != Model.Count - 1)
+        {
+            listNam += ",";
+            listTongTien += ",";
+        }
+        i++;
+    }
+}
+<script>
+    var ctx1 = document.getElementById("MyChart").getContext("2d");
+    var label = [];
+
+    var data1 = {
+        labels: [@listNam],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "rgba(255, 119, 0, 0.5)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#FF6600",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [@listTongTien]
+            }
+        ]
+    };
+    var option = {
+        scaleShowGridLines: true,
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleGridLineWidth: 1,
+        scaleShowHorizontalLines: true,
+        scaleShowVerticalLines: true,
+        bezierCurve: true,
+        bezierCurveTension: 0.4,
+        pointDot: true,
+        pointDotRadius: 4,
+        pointDotStrokeWidth: 1,
+        pointHitDetectionRadius: 20,
+        datasetStroke: true,
+        datasetStrokeWidth: 2,
+        datasetFill: true,
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+    }
+    var myBarChart = new Chart(ctx1).Line(data1, option);
+    $("#MyChart").click(
+                        function (evt) {
+                            TKDT_N();
+                        }
+                    );
+</script>
+

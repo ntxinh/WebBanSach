@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row"></div>
+
+<div style="text-align:center">
+    <h2 class="text-success">
+        <button id="btn_name" class="btn btn-warning pull-left" onclick="TKDT_N()">
+            <i class="glyphicon glyphicon-refresh"></i> Refresh
+        </button>THỐNG KÊ DOANH THU BÁN HÀNG <span id="Nam_Thang">QUA CÁC NĂM</span>
+    </h2>
+    <div id="all">
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        TKDT_N();
+    }
+    function TKDT_N() {
+        $.ajax({
+            type: 'POST',
+            url: '/Chart/ThongKeDoanhThu_Nam_Chart',
+            data: {},
+            success: function (data) {
+                $.post(data.Url, function (partial) {
+                    debugger;
+                    $("#all").html(partial);
+                    $("#btn_name").html("<i class=\"glyphicon glyphicon-refresh\"></i> Refresh");
+                    $("#Nam_Thang").html("QUA CÁC NĂM");
+                });
+            }
+        });
+    }
+    function TKDT_T(nam) {
+        $.ajax({
+            type: 'POST',
+            url: '/Chart/ThongKeDoanhThu_Thang_Chart',
+            data: { Nam: nam },
+            success: function (data) {
+                $.post(data.Url, function (partial) {
+                    debugger;
+                    $("#all").html(partial);
+                    $("#btn_name").html("<i class=\"glyphicon glyphicon-backward\"></i> Back");
+                    $("#Nam_Thang").html("CỦA NĂM "+nam);
+                });
+            }
+        });
+    }
+</script>

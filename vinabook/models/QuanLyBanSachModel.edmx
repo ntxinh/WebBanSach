@@ -258,6 +258,48 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyBanSachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuanLyBanSachEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="QuanLyBanSachModel.Admin" />
+          <EntitySet Name="Adminnistrators" EntityType="QuanLyBanSachModel.Adminnistrator" />
+          <EntitySet Name="ChiTietDonHangs" EntityType="QuanLyBanSachModel.ChiTietDonHang" />
+          <EntitySet Name="ChuDes" EntityType="QuanLyBanSachModel.ChuDe" />
+          <EntitySet Name="DonHangs" EntityType="QuanLyBanSachModel.DonHang" />
+          <EntitySet Name="KhachHangs" EntityType="QuanLyBanSachModel.KhachHang" />
+          <EntitySet Name="NhaXuatBans" EntityType="QuanLyBanSachModel.NhaXuatBan" />
+          <EntitySet Name="QuanTriViens" EntityType="QuanLyBanSachModel.QuanTriVien" />
+          <EntitySet Name="Saches" EntityType="QuanLyBanSachModel.Sach" />
+          <EntitySet Name="sysdiagrams" EntityType="QuanLyBanSachModel.sysdiagram" />
+          <EntitySet Name="TacGias" EntityType="QuanLyBanSachModel.TacGia" />
+          <EntitySet Name="ThamGias" EntityType="QuanLyBanSachModel.ThamGia" />
+          <AssociationSet Name="FK_ChiTietDonHang_DonHang" Association="QuanLyBanSachModel.FK_ChiTietDonHang_DonHang">
+            <End Role="DonHang" EntitySet="DonHangs" />
+            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietDonHang_Sach" Association="QuanLyBanSachModel.FK_ChiTietDonHang_Sach">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sach_ChuDe" Association="QuanLyBanSachModel.FK_Sach_ChuDe">
+            <End Role="ChuDe" EntitySet="ChuDes" />
+            <End Role="Sach" EntitySet="Saches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_KhachHang" Association="QuanLyBanSachModel.FK_DonHang_KhachHang">
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sach_NhaXuatBan" Association="QuanLyBanSachModel.FK_Sach_NhaXuatBan">
+            <End Role="NhaXuatBan" EntitySet="NhaXuatBans" />
+            <End Role="Sach" EntitySet="Saches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThamGia_Sach" Association="QuanLyBanSachModel.FK_ThamGia_Sach">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="ThamGia" EntitySet="ThamGias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThamGia_TacGia" Association="QuanLyBanSachModel.FK_ThamGia_TacGia">
+            <End Role="TacGia" EntitySet="TacGias" />
+            <End Role="ThamGia" EntitySet="ThamGias" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -265,6 +307,15 @@
           <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="Binary" MaxLength="50" FixedLength="false" />
           <Property Name="Password" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Adminnistrator">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="ChiTietDonHang">
@@ -276,8 +327,8 @@
           <Property Name="MaSach" Type="Int32" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="DonHang" Relationship="Self.FK_ChiTietDonHang_DonHang" FromRole="ChiTietDonHang" ToRole="DonHang" />
-          <NavigationProperty Name="Sach" Relationship="Self.FK_ChiTietDonHang_Sach" FromRole="ChiTietDonHang" ToRole="Sach" />
+          <NavigationProperty Name="DonHang" Relationship="QuanLyBanSachModel.FK_ChiTietDonHang_DonHang" FromRole="ChiTietDonHang" ToRole="DonHang" />
+          <NavigationProperty Name="Sach" Relationship="QuanLyBanSachModel.FK_ChiTietDonHang_Sach" FromRole="ChiTietDonHang" ToRole="Sach" />
         </EntityType>
         <EntityType Name="ChuDe">
           <Key>
@@ -285,7 +336,7 @@
           </Key>
           <Property Name="MaChuDe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenChuDe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Saches" Relationship="Self.FK_Sach_ChuDe" FromRole="ChuDe" ToRole="Sach" />
+          <NavigationProperty Name="Saches" Relationship="QuanLyBanSachModel.FK_Sach_ChuDe" FromRole="ChuDe" ToRole="Sach" />
         </EntityType>
         <EntityType Name="DonHang">
           <Key>
@@ -297,8 +348,8 @@
           <Property Name="DaThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TinhTrangGiaoHang" Type="Int32" />
           <Property Name="MaKH" Type="Int32" />
-          <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_ChiTietDonHang_DonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonHang_KhachHang" FromRole="DonHang" ToRole="KhachHang" />
+          <NavigationProperty Name="ChiTietDonHangs" Relationship="QuanLyBanSachModel.FK_ChiTietDonHang_DonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
+          <NavigationProperty Name="KhachHang" Relationship="QuanLyBanSachModel.FK_DonHang_KhachHang" FromRole="DonHang" ToRole="KhachHang" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -313,7 +364,7 @@
           <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DiaChi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="DonHangs" Relationship="Self.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
+          <NavigationProperty Name="DonHangs" Relationship="QuanLyBanSachModel.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
         </EntityType>
         <EntityType Name="NhaXuatBan">
           <Key>
@@ -323,7 +374,7 @@
           <Property Name="TenNXB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Saches" Relationship="Self.FK_Sach_NhaXuatBan" FromRole="NhaXuatBan" ToRole="Sach" />
+          <NavigationProperty Name="Saches" Relationship="QuanLyBanSachModel.FK_Sach_NhaXuatBan" FromRole="NhaXuatBan" ToRole="Sach" />
         </EntityType>
         <EntityType Name="QuanTriVien">
           <Key>
@@ -348,160 +399,11 @@
           <Property Name="MaChuDe" Type="Int32" />
           <Property Name="MaNXB" Type="Int32" />
           <Property Name="Moi" Type="Int32" />
-          <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_ChiTietDonHang_Sach" FromRole="Sach" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="ChuDe" Relationship="Self.FK_Sach_ChuDe" FromRole="Sach" ToRole="ChuDe" />
-          <NavigationProperty Name="NhaXuatBan" Relationship="Self.FK_Sach_NhaXuatBan" FromRole="Sach" ToRole="NhaXuatBan" />
-          <NavigationProperty Name="ThamGias" Relationship="Self.FK_ThamGia_Sach" FromRole="Sach" ToRole="ThamGia" />
+          <NavigationProperty Name="ChiTietDonHangs" Relationship="QuanLyBanSachModel.FK_ChiTietDonHang_Sach" FromRole="Sach" ToRole="ChiTietDonHang" />
+          <NavigationProperty Name="ChuDe" Relationship="QuanLyBanSachModel.FK_Sach_ChuDe" FromRole="Sach" ToRole="ChuDe" />
+          <NavigationProperty Name="NhaXuatBan" Relationship="QuanLyBanSachModel.FK_Sach_NhaXuatBan" FromRole="Sach" ToRole="NhaXuatBan" />
+          <NavigationProperty Name="ThamGias" Relationship="QuanLyBanSachModel.FK_ThamGia_Sach" FromRole="Sach" ToRole="ThamGia" />
         </EntityType>
-        <EntityType Name="TacGia">
-          <Key>
-            <PropertyRef Name="MaTacGia" />
-          </Key>
-          <Property Name="MaTacGia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenTacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TieuSu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ThamGias" Relationship="Self.FK_ThamGia_TacGia" FromRole="TacGia" ToRole="ThamGia" />
-        </EntityType>
-        <EntityType Name="ThamGia">
-          <Key>
-            <PropertyRef Name="MaSach" />
-            <PropertyRef Name="MaTacGia" />
-          </Key>
-          <Property Name="MaSach" Type="Int32" Nullable="false" />
-          <Property Name="MaTacGia" Type="Int32" Nullable="false" />
-          <Property Name="VaiTro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ViTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sach" Relationship="Self.FK_ThamGia_Sach" FromRole="ThamGia" ToRole="Sach" />
-          <NavigationProperty Name="TacGia" Relationship="Self.FK_ThamGia_TacGia" FromRole="ThamGia" ToRole="TacGia" />
-        </EntityType>
-        <Association Name="FK_ChiTietDonHang_DonHang">
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
-          <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DonHang">
-              <PropertyRef Name="MaDonHang" />
-            </Principal>
-            <Dependent Role="ChiTietDonHang">
-              <PropertyRef Name="MaDonHang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChiTietDonHang_Sach">
-          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
-          <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sach">
-              <PropertyRef Name="MaSach" />
-            </Principal>
-            <Dependent Role="ChiTietDonHang">
-              <PropertyRef Name="MaSach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sach_ChuDe">
-          <End Role="ChuDe" Type="Self.ChuDe" Multiplicity="0..1" />
-          <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChuDe">
-              <PropertyRef Name="MaChuDe" />
-            </Principal>
-            <Dependent Role="Sach">
-              <PropertyRef Name="MaChuDe" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DonHang_KhachHang">
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
-          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KhachHang">
-              <PropertyRef Name="MaKH" />
-            </Principal>
-            <Dependent Role="DonHang">
-              <PropertyRef Name="MaKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sach_NhaXuatBan">
-          <End Role="NhaXuatBan" Type="Self.NhaXuatBan" Multiplicity="0..1" />
-          <End Role="Sach" Type="Self.Sach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhaXuatBan">
-              <PropertyRef Name="MaNXB" />
-            </Principal>
-            <Dependent Role="Sach">
-              <PropertyRef Name="MaNXB" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ThamGia_Sach">
-          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
-          <End Role="ThamGia" Type="Self.ThamGia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sach">
-              <PropertyRef Name="MaSach" />
-            </Principal>
-            <Dependent Role="ThamGia">
-              <PropertyRef Name="MaSach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ThamGia_TacGia">
-          <End Role="TacGia" Type="Self.TacGia" Multiplicity="1" />
-          <End Role="ThamGia" Type="Self.ThamGia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TacGia">
-              <PropertyRef Name="MaTacGia" />
-            </Principal>
-            <Dependent Role="ThamGia">
-              <PropertyRef Name="MaTacGia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="QuanLyBanSachEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="ChiTietDonHangs" EntityType="Self.ChiTietDonHang" />
-          <EntitySet Name="ChuDes" EntityType="Self.ChuDe" />
-          <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
-          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
-          <EntitySet Name="NhaXuatBans" EntityType="Self.NhaXuatBan" />
-          <EntitySet Name="QuanTriViens" EntityType="Self.QuanTriVien" />
-          <EntitySet Name="Saches" EntityType="Self.Sach" />
-          <EntitySet Name="TacGias" EntityType="Self.TacGia" />
-          <EntitySet Name="ThamGias" EntityType="Self.ThamGia" />
-          <AssociationSet Name="FK_ChiTietDonHang_DonHang" Association="Self.FK_ChiTietDonHang_DonHang">
-            <End Role="DonHang" EntitySet="DonHangs" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietDonHang_Sach" Association="Self.FK_ChiTietDonHang_Sach">
-            <End Role="Sach" EntitySet="Saches" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sach_ChuDe" Association="Self.FK_Sach_ChuDe">
-            <End Role="ChuDe" EntitySet="ChuDes" />
-            <End Role="Sach" EntitySet="Saches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DonHang_KhachHang" Association="Self.FK_DonHang_KhachHang">
-            <End Role="KhachHang" EntitySet="KhachHangs" />
-            <End Role="DonHang" EntitySet="DonHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sach_NhaXuatBan" Association="Self.FK_Sach_NhaXuatBan">
-            <End Role="NhaXuatBan" EntitySet="NhaXuatBans" />
-            <End Role="Sach" EntitySet="Saches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThamGia_Sach" Association="Self.FK_ThamGia_Sach">
-            <End Role="Sach" EntitySet="Saches" />
-            <End Role="ThamGia" EntitySet="ThamGias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ThamGia_TacGia" Association="Self.FK_ThamGia_TacGia">
-            <End Role="TacGia" EntitySet="TacGias" />
-            <End Role="ThamGia" EntitySet="ThamGias" />
-          </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="QuanLyBanSachModel.sysdiagram" />
-          <EntitySet Name="Adminnistrators" EntityType="QuanLyBanSachModel.Adminnistrator" />
-        </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -512,16 +414,114 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Adminnistrator">
+        <EntityType Name="TacGia">
           <Key>
-            <PropertyRef Name="AdminID" />
+            <PropertyRef Name="MaTacGia" />
           </Key>
-          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="MaTacGia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TieuSu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ThamGias" Relationship="QuanLyBanSachModel.FK_ThamGia_TacGia" FromRole="TacGia" ToRole="ThamGia" />
         </EntityType>
-      </Schema>
+        <EntityType Name="ThamGia">
+          <Key>
+            <PropertyRef Name="MaSach" />
+            <PropertyRef Name="MaTacGia" />
+          </Key>
+          <Property Name="MaSach" Type="Int32" Nullable="false" />
+          <Property Name="MaTacGia" Type="Int32" Nullable="false" />
+          <Property Name="VaiTro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sach" Relationship="QuanLyBanSachModel.FK_ThamGia_Sach" FromRole="ThamGia" ToRole="Sach" />
+          <NavigationProperty Name="TacGia" Relationship="QuanLyBanSachModel.FK_ThamGia_TacGia" FromRole="ThamGia" ToRole="TacGia" />
+        </EntityType>
+        <Association Name="FK_ChiTietDonHang_DonHang">
+          <End Type="QuanLyBanSachModel.DonHang" Role="DonHang" Multiplicity="1" />
+          <End Type="QuanLyBanSachModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="MaDonHang" />
+            </Principal>
+            <Dependent Role="ChiTietDonHang">
+              <PropertyRef Name="MaDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietDonHang_Sach">
+          <End Type="QuanLyBanSachModel.Sach" Role="Sach" Multiplicity="1" />
+          <End Type="QuanLyBanSachModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="ChiTietDonHang">
+              <PropertyRef Name="MaSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sach_ChuDe">
+          <End Type="QuanLyBanSachModel.ChuDe" Role="ChuDe" Multiplicity="0..1" />
+          <End Type="QuanLyBanSachModel.Sach" Role="Sach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuDe">
+              <PropertyRef Name="MaChuDe" />
+            </Principal>
+            <Dependent Role="Sach">
+              <PropertyRef Name="MaChuDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_KhachHang">
+          <End Type="QuanLyBanSachModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+          <End Type="QuanLyBanSachModel.DonHang" Role="DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhachHang">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sach_NhaXuatBan">
+          <End Type="QuanLyBanSachModel.NhaXuatBan" Role="NhaXuatBan" Multiplicity="0..1" />
+          <End Type="QuanLyBanSachModel.Sach" Role="Sach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhaXuatBan">
+              <PropertyRef Name="MaNXB" />
+            </Principal>
+            <Dependent Role="Sach">
+              <PropertyRef Name="MaNXB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThamGia_Sach">
+          <End Type="QuanLyBanSachModel.Sach" Role="Sach" Multiplicity="1" />
+          <End Type="QuanLyBanSachModel.ThamGia" Role="ThamGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="MaSach" />
+            </Principal>
+            <Dependent Role="ThamGia">
+              <PropertyRef Name="MaSach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThamGia_TacGia">
+          <End Type="QuanLyBanSachModel.TacGia" Role="TacGia" Multiplicity="1" />
+          <End Type="QuanLyBanSachModel.ThamGia" Role="ThamGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TacGia">
+              <PropertyRef Name="MaTacGia" />
+            </Principal>
+            <Dependent Role="ThamGia">
+              <PropertyRef Name="MaTacGia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -530,112 +530,101 @@
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adminnistrators">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel.Adminnistrator">
+              <MappingFragment StoreEntitySet="Adminnistrator">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChiTietDonHangs">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.ChiTietDonHang">
               <MappingFragment StoreEntitySet="ChiTietDonHang">
-                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
-                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChuDes">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.ChuDe">
               <MappingFragment StoreEntitySet="ChuDe">
-                <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
                 <ScalarProperty Name="TenChuDe" ColumnName="TenChuDe" />
+                <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DonHangs">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
-                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
-                <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
-                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
-                <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />
-                <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
                 <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
+                <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+                <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
+                <ScalarProperty Name="MaDonHang" ColumnName="MaDonHang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KhachHangs">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.KhachHang">
               <MappingFragment StoreEntitySet="KhachHang">
-                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NhaXuatBans">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.NhaXuatBan">
               <MappingFragment StoreEntitySet="NhaXuatBan">
-                <ScalarProperty Name="MaNXB" ColumnName="MaNXB" />
-                <ScalarProperty Name="TenNXB" ColumnName="TenNXB" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenNXB" ColumnName="TenNXB" />
+                <ScalarProperty Name="MaNXB" ColumnName="MaNXB" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuanTriViens">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.QuanTriVien">
               <MappingFragment StoreEntitySet="QuanTriVien">
-                <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Saches">
             <EntityTypeMapping TypeName="QuanLyBanSachModel.Sach">
               <MappingFragment StoreEntitySet="Sach">
-                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
-                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
-                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
-                <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
-                <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
-                <ScalarProperty Name="MaNXB" ColumnName="MaNXB" />
                 <ScalarProperty Name="Moi" ColumnName="Moi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TacGias">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.TacGia">
-              <MappingFragment StoreEntitySet="TacGia">
-                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
-                <ScalarProperty Name="TenTacGia" ColumnName="TenTacGia" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="TieuSu" ColumnName="TieuSu" />
-                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ThamGias">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.ThamGia">
-              <MappingFragment StoreEntitySet="ThamGia">
+                <ScalarProperty Name="MaNXB" ColumnName="MaNXB" />
+                <ScalarProperty Name="MaChuDe" ColumnName="MaChuDe" />
+                <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
                 <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
-                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
-                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -650,13 +639,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Adminnistrators">
-            <EntityTypeMapping TypeName="QuanLyBanSachModel.Adminnistrator">
-              <MappingFragment StoreEntitySet="Adminnistrator">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <EntitySetMapping Name="TacGias">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel.TacGia">
+              <MappingFragment StoreEntitySet="TacGia">
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="TieuSu" ColumnName="TieuSu" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenTacGia" ColumnName="TenTacGia" />
+                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThamGias">
+            <EntityTypeMapping TypeName="QuanLyBanSachModel.ThamGia">
+              <MappingFragment StoreEntitySet="ThamGia">
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
+                <ScalarProperty Name="MaTacGia" ColumnName="MaTacGia" />
+                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

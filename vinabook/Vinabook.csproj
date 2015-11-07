@@ -252,16 +252,6 @@
     <Content Include="Content\UserLayout\js\script.slider.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\QuanLyBanSachModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
@@ -326,13 +316,6 @@
     <Content Include="Models\QuanLyBanSachModel.edmx.diagram">
       <DependentUpon>QuanLyBanSachModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -352,21 +335,6 @@
     </Compile>
     <Compile Include="Models\Metadata\NhaXuatBan.metadata.cs" />
     <Compile Include="Models\Metadata\Sach.metadata.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\NhaXuatBan.cs">
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
@@ -401,6 +369,7 @@
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThongKeDoanhThuTheoNam.cs" />
+    <Compile Include="Models\ThongKeDoanhThuTheoThang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -485,7 +454,9 @@
     <Content Include="Views\Home\Check_Success_Partial.cshtml" />
     <Content Include="Views\Shared\_Partial_Body_Dialog.cshtml" />
     <Content Include="Views\Chart\Chart.cshtml" />
-    <Content Include="Views\Chart\ThongKeDoanhThu_Chart.cshtml" />
+    <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Nam_Chart.cshtml" />
+    <Content Include="Views\Chart\Index.cshtml" />
+    <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Thang_Chart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

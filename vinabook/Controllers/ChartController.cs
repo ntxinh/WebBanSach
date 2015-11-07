@@ -23,15 +23,22 @@ namespace Vinabook.Controllers
         {
             return View();
         }
-        public ActionResult ThongKeDoanhThu_Chart()
+        public ActionResult Index()
         {
             //bai này cũ
             //string connectionString = ConfigurationManager.ConnectionStrings["QuanLyBanSachEntities"].ConnectionString;
             //string conn = ExtractFromString(connectionString, "data source=", "EntityFramework").Replace(@"\\",@"\");
+            return View();
+        }
+        public ActionResult ThongKeDoanhThu_Nam_Chart()
+        {
+            //return View(list);
+            return Json(new { Url=Url.Action("_Partial_ThongKeDoanhThu_Nam_Chart") });
+        }
+        public ActionResult _Partial_ThongKeDoanhThu_Nam_Chart()
+        {
             string conn = @"data source=.\sqlexpress;initial catalog=QuanLyBanSach;user id=sa;password=123;MultipleActiveResultSets=True;App=EntityFramework";
             DataTable table = new DataTable();
-
-            // Creates a SQL connection
             using (var connection = new SqlConnection(conn))
             {
                 connection.Open();
@@ -41,9 +48,6 @@ namespace Vinabook.Controllers
                 }
                 connection.Close();
             }
-            ////IEnumerable<DataRow> sequence = table.AsEnumerable();
-            //List<DataRow> list = table.AsEnumerable().ToList();
-            //ViewBag.List = list;
             var list = new List<ThongKeDoanhThuTheoNam>();
             foreach (DataRow r in table.Rows)
             {
@@ -54,13 +58,41 @@ namespace Vinabook.Controllers
                 };
                 list.Add(item);
             }
-            return View(list);
-            //return Json(new { Url=Url.Action("_Partial_ThongKeDoanhThu_Chart") });
+            return PartialView(list);
         }
-        public ActionResult _Partial_ThongKeDoanhThu_Chart()
+        [HttpPost]
+        public ActionResult ThongKeDoanhThu_Thang_Chart(string Nam)
         {
-            return View();
+            TempData["Nam"] = Nam;
+            return Json(new { Url = Url.Action("_Partial_ThongKeDoanhThu_Thang_Chart") });
         }
+        public ActionResult _Partial_ThongKeDoanhThu_Thang_Chart()
+        {
+            string conn = @"data source=.\sqlexpress;initial catalog=QuanLyBanSach;user id=sa;password=123;MultipleActiveResultSets=True;App=EntityFramework";
+            DataTable table = new DataTable();
+            using (var connection = new SqlConnection(conn))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("exec ThongKeDoanhThuTheoThang "+ TempData["Nam"], connection))
+                {
+                    table.Load(command.ExecuteReader());
+                }
+                connection.Close();
+        }
+            var list = new List<ThongKeDoanhThuTheoThang>();
+            foreach (DataRow r in table.Rows)
+            {
+                var item = new ThongKeDoanhThuTheoThang
+        {
+                    Thang = r["Thang"].ToString(),
+                    TongTien = r["TongTien"].ToString(),
+                };
+                list.Add(item);
+            }
+            return PartialView(list);
+        }
+
+
 
         private static string ExtractFromString(string text, string startString, string endString)
         {
