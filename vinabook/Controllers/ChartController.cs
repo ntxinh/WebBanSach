@@ -25,6 +25,7 @@ namespace Vinabook.Controllers
         }
         public ActionResult ThongKeDoanhThu_Chart()
         {
+            //bai này cũ
             //string connectionString = ConfigurationManager.ConnectionStrings["QuanLyBanSachEntities"].ConnectionString;
             //string conn = ExtractFromString(connectionString, "data source=", "EntityFramework").Replace(@"\\",@"\");
             string conn = @"data source=.\sqlexpress;initial catalog=QuanLyBanSach;user id=sa;password=123;MultipleActiveResultSets=True;App=EntityFramework";
