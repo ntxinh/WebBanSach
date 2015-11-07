@@ -25,6 +25,9 @@ namespace Vinabook.Controllers
         }
         public ActionResult Index()
         {
+            //bai này cũ
+            //string connectionString = ConfigurationManager.ConnectionStrings["QuanLyBanSachEntities"].ConnectionString;
+            //string conn = ExtractFromString(connectionString, "data source=", "EntityFramework").Replace(@"\\",@"\");
             return View();
         }
         public ActionResult ThongKeDoanhThu_Nam_Chart()
@@ -75,12 +78,12 @@ namespace Vinabook.Controllers
                     table.Load(command.ExecuteReader());
                 }
                 connection.Close();
-            }
+        }
             var list = new List<ThongKeDoanhThuTheoThang>();
             foreach (DataRow r in table.Rows)
             {
                 var item = new ThongKeDoanhThuTheoThang
-                {
+        {
                     Thang = r["Thang"].ToString(),
                     TongTien = r["TongTien"].ToString(),
                 };
