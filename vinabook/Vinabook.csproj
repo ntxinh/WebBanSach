@@ -369,6 +369,7 @@
       <DependentUpon>QuanLyBanSachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThongKeDoanhThuTheoNam.cs" />
+    <Compile Include="Models\ThongKeDoanhThuTheoThang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -453,7 +454,9 @@
     <Content Include="Views\Home\Check_Success_Partial.cshtml" />
     <Content Include="Views\Shared\_Partial_Body_Dialog.cshtml" />
     <Content Include="Views\Chart\Chart.cshtml" />
-    <Content Include="Views\Chart\ThongKeDoanhThu_Chart.cshtml" />
+    <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Nam_Chart.cshtml" />
+    <Content Include="Views\Chart\Index.cshtml" />
+    <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Thang_Chart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
