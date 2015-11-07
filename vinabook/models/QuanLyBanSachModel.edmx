@@ -128,12 +128,6 @@
           <Property Name="VaiTro" Type="nvarchar" MaxLength="50" />
           <Property Name="ViTri" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'QuanLyBanSach.dbo.ThongKeDoanhThuTheoNam_View' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ThongKeDoanhThuTheoNam_View">
-          <Property Name="Nam" Type="int" />
-          <Property Name="TongTien" Type="decimal" Precision="38" Scale="0" />
-        </EntityType>-->
         <Association Name="FK_ChiTietDonHang_DonHang">
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
           <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="*" />
