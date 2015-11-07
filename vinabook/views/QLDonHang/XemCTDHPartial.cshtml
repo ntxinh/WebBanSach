@@ -1,29 +1,28 @@
 ﻿@using Vinabook.Models;
 @model List<ChiTietDonHang>
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Chi tiết đơn hàng</h4>
-            </div>
-            <div class="modal-body">
-                @foreach (var item in Model)
-                {
-                    <p>
-                        Số lượng: @item.SoLuong <br />
-                        Đơn giá: @item.DonGia <br />
-                        Mã đơn hàng: @item.MaDonHang <br />
-                        Mã sách: @item.MaSach <br />
-                        Tên sách: @Html.DisplayFor(modelItem => item.Sach.TenSach)
-                    </p>
-                }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<table class="table table-bordered table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Mã đơn hàng:</th>
+            <th>Số lượng:</th>
+            <th>Đơn giá:</th>
+            <th>Mã đơn hàng:</th>
+            <th>Mã sách:</th>
+            <th>Tên sách:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaDonHang</td>
+                <td>@item.SoLuong</td>
+                <td>@item.DonGia</td>
+                <td>@item.MaDonHang</td>
+                <td>@item.MaSach</td>
+                <td>@Html.DisplayFor(modelItem => item.Sach.TenSach)</td>
+            </tr>
+        }
+    </tbody>
+</table>

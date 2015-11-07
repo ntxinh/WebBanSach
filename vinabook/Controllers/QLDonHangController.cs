@@ -107,21 +107,15 @@ namespace Vinabook.Controllers
             }
             return RedirectToAction("Index");
         }
-        //cho nay bi j rồi
-        public ActionResult XemCTDH(int madh, int? masach)
+        [HttpPost]
+        public JsonResult XemCTDH(int madh)
         {
-            //ChiTietDonHang kh = db.ChiTietDonHangs.SingleOrDefault(n => n.MaDonHang == madh);
-            //if (kh == null)
-            //{
-            //    Response.StatusCode = 404;
-            //    return null;
-            //}
-            //return View(kh);
-            var lstCTDH = db.ChiTietDonHangs.Where(n => n.MaDonHang == madh).ToList();
-            return View(lstCTDH);
+            TempData["madh"] = madh;
+            return Json(new { Url = Url.Action("XemCTDHPartial") });
         }
-        public PartialViewResult XemCTDHPartial(int madh, int? masach)
+        public PartialViewResult XemCTDHPartial()
         {
+            int madh=(int)TempData["madh"];
             var lstCTDH = db.ChiTietDonHangs.Where(n => n.MaDonHang == madh).ToList();
             return PartialView(lstCTDH);
         }

@@ -388,8 +388,8 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <h2>Vina<span>Book</span></h2>
+                        <p>Vinabook.com ra đời vào tháng 12/2010 với hình thức kinh doanh Mua hàng online – Giao hàng tận nơi. Với mô hình nhà sách trên mạng, cho phép độc giả dễ dàng tìm sách & mua sách online. Đến nay Vinabook.com đã có hơn 70,000 đầu sách phục vụ cho độc giả cả nước. Chỉ cần truy cập website Vinabook.com và mua sách qua mạng, quý khách sẽ được giao sách tới tận nơi miễn phí khi đặt đơn hàng từ 90,000đ trong phạm vi Tp. Hồ Chí Minh & từ 180,000đ đối các tỉnh / thành phố khác.</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -401,38 +401,45 @@
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
+                        <h2 class="footer-wid-title">Facebook </h2>
+                        @*<ul>
                             <li><a href="#">My account</a></li>
                             <li><a href="#">Order history</a></li>
                             <li><a href="#">Wishlist</a></li>
                             <li><a href="#">Vendor contact</a></li>
                             <li><a href="#">Front page</a></li>
-                        </ul>
+                        </ul>*@
+                        <div class="fb-page" data-href="https://www.facebook.com/Vinabook" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/Vinabook"><a href="https://www.facebook.com/Vinabook">Vinabook</a></blockquote></div></div>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
-                        <ul>
+                        <h2 class="footer-wid-title">Google Plus</h2>
+                        @*<ul>
                             <li><a href="#">Mobile Phone</a></li>
                             <li><a href="#">Home accesseries</a></li>
                             <li><a href="#">LED TV</a></li>
                             <li><a href="#">Computer</a></li>
                             <li><a href="#">Gadets</a></li>
-                        </ul>
+                        </ul>*@
+                        <!-- Place this tag in your head or just before your close body tag. -->
+                        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+                        <!-- Place this tag where you want the widget to render. -->
+                        <div class="g-person" data-width="260" data-href="//plus.google.com/u/0/105293475338510472690" data-rel="author"></div>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <h2 class="footer-wid-title">Đăng ký nhận email</h2>
+                        <p>Đăng ký nhận thông tin sách mới,
+sách bán chạy và khuyến mãi từ Vinabook</p>
                         <div class="newsletter-form">
                             <form action="#">
-                                <input type="email" placeholder="Type your email" />
-                                <input type="submit" value="Subscribe" />
+                                <input type="email" placeholder="Nhập địa chỉ email của bạn" />
+                                <input type="submit" value="Đăng ký" />
                             </form>
                         </div>
                     </div>
@@ -446,7 +453,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
+                        <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.vinabook.com" target="_blank">vinabook.com</a></p>
                     </div>
                 </div>
 
@@ -482,6 +489,16 @@
     <!-- Slider -->
     <script type="text/javascript" src="~/Content/UserLayout/js/bxslider.min.js"></script>
     <script type="text/javascript" src="~/Content/UserLayout/js/script.slider.js"></script>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=810732255672019";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>
 

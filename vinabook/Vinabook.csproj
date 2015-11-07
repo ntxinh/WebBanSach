@@ -428,7 +428,6 @@
     <Content Include="Views\QLDonHang\Delete.cshtml" />
     <Content Include="Views\GioHang\Success.cshtml" />
     <Content Include="Views\QLDonHang\Edit.cshtml" />
-    <Content Include="Views\QLDonHang\XemCTDH.cshtml" />
     <Content Include="Views\QLDonHang\Details.cshtml" />
     <Content Include="Views\GioHang\DatHangPartial.cshtml" />
     <Content Include="Views\Chart\PieChart.cshtml" />
