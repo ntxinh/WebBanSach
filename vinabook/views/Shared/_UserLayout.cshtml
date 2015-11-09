@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="~/Content/UserLayout/css/style.css" />
     <link rel="stylesheet" href="~/Content/UserLayout/css/responsive.css" />
 
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -151,8 +153,25 @@
                 success: function (data) {
                     $.post(data.Url, function (partial) {
                         $("#All_Dialog").html(partial)
+                        $("#xemBanDo").html("<button class=\"btn btn-danger pull-right\" onclick=\"XemBanDo();\">Xem Bản Đồ</button>");
                         madh = null;
                         sdt = null;
+                    });
+                }
+            });
+        }
+        //xem ban do
+        function XemBanDo() {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/GoogleMap',
+                data: {},
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#All_Dialog").html(partial)
+                        $("#xemBanDo").html("");
+                        codeAddress();
+                        codeAddress('205/45B Điện Biên Phủ, Phường 25, Bình Thạnh, Hồ Chí Minh, Việt Nam');
                     });
                 }
             });
@@ -199,19 +218,22 @@
                         </a>
                     </div>
                     <div class="col-md-3 hover">
-                        <a>
+                        <a class="pull-left">
                             <img src="~/Content/HinhAnh/icon_google_plus.png" />Google Plus
                         </a>
                     </div>
-                    <div class="col-md-3 hover">
-                        <a>
+                    <div class="col-md-2 hover">
+                        <a class="pull-left">
                             <img src="~/Content/HinhAnh/icon_twitter.png" /> Twitter
                         </a>
                     </div>
-                    <div class="col-md-3 hover">
+                    <div class="col-md-2 hover">
                         <a>
                             <img src="~/Content/HinhAnh/icon_printerest.png" />Printerest
                         </a>
+                    </div>
+                    <div class="col-md-2" id="xemBanDo">
+                        <button class="btn btn-danger pull-right" onclick="XemBanDo();">Xem Bản Đồ</button>
                     </div>
                     @*<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                         <p>Not a member? <a href="#">Sign Up</a></p>
@@ -580,9 +602,67 @@
     }
 
     .carousel-inner div img{
-        margin-left:100px
+        margin-left:100px;
         /*max-height: 200px !important;*/
     }
 
       
 </style>
+
+
+@*googlemap*@
+
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    //    initialize();
+    //});
+    function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(6.9167, 79.8473),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+          mapOptions);
+        // create a marker
+        var latlng = new google.maps.LatLng(6.9167, 79.8473);
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'My Place'
+        });
+    }
+    //cai dat vi tri
+    var geocoder;
+    var map;
+    function codeAddress(address) {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var myOptions = {
+                    zoom: 16,
+                    center: results[0].geometry.location,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+
+                });
+                // create a marker
+                var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map,
+                    title: 'Latitude: ' + results[0].geometry.location.Ya + ' Longitude :' + results[0].geometry.location.Za
+                });
+            }
+        });
+    }
+    codeAddress('205/45B Điện Biên Phủ, Phường 25, Bình Thạnh, Hồ Chí Minh, Việt Nam');
+
+
+    //Google Maps API v3 Embedded with Custom Location Pin
+
+</script>

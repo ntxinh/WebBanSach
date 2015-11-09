@@ -102,5 +102,14 @@ namespace Vinabook.Controllers
         {
             return PartialView("_Partial_Body_Dialog");
         }
+        [HttpPost]
+        public ActionResult GoogleMap()
+        {
+            return Json(new { Url = Url.Action("GoogleMap_Success_Partial") });
+        }
+        public ActionResult GoogleMap_Success_Partial()
+        {
+            return PartialView();
+        }
     }
 }

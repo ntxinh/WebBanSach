@@ -465,6 +465,7 @@
     <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Nam_Chart.cshtml" />
     <Content Include="Views\Chart\Index.cshtml" />
     <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Thang_Chart.cshtml" />
+    <Content Include="Views\Home\GoogleMap_Success_Partial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
