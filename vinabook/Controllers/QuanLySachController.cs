@@ -67,12 +67,13 @@ namespace Vinabook.Controllers
                 db.Saches.Add(sach);
                 db.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Index") ;
         }
         //Chỉnh sửa sản phẩm
         [HttpGet]
         public ActionResult ChinhSua(int MaSach)
         {
+            
             //Lấy ra đối tượng sách theo mã 
             Sach sach = db.Saches.SingleOrDefault(n => n.MaSach == MaSach);
             if (sach == null)
@@ -87,16 +88,20 @@ namespace Vinabook.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ChinhSua(Sach sach, FormCollection f)
+        public ActionResult ChinhSua(Sach sach, HttpPostedFileBase fileUpload)
         {
-            //Sach sach1 = db.Saches.SingleOrDefault(n => n.MaSach == sach.MaSach);
-            //sach1.MoTa = sach.MoTa;
-            //sach1.MoTa = f.Get("abc").ToString();
-            //sach.MoTa = f["abc"].ToString();
-            //db.SaveChanges();
-
-
-
+            if (fileUpload != null)
+            {
+                //Lưu tên file
+                var fileName = Path.GetFileName(fileUpload.FileName);
+                //Lưu đường dẫn của file
+                var path = Path.Combine(Server.MapPath("~/Content/HinhAnhSP"), fileName);
+                if (!System.IO.File.Exists(path))
+                {
+                    fileUpload.SaveAs(path);
+                }
+                sach.AnhBia = fileName;
+            }
             //Thêm vào cơ sở dữ liệu
             if (ModelState.IsValid)
             {

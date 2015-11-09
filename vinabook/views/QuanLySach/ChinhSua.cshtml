@@ -5,8 +5,8 @@
 }
 
 <h2>Chỉnh sửa sách</h2>
+@using (Html.BeginForm("ChinhSua", "QuanLySach", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 
-@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -52,9 +52,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AnhBia, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AnhBia)
+                @* lay ten anh trong database cho feild AnhBia (tránh trường hợp không thêm ảnh mới) *@
+                <input id="AnhBia" name="AnhBia" type="text" value="@Model.AnhBia" class="hidden">
+                @*@Html.EditorFor(model => model.AnhBia)
                 @Html.ValidationMessageFor(model => model.AnhBia)
-                <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)" width="40" height="40" />
+                <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)" width="40" height="40" />*@
+                <div class="fileinput fileinput-new" data-provides="fileinput" style="height:150px">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px">
+                        <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)">
+                    </div>
+                    <div class="pull-right" style="margin-left:5px;">
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">Change</span>
+                            <span class="fileinput-exists">
+                                Change
+                            </span>
+                            <input id="fileUpload" type="file" name="fileUpload">
+                        </span>
+                        @*<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>*@
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

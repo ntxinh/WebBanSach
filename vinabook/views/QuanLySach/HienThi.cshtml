@@ -48,9 +48,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AnhBia)
+            @*@Html.DisplayFor(model => model.AnhBia)*@
+            <div class="fileinput fileinput-new"  style="height:180px">
+                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 180px">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)">
+                </div>
+            </div>
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.SoLuongTon)
         </dt>

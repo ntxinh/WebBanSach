@@ -26,13 +26,23 @@
     @*<link rel="stylesheet" href="~/Content/UserLayout/css/bootstrap.min.css" />*@
     <!-- jQuery -->
     <script src="~/Content/AdminLayout/bower_components/jquery/jquery.min.js"></script>
-
+    @* Chart.js *@
     <script src="~/Scripts/Chart.js"></script>
-    
+    @* jasny bootstrap *@
+    <script src="~/Scripts/jasny-bootstrap.min.js"></script>
+    <link href="~/Content/jasny-bootstrap.min.css" rel="stylesheet" />
     <!-- The fav icon -->
     <link rel="shortcut icon" href="~/Content/AdminLayout/img/favicon.ico">
 </head>
+
 <body>
+    <style>
+        .thumbnail img {
+            margin: 0;
+            width: 190px;
+            height: auto;
+        }
+    </style>
     <!-- topbar starts -->
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-inner">
