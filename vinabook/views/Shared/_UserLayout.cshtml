@@ -135,7 +135,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/Home/Check',
-                data: { MaDH:madh,Sdt:sdt},
+                data: { MaDH: madh, Sdt: sdt },
                 success: function (data) {
                     $.post(data.Url, function (partial) {
                         $("#All_Dialog").html(partial)
@@ -147,7 +147,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/Home/TroVe',
-                data: { },
+                data: {},
                 success: function (data) {
                     $.post(data.Url, function (partial) {
                         $("#All_Dialog").html(partial)
@@ -165,7 +165,7 @@
 
     @* Hỗ trợ Ho Tro *@
 
-    @{ int i = 0;string tenkh = "Bạn";}
+    @{ int i = 0; string tenkh = "Bạn";}
     @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")
     {
         i = 1;
@@ -332,54 +332,63 @@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
+    <!-- Slider -->
+    <div class="row">
+        <div class="container text-center">
+            <div id="myCarousel" class="carousel slide " data-ride="carousel" style="width:95%;height:110%;text-align:center">
+                <!-- Indicators -->
+                <ol class="carousel-indicators ">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                </ol>
 
-    <div class="slider-area">
-        <!-- Slider -->
-        <div class="block-slider block-slider4">
-            <ul class="" id="bxslider-home4">
-                <li>
-                    <img src="~/Content/UserLayout/img/h4-slide.png" alt="Slide" />
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            Hồng <span class="primary"> <strong>Nhan</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">Nguyễn Mai Dung</h4>
-                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" style="width:90%;">
+                    <div class="item active " style=" ">
+                        <img src="~/Content/UserLayout/img/h4-slide7.png" />
+                        <div class="carousel-caption">
+                            <h3>Nguyễn Nhật Ánh</h3>
+                            <p>
+                                "Ngồi im trong gió nghe đêm rớt
+                                Chợt thấy hoa vàng trên cỏ xanh..."
+                            </p>
+                        </div>
                     </div>
-                </li>
-                <li>
-                    <img src="~/Content/UserLayout/img/h4-slide2.png" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            iPhone <span class="primary">6 <strong>Plus</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">Dual SIM</h4>
-                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                    </div>
-                </li>
 
-                @*<li>
-                        <img src="~/Content/UserLayout/img/h4-slide2.png" alt="Slide" />
-                        <div class="caption-group">
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                    <div class="item">
+                        <img src="~/Content/UserLayout/img/h4-slide4.png" />
+                    </div>
+
+                    <div class="item">
+                        <img src="~/Content/UserLayout/img/h4-slide3.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/UserLayout/img/h4-slide2.png" />
+                    </div>
+                    <div class="item">
+                        <img src="~/Content/UserLayout/img/h4-slide.png" />
+                        <div class="carousel-caption">
+                            <h3>Nguyễn Mai Dung</h3>
+                            <p>“Cuộc đời những người phụ nữ như mẹ anh, như chị gái anh, có một ngày nào là yên ả, là niềm vui, là nụ cười...</p>
                         </div>
-                    </li>
-                    <li>
-                        <img src="~/Content/UserLayout/img/h4-slide3.png" alt="Slide" />
-                        <div class="caption-group">
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="~/Content/UserLayout/img/h4-slide4.png" alt="Slide" />
-                        <div class="caption-group">
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                        </div>
-                    </li>*@
-            </ul>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
-        <!-- ./Slider -->
-    </div> <!-- End slider area -->
+    </div>
     @RenderBody()
 
 
@@ -404,12 +413,12 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Facebook </h2>
                         @*<ul>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Order history</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Vendor contact</a></li>
-                            <li><a href="#">Front page</a></li>
-                        </ul>*@
+                                <li><a href="#">My account</a></li>
+                                <li><a href="#">Order history</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                                <li><a href="#">Vendor contact</a></li>
+                                <li><a href="#">Front page</a></li>
+                            </ul>*@
                         <div class="fb-page" data-href="https://www.facebook.com/Vinabook" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/Vinabook"><a href="https://www.facebook.com/Vinabook">Vinabook</a></blockquote></div></div>
                     </div>
                 </div>
@@ -418,12 +427,12 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Google Plus</h2>
                         @*<ul>
-                            <li><a href="#">Mobile Phone</a></li>
-                            <li><a href="#">Home accesseries</a></li>
-                            <li><a href="#">LED TV</a></li>
-                            <li><a href="#">Computer</a></li>
-                            <li><a href="#">Gadets</a></li>
-                        </ul>*@
+                                <li><a href="#">Mobile Phone</a></li>
+                                <li><a href="#">Home accesseries</a></li>
+                                <li><a href="#">LED TV</a></li>
+                                <li><a href="#">Computer</a></li>
+                                <li><a href="#">Gadets</a></li>
+                            </ul>*@
                         <!-- Place this tag in your head or just before your close body tag. -->
                         <script src="https://apis.google.com/js/platform.js" async defer></script>
 
@@ -435,8 +444,10 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
                         <h2 class="footer-wid-title">Đăng ký nhận email</h2>
-                        <p>Đăng ký nhận thông tin sách mới,
-sách bán chạy và khuyến mãi từ Vinabook</p>
+                        <p>
+                            Đăng ký nhận thông tin sách mới,
+                            sách bán chạy và khuyến mãi từ Vinabook
+                        </p>
                         <div class="newsletter-form">
                             <form action="#">
                                 <input type="email" placeholder="Nhập địa chỉ email của bạn" />
@@ -492,12 +503,12 @@ sách bán chạy và khuyến mãi từ Vinabook</p>
     <script type="text/javascript" src="~/Content/UserLayout/js/script.slider.js"></script>
     <div id="fb-root"></div>
     <script>
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=810732255672019";
-          fjs.parentNode.insertBefore(js, fjs);
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=810732255672019";
+            fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
 </body>
@@ -564,4 +575,14 @@ sách bán chạy và khuyến mãi từ Vinabook</p>
         color: white;
         overflow: auto;
     }*/
+    .tales {
+        width: 100%;
+    }
+
+    .carousel-inner div img{
+        margin-left:100px
+        /*max-height: 200px !important;*/
+    }
+
+      
 </style>
