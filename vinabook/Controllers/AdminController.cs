@@ -54,7 +54,7 @@ namespace Vinabook.Controllers
 
 
             }
-            TempData["Message"] = "Username or password is wrong";
+            TempData["Message"] = "Tên tài khoản hoặc mật khẩu không đúng!";
             //
             return View();
         }

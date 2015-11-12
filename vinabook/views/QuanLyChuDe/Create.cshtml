@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Thêm chủ đề <hr /></h2>
 
-@using (Html.BeginForm()) 
+@*@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -31,8 +31,25 @@
             </div>
         </div>
     </div>
-}
+}*@
+<form id='input_form' method='post' class="form-horizontal">
 
+    <fieldset>
+        <div class="form-group">
+            <label for="TenChuDe" class="control-label col-md-3">Tên nhà xuất bản :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="TenChuDe" id="TenChuDe" size="25" class="required form-control" placeholder="Tên chủ đề..." />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-6">
+                <input type="submit" value="Thêm" class="btn btn-success" />
+                <input type="reset" value="Điền lại" class="btn btn-default" />
+            </div>
+        </div>
+
+    </fieldset>
+</form>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>

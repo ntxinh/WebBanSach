@@ -93,7 +93,7 @@ namespace Vinabook.Controllers
 
             //return RedirectToAction("Index");
             var bookUpdate = db.DonHangs.Find(madh);
-            if (TryUpdateModel(bookUpdate, "", new string[] { "NgayGiao", "NgayDat", "DaThanhToan", "TinhTrangGiaoHang", "MaKH" }))
+            if (TryUpdateModel(bookUpdate, "", new string[] { /*"NgayGiao", "NgayDat",*/ "DaThanhToan", "TinhTrangGiaoHang"/*, "MaKH"*/ }))
             {
                 try
                 {

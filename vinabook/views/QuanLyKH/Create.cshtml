@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Thêm khách hàng <hr /></h2>
 
-@using (Html.BeginForm()) 
+@*@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -86,8 +86,96 @@
             </div>
         </div>
     </div>
-}
+}*@
 
+<form id='input_form' method='post' class="form-horizontal">
+
+    <fieldset>
+        <div class="form-group">
+            <label for="HoTen" class="control-label col-md-3">Họ tên :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="HoTen" id="HoTen" size="25" class="required form-control" placeholder="Họ và tên..." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="NgaySinh" class="control-label col-md-3">Ngày sinh :</label>
+            <div class="col-md-6">
+                @*<input class="form-control text-box single-line required" id="NgaySinh" name="NgaySinh" type="date" max="2015-01-01" value="2015-01-13">*@
+                <input type="date" class="form-control required" id="NgaySinh" name="NgaySinh" max="2015-12-30">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="GioiTinh" class="control-label col-md-3">Giới tính :</label>
+            <div class="col-md-6">
+                <input type="radio" name="GioiTinh" id="GioiTinh" value="Nam" checked/> : Nam<br />
+                <input type="radio" name="GioiTinh" id="GioiTinh" value="Nữ"/> : Nữ<br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="DienThoai" class="control-label col-md-3">Điện thoại :</label>
+            <div class="col-md-6">
+                <input type="number" value="" name="DienThoai" id="DienThoai" size="25" class="required form-control" placeholder="Điện thoại..." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="TaiKhoan" class="control-label col-md-3">Tài khoản :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="TaiKhoan" id="TaiKhoan" size="25" class="required form-control" placeholder="Tài khoản..." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="MatKhau" class="control-label col-md-3">Mật khẩu :</label>
+            <div class="col-md-6">
+                <input type="password" value="" name="MatKhau" id="MatKhau" size="25" class="required form-control" placeholder="Mật khẩu..." /></div>
+        </div>
+
+        <div class="form-group">
+            <label for="cpassword" class="control-label col-md-3">Nhập lại mật khẩu :</label>
+            <div class="col-md-6">
+                <input type="password" value="" name="cpassword" id="cpassword" size="25" equalTo="#MatKhau" class="form-control" placeholder="Nhập lại mật khẩu..."/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Email" class="control-label col-md-3">Email :</label>
+            <div class="col-md-6">
+                <input type="email" value="" name="Email" id="Email" size="25" class="required form-control" placeholder="Email..." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="DiaChi" class="control-label col-md-3">Địa chỉ :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="DiaChi" id="DiaChi" size="25" class="required form-control" placeholder="Địa chỉ..." />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-6">
+                <input type="submit" value="Thêm" class="btn btn-success" />
+                <input type="reset" value="Điền lại" class="btn btn-default" />
+            </div>
+        </div>
+
+    </fieldset>
+</form>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>
+<script>
+    var date = new Date();
+
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    document.getElementById("NgaySinh").value = today;
+</script>

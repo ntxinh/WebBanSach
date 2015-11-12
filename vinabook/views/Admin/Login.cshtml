@@ -47,6 +47,12 @@
     <![endif]-->
     <!-- The fav icon -->
     <link rel="shortcut icon" href="~/Content/AdminLayout/img/favicon.ico">
+    <style>
+        /*các thông báo lỗi sẽ được chứa trong các label với class là error*/
+        label.error {
+            color: red;
+        }
+    </style> 
 </head>
 <body>
     <div class="ch-container">
@@ -54,7 +60,7 @@
 
             <div class="row">
                 <div class="col-md-12 center login-header">
-                    <h2>Welcome to Vinabook</h2>
+                    <h2>Vinabook Dashboard</h2>
                 </div>
                 <!--/span-->
             </div><!--/row-->
@@ -67,24 +73,24 @@
                         </div>
                     }
 
-                    <form class="form-horizontal" action="@Url.Content("/Admin/Login/")" method="post">
+                    <form class="form-horizontal" id='input_form' action="@Url.Content("/Admin/Login/")" method="post">
                         <fieldset>
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
-                                <input type="text" class="form-control" name="username" placeholder="username">
+                                <input type="text" class="form-control required" name="username" id="username" placeholder="Tên tài khoản...">
                             </div>
                             <div class="clearfix"></div><br>
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                                <input type="password" class="form-control" name="password" placeholder="password">
+                                <input type="password" class="form-control required" name="password" id="password" placeholder="Mật khẩu...">
                             </div>
-                            <div class="clearfix"></div>
+                            @*<div class="clearfix"></div>
                             <div class="input-prepend">
                                 <label class="remember" for="remember"><input type="checkbox" id="remember"> Remember me</label>
-                            </div>
+                            </div>*@
                             <div class="clearfix"></div>
                             <p class="center col-md-5">
-                                <button type="submit" class="btn btn-primary">Login</button>
+                                <button type="submit" class="btn btn-primary">Đăng nhập</button>
                             </p>
                         </fieldset>
                     </form>
@@ -122,8 +128,28 @@
     <script src="~/Content/AdminLayout/js/jquery.uploadify-3.1.min.js"></script>
     <!-- history.js for cross-browser state change on ajax -->
     <script src="~/Content/AdminLayout/js/jquery.history.js"></script>
+    <!--jquery.validate.min.js-->
+    <script src="~/Content/AdminLayout/js/jquery.validate.min.js"></script>
     <!-- application script for Charisma demo -->
     @*<script src="~/Content/AdminLayout/js/charisma.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            var validator = $("#input_form").validate({
+                rules: {
+                    username: "required",
+                    password: {
+                        required: true
+                    }
+                },
+                messages: {
+                    username: "Hãy điền tên đăng nhập.",
+                    password: {
+                        required: "Hãy điền mật khẩu"
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

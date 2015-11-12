@@ -33,6 +33,12 @@
     <link href="~/Content/jasny-bootstrap.min.css" rel="stylesheet" />
     <!-- The fav icon -->
     <link rel="shortcut icon" href="~/Content/AdminLayout/img/favicon.ico">
+    <style>
+        /*các thông báo lỗi sẽ được chứa trong các label với class là error*/
+        label.error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -291,9 +297,70 @@
     <script src="~/Content/AdminLayout/js/jquery.uploadify-3.1.min.js"></script>
     <!-- history.js for cross-browser state change on ajax -->
     <script src="~/Content/AdminLayout/js/jquery.history.js"></script>
+    <!--jquery.validate.min.js-->
+    <script src="~/Content/AdminLayout/js/jquery.validate.min.js"></script>
     <!-- application script for Charisma demo -->
     @*<script src="~/Content/AdminLayout/js/charisma.js"></script>*@
-
+     
+    <script>
+		$(document).ready(function(){
+		    var validator = $("#input_form").validate({
+		        rules: {
+		            username: "required",
+		            password: {
+		                required: true,
+		                minlength: 6,
+		            },
+		            cpassword: {
+		                equalTo: "#MatKhau"
+		            },
+		            email: {
+		                required: true,
+		                email: true
+		            },
+		            //Email: {
+		            //    required: true,
+		            //    Email: true
+		            //},
+		            TenNXB: "required",
+		            DiaChi: "required",
+		            DienThoai: "required",
+                    TenChuDe: "required",
+                    HoTen: "required",
+                    NgaySinh: "required",
+                    TaiKhoan: "required",
+                    MatKhau: "required"
+                    
+		        },
+		        messages: {
+		            username: "Hãy điền tên đăng nhập.",
+		            password: {
+		                required: "Hãy điền mật khẩu",
+		                minlength: "Mật khẩu ít nhất 6 ký tự"
+		            },
+		            cpassword: {
+		                equalTo: "Mật khẩu xác nhận không chính xác"
+		            },
+		            email: {
+		                required: "Hãy nhập 1 địa chỉ email hợp lệ",
+		                email:"Địa chỉ email không hợp lệ"
+		            },
+		            //Email: {
+		            //    required: "Hãy nhập 1 địa chỉ email hợp lệ",
+		            //    Email: "Địa chỉ email không hợp lệ"
+		            //},
+		            TenNXB: "Hãy điền tên nhà xuất bản.",
+		            DiaChi: "Hãy điền địa chỉ.",
+                    DienThoai: "Hãy điền số điện thoại.",
+                    TenChuDe: "Hãy điền tên chủ đề.",
+                    HoTen: "Hãy điền họ tên",
+                    NgaySinh: "Hãy chọn ngày sinh",
+                    TaiKhoan: "Hãy điền tài khoản",
+                    MatKhau: "Hãy điền mật khẩu"
+		        }
+		    });
+	});
+    </script> 
 </body>
 </html>
 

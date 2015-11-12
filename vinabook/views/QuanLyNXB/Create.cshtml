@@ -5,9 +5,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>
+    Thêm nhà xuất bản <hr />
+</h2>
 
-@using (Html.BeginForm()) 
+@*@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -46,8 +48,40 @@
             </div>
         </div>
     </div>
-}
+}*@
+<form id='input_form' method='post' class="form-horizontal">
+    
+    <fieldset>
+        <div class="form-group">
+            <label for="TenNXB" class="control-label col-md-3">Tên nhà xuất bản :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="TenNXB" id="TenNXB" size="25" class="required form-control" placeholder="Tên nhà xuât bản..." />
+            </div>
 
+        </div>
+        <div class="form-group">
+            <label for="DiaChi" class="control-label col-md-3">Địa chỉ :</label>
+            <div class=" col-md-6">
+                <input type="text" value="" name="DiaChi" id="DiaChi" size="25" class="required form-control" placeholder="Địa chỉ..." />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="DienThoai" class="control-label col-md-3">Điện thoại :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="DienThoai" id="DienThoai" size="25" class="required form-control" placeholder="Điện thoại..." />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-6">
+                <input type="submit" value="Thêm" class="btn btn-success" />
+                <input type="reset" value="Điền lại" class="btn btn-default" />
+            </div>
+        </div>
+                
+    </fieldset>
+</form>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>

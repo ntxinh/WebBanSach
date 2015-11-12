@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminLayout\js\jquery.validate.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -475,7 +476,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\AdminLayout\" />
     <Folder Include="Content\JQChart\bin\" />
     <Folder Include="Content\JQChart\css\" />
     <Folder Include="Content\JQChart\js\" />

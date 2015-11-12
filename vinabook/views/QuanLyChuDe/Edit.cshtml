@@ -19,7 +19,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.MaChuDe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.MaChuDe, new { htmlAttributes = new { @class = "form-control", @readonly ="readonly" } })
                 @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
             </div>
@@ -27,7 +27,7 @@
         
         <div class="form-group">
             @Html.LabelFor(model => model.TenChuDe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.TenChuDe, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
             </div>
