@@ -133,6 +133,19 @@ namespace Vinabook.Controllers
             return View(sach);
 
         }
+
+        [HttpPost]
+        public JsonResult XemCTSach(int masach)
+        {
+            TempData["masach"] = masach;
+            return Json(new { Url = Url.Action("XemCTSachPartial") });
+        }
+        public PartialViewResult XemCTSachPartial()
+        {
+            int maSach = (int)TempData["masach"];
+            var lstSach = db.Saches.Where(n => n.MaSach == maSach).ToList();
+            return PartialView(lstSach);
+        }
         //Xóa sản phẩm
         [HttpGet]
         public ActionResult Xoa(int MaSach)

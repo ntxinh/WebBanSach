@@ -14,11 +14,17 @@ namespace Vinabook.Controllers
     {
         // GET: QuanLyChuDe
         QuanLyBanSachEntities db = new QuanLyBanSachEntities();
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int? page)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 10;
-            return View(db.ChuDes.ToList().OrderBy(n=>n.TenChuDe).ToPagedList(pageNumber,pageSize));
+            return View(db.ChuDes.ToList().OrderBy(n => n.TenChuDe).ToPagedList(pageNumber, pageSize));
+        }
+        public PartialViewResult IndexPartial(int ? page)
+        {
+            int pageNumber = ( page ?? 1);
+            int pageSize = 10;
+            return PartialView(db.ChuDes.ToList().OrderBy(n => n.TenChuDe).ToPagedList(pageNumber, pageSize));
         }
         /// <summary>
         /// Tao moi
@@ -44,6 +50,8 @@ namespace Vinabook.Controllers
             }
             return View();
         }
+
+        
         /// <summary>
         /// Chinh Sua
         /// </summary>
@@ -77,6 +85,8 @@ namespace Vinabook.Controllers
             return RedirectToAction("Index");
 
         }
+
+        
         /// <summary>
         /// Hien thi
         /// </summary>
@@ -95,6 +105,19 @@ namespace Vinabook.Controllers
 
             return View(cd);
 
+        }
+
+        [HttpPost]
+        public JsonResult XemCTCD(int macd)
+        {
+            TempData["macd"] = macd;
+            return Json(new { Url = Url.Action("XemCTCDPartial") });
+        }
+        public PartialViewResult XemCTCDPartial()
+        {
+            int maCD = (int)TempData["macd"];
+            var lstCD = db.ChuDes.Where(n => n.MaChuDe == maCD).ToList();
+            return PartialView(lstCD);
         }
         /// <summary>
         /// Xoa
@@ -128,5 +151,21 @@ namespace Vinabook.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        /////////////////////
+        [HttpPost]
+        public JsonResult Remove(int id)
+        {
+            ChuDe cd = db.ChuDes.SingleOrDefault(n => n.MaChuDe == id);
+            if (cd == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            db.ChuDes.Remove(cd);
+            db.SaveChanges();
+            return Json(new { Url = Url.Action("IndexPartial") });
+        }
+
     }
 }

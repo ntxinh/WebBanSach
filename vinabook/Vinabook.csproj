@@ -467,6 +467,10 @@
     <Content Include="Views\Chart\Index.cshtml" />
     <Content Include="Views\Chart\_Partial_ThongKeDoanhThu_Thang_Chart.cshtml" />
     <Content Include="Views\Home\GoogleMap_Success_Partial.cshtml" />
+    <Content Include="Views\QuanLySach\XemCTSachPartial.cshtml" />
+    <Content Include="Views\QuanLyKH\XemCTKHPartial.cshtml" />
+    <Content Include="Views\QuanLyChuDe\IndexPartial.cshtml" />
+    <Content Include="Views\QuanLyChuDe\XemCTCDPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

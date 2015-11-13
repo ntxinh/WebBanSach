@@ -1,0 +1,36 @@
+﻿
+@using Vinabook.Models;
+@model List<KhachHang>
+
+<table class="table table-bordered table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Mã khách hàng:</th>
+            <th>Tên khách hàng:</th>
+            <th>Ngày sinh:</th>
+            <th>Giới tính:</th>
+            <th>Điện thoại:</th>
+            <th>Tài khoản:</th>
+            <th>Mật khẩu:</th>
+            <th>Email:</th>
+            <th>Địa chỉ:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaKH</td>
+                <td>@item.HoTen</td>
+                <td>@item.NgaySinh</td>
+                <td>@item.GioiTinh</td>
+                <td>@item.DienThoai</td>
+                <td>@item.TaiKhoan</td>
+                <td>@item.MaKH</td>
+                <td>@item.Email</td>
+                <td>@item.DiaChi</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

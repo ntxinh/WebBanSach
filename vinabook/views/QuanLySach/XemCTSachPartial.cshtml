@@ -1,0 +1,43 @@
+﻿@using Vinabook.Models;
+@model List<Sach>
+
+<table class="table table-bordered table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Mã sách:</th>
+            <th>Tên sách:</th>
+            <th>Giá bán:</th>
+            <th>Mô tả:</th>
+            <th>Ngày cập nhật:</th>
+            <th>Ảnh bìa:</th>
+            <th>Số lượng tồn:</th>
+            <th>Chủ đề:</th>
+            <th>Nhà xuất bản:</th>
+            <th>Mới:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaSach</td>
+                <td>@item.TenSach</td>
+                <td>@item.GiaBan</td>
+                <td>@item.MoTa</td>
+                <td>@item.NgayCapNhat</td>
+                <td>
+                    <div class="fileinput fileinput-new" style="height:180px">
+                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 180px">
+                            <img src="@Url.Content("~/Content/HinhAnhSP/"+item.AnhBia)">
+                        </div>
+                    </div>
+                </td>
+                <td>@item.SoLuongTon</td>
+                <td>@Html.DisplayFor(modelItem => item.ChuDe.TenChuDe)</td>
+                <td>@Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)</td>
+                <td>@item.Moi</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

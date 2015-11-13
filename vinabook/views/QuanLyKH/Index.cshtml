@@ -95,9 +95,10 @@
                         </a>
                     </td>
                     <td>
-                        <a href="@Url.Action("Details", new { @MaKH=item.MaKH})" class="btn btn-primary btn-sm btn-color-primary">
+                        @*<a href="@Url.Action("Details", new { @MaKH=item.MaKH})" class="btn btn-primary btn-sm btn-color-primary">
                             <i class="glyphicon glyphicon-eye-open"></i>
-                        </a>
+                        </a>*@
+                        <a onclick="ChiTietKH('@item.MaKH')" class="btn btn-primary btn-sm btn-color-primary"><i class="glyphicon glyphicon-list-alt"></i></a>
                     </td>
                     <td>
                         <a href="@Url.Action("Delete", new { @MaKH=item.MaKH})" class="btn btn-danger btn-sm btn-color-primary">
@@ -119,3 +120,46 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageC
         display: inline;
     }
 </style>
+<script>
+
+    function ChiTietKH(makh) {
+            $.ajax({
+                type: 'POST',
+                url: '/QuanLyKH/XemCTKH',
+                data: {makh:makh},
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#All_Dialog").html(partial)
+                    });
+                }
+            });
+            $('#myModal').on('shown.bs.modal', function () {
+                $(this).find('.modal-dialog').css({
+                    width: '800px',
+                    height: 'auto',
+                    'max-height': '100%'
+                });
+            });
+        $("#myModal").modal();
+    }
+</script>
+@* đây là cái bảng dialog *@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chi tiết khách hàng</h4>
+            </div>
+            <div class="modal-body">
+                @* nội dung bên trong all_dialog *@
+                <div id="All_Dialog"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

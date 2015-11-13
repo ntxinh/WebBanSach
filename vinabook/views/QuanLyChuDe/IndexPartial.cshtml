@@ -1,0 +1,61 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<Vinabook.Models.ChuDe>
+
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaChuDe)</span>
+
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().TenChuDe)</span>
+                </th>
+                <th>
+                    <span class="text-primary">Sửa</span>
+                </th>
+                <th>
+                    <span class="text-primary">Chi Tiết</span>
+                </th>
+                <th>
+                    <span class="text-primary">Xóa</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaChuDe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenChuDe)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { @MaCD = item.MaChuDe })" class="btn btn-warning btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span class="sr-only">Edit</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="ChiTietCD('@item.MaChuDe')" class="btn btn-primary btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            <span class="sr-only">Details</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="delete_article('@item.MaChuDe')" class="btn btn-danger btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span class="sr-only">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+           
+        </tbody>
+    </table>
+</div>

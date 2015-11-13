@@ -98,6 +98,19 @@ namespace Vinabook.Controllers
             return View(kh);
 
         }
+
+        [HttpPost]
+        public JsonResult XemCTKH(int makh)
+        {
+            TempData["makh"] = makh;
+            return Json(new { Url = Url.Action("XemCTKHPartial") });
+        }
+        public PartialViewResult XemCTKHPartial()
+        {
+            int maKH = (int)TempData["makh"];
+            var lstKH = db.KhachHangs.Where(n => n.MaKH == maKH).ToList();
+            return PartialView(lstKH);
+        }
         /// <summary>
         /// Xoa
         /// </summary>

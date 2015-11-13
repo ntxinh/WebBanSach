@@ -1,0 +1,23 @@
+﻿@using Vinabook.Models;
+@model List<ChuDe>
+
+<table class="table table-bordered table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Mã chủ đề:</th>
+            <th>Tên chủ đề:</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaChuDe</td>
+                <td>@item.TenChuDe</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
