@@ -25,6 +25,7 @@ namespace Vinabook.Models
 
             [Display(Name = "Ngày Sinh")]
             [DataType(DataType.Date)]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public DateTime NgaySinh { get; set; }
 
 

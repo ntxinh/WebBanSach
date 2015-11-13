@@ -17,9 +17,9 @@
     <table class="table table-bordered table-condensed table-hover table-striped">
         <thead>
             <tr>
-                <th>
+                @*<th>
                     <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaKH)</span>
-                </th>
+                </th>*@
                 <th>
                     <span class="text-primary">@Html.DisplayNameFor(model => model.First().HoTen)</span>
                 </th>
@@ -59,9 +59,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.MaKH)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.HoTen)
                     </td>

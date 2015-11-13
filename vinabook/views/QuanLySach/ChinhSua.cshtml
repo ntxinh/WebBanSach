@@ -15,8 +15,8 @@
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.MaSach, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            @Html.LabelFor(model => model.MaSach, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
                 @*<span style="font-size:15pt;margin-top:2px;margin-left:5px">@Model.MaSach</span>*@
                 @Html.EditorFor(model => model.MaSach, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.Hidden("MaSach", Model.MaSach)
@@ -24,17 +24,17 @@
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.TenSach, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            @Html.LabelFor(model => model.TenSach, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
                 @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSach)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GiaBan)
+            @Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GiaBan)
             </div>
         </div>
@@ -42,16 +42,16 @@
 
         
         <div class="form-group">
-            @Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.NgayCapNhat)
+            @Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.NgayCapNhat, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NgayCapNhat)
             </div>
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.AnhBia, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.AnhBia, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
                 @* lay ten anh trong database cho feild AnhBia (tránh trường hợp không thêm ảnh mới) *@
                 <input id="AnhBia" name="AnhBia" type="text" value="@Model.AnhBia" class="hidden">
                 @*@Html.EditorFor(model => model.AnhBia)
@@ -59,7 +59,7 @@
                 <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)" width="40" height="40" />*@
                 <div class="fileinput fileinput-new" data-provides="fileinput" style="height:150px">
                     <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px">
-                        <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.AnhBia)">
+                        <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.AnhBia)">
                     </div>
                     <div class="pull-right" style="margin-left:5px;">
                         <span class="btn btn-default btn-file">
@@ -78,46 +78,57 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuongTon, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuongTon)
+            @Html.LabelFor(model => model.SoLuongTon, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SoLuongTon)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaChuDe, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaChuDe")
+            @Html.LabelFor(model => model.MaChuDe, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.DropDownList("MaChuDe", (SelectList)ViewBag.MaChuDe, new { @class = "form-control" })
 
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaNXB")
+            @Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.DropDownList("MaNXB", (SelectList)ViewBag.MaNXB, new { @class = "form-control" })
 
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Moi, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Moi)
-                @Html.ValidationMessageFor(model => model.Moi)
+            @Html.LabelFor(model => model.Moi, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @{if (ViewBag.Moi == 1)
+                    {
+                        <input type="radio" name="Moi" id="Moi" value="1" checked /><span>Mới</span><br />
+                        <input type="radio" name="Moi" id="Moi" value="0" /><span>Không</span>
+                    }
+                    else
+                    {
+                        <input type="radio" name="Moi" id="Moi" value="1" /><span>Mới</span><br />
+                        <input type="radio" name="Moi" id="Moi" value="0" checked /><span>Không</span>
+                        }
+                    }
+                @*@Html.EditorFor(model => model.Moi)
+                @Html.ValidationMessageFor(model => model.Moi)*@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            @Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
                 <textarea name="MoTa" class="form-control">@Model.MoTa</textarea>
                 @*@Html.Raw(Model.MoTa)*@
                 @*@Html.TextAreaFor(model => model.MoTa)*@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-3 col-md-6">
                 <input type="submit" value="Lưu" class="btn btn-warning" />
             </div>
         </div>

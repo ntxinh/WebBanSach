@@ -5,33 +5,26 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Thêm mới</h2>
+<h2>Thêm mới<hr /></h2>
 @*Thêm thuộc tính cho form để upload ảnh*@
-@using (Html.BeginForm("ThemMoi", "QuanLySach", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("ThemMoi", "QuanLySach", FormMethod.Post, new { @enctype = "multipart/form-data", @id =  "input_form" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-
-        <hr />
         @Html.ValidationSummary(true)
-
-
-
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Tên sách(*)</strong></span>
-            @*@Html.LabelFor(model => model.TenSach, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenSach)
+            <span class="control-label col-md-3"><strong>Tên sách(*)</strong></span>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.TenSach, new { htmlAttributes = new { @class = "required form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSach)
             </div>
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Giá bán(*)</strong></span>
-            @*@Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GiaBan)
+            <span class="control-label col-md-3"><strong>Giá bán(*)</strong></span>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "required form-control" } })
                 @Html.ValidationMessageFor(model => model.GiaBan)
             </div>
         </div>
@@ -39,19 +32,107 @@
 
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Ngày cập nhật(*)</strong></span>
-            @*@Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayCapNhat)
+            <span class="control-label col-md-3"><strong>Ngày cập nhật(*)</strong></span>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.NgayCapNhat, new { htmlAttributes = new { @class = "required form-control" } })
                 @Html.ValidationMessageFor(model => model.NgayCapNhat)
             </div>
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Ảnh bìa(*)</strong></span>
-            <div class="col-md-10">
-                @*<input type="file" name="fileUpload">
-                    @ViewBag.ThongBao*@
+            <span class="control-label col-md-3"><strong>Ảnh bìa(*)</strong></span>
+            <div class="col-md-6">
+                <div class="fileinput fileinput-new" data-provides="fileinput" style="height:150px">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px"></div>
+                    <div class="pull-right" style="margin-left:5px;">
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">Chọn ảnh</span>
+                            <span class="fileinput-exists">
+                                Thay đổi
+                            </span>
+                            <input id="fileUpload" type="file" name="fileUpload">
+                        </span>
+                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
+                        <p class="text-danger"><br />@ViewBag.ThongBao</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-3"><strong>Số lượng tồn(*)</strong></span>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "required form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuongTon)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-3"><strong>Chủ đề(*)</strong></span>
+            <div class="col-md-6">
+                @Html.DropDownList("MaChuDe", (SelectList)ViewBag.MaChuDe, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-3"><strong>Nhà xuất bản(*)</strong></span>
+            <div class="col-md-6">
+                @Html.DropDownList("MaNXB", (SelectList)ViewBag.MaNXB, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-3"><strong>Mới(*)</strong></span>
+            <div class="col-md-6">
+                <input type="radio" name="Moi" id="Moi" value="1" checked /> : Mới<br />
+                <input type="radio" name="Moi" id="Moi" value="0" /> : Không<br />
+                @*@Html.EditorFor(model => model.Moi)
+                @Html.ValidationMessageFor(model => model.Moi)*@
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <span class="control-label col-md-3"><strong>Mô tả(*)</strong></span>
+            <div class="col-md-6">
+                <textarea name="MoTa" id="MoTa" class="required form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-6">
+                <input type="submit" value="Thêm mới" class="btn btn-success" />
+            </div>
+        </div>
+
+    </div>
+}
+@*<form id='input_form' method='post' class="form-horizontal">
+
+    <fieldset>
+        <div class="form-group">
+            <label for="TenSach" class="control-label col-md-3">Tên sách :</label>
+            <div class="col-md-6">
+                <input type="text" value="" name="TenSach" id="TenSach" size="25" class="required form-control" placeholder="Tên sách..." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="GiaBan" class="control-label col-md-3">Giá bán :</label>
+            <div class="col-md-6">
+                <input type="number" value="" name="GiaBan" id="GiaBan" size="25" class="required form-control" placeholder="Giá bán..." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="NgayCapNhat" class="control-label col-md-3">Ngày cập nhật :</label>
+            <div class="col-md-6">
+                <input type="date" class="form-control" id="NgayCapNhat" name="NgayCapNhat">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-3"><strong>Ảnh bìa(*)</strong></span>
+            <div class="col-md-6">
                 <div class="fileinput fileinput-new" data-provides="fileinput" style="height:150px">
                     <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px"></div>
                     <div class="pull-right" style="margin-left:5px;">
@@ -70,64 +151,62 @@
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Số lượng tồn(*)</strong></span>
-            @*@Html.LabelFor(model => model.SoLuongTon, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuongTon)
-                @Html.ValidationMessageFor(model => model.SoLuongTon)
+            <label for="SoLuongTon" class="control-label col-md-3">Số lượng tồn :</label>
+            <div class="col-md-6">
+                <input type="number" value="" name="SoLuongTon" id="SoLuongTon" size="25" class="required form-control" placeholder="Số lượng tồn..." />
             </div>
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Chủ đề(*)</strong></span>
-            @*@Html.LabelFor(model => model.MaChuDe, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <label for="TenChuDe" class="control-label col-md-3">Chủ đề :</label>
+            <div class="col-md-6">
                 @Html.DropDownList("MaChuDe")
-
             </div>
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Nhà xuất bản(*)</strong></span>
-            @*@Html.LabelFor(model => model.MaNXB, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
+            <label for="TenChuDe" class="control-label col-md-3">Nhà xuất bản :</label>
+            <div class="col-md-6">
                 @Html.DropDownList("MaNXB")
-
             </div>
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Mới(*)</strong></span>
-            @*@Html.LabelFor(model => model.Moi, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Moi)
-
-                @*<select>
-                        <option value="1">Mới</option>
-                        <option value="0">Cũ</option>>
-                    </select>*@
-                @Html.ValidationMessageFor(model => model.Moi)
+            <label for="Moi" class="control-label col-md-3">Mới :</label>
+            <div class="col-md-6">
+                <input type="radio" name="Moi" id="Moi" value="1" checked /> : Mới<br />
+                <input type="radio" name="Moi" id="Moi" value="0" /> : Cũ<br />
             </div>
         </div>
-
 
         <div class="form-group">
-            <span class="control-label col-md-2"><strong>Mô tả(*)</strong></span>
-            @*@Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                <textarea name="MoTa">Easy! You should check out MoxieManager!</textarea>
+            <label for="MoTa" class="control-label col-md-3">Mô tả :</label>
+            <div class="col-md-6">
+                <textarea rows="4" cols="50" name="MoTa" id="MoTa" class="required form-control" placeholder="Mô tả..."></textarea>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm mới" class="btn btn-success" />
+        </div><div class="form-group">
+            <div class="col-md-offset-3 col-md-6">
+                <input type="submit" value="Thêm" class="btn btn-success" />
+                <input type="reset" value="Điền lại" class="btn btn-default" />
             </div>
         </div>
 
-    </div>
-}
-
+    </fieldset>
+</form>*@
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </div>
 
+<script>
+    var date = new Date();
+
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    document.getElementById("NgayCapNhat").value = today;
+</script>

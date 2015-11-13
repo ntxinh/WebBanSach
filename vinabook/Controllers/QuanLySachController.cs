@@ -44,7 +44,7 @@ namespace Vinabook.Controllers
             //kiểm tra đường dẫn ảnh bìa
             if (fileUpload == null)
             {
-                ViewBag.ThongBao = "Chọn hình ảnh";
+                ViewBag.ThongBao = "Hãy chọn ảnh bìa!";
                 return View();
             }
             //Thêm vào cơ sở dữ liệu
@@ -67,7 +67,8 @@ namespace Vinabook.Controllers
                 db.Saches.Add(sach);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index") ;
+            //return RedirectToAction("Index") ;
+            return View();
         }
         //Chỉnh sửa sản phẩm
         [HttpGet]
@@ -84,6 +85,7 @@ namespace Vinabook.Controllers
             //Đưa dữ liệu vào dropdownlist
             ViewBag.MaChuDe = new SelectList(db.ChuDes.ToList().OrderBy(n => n.TenChuDe), "MaChuDe", "TenChuDe", sach.MaChuDe);
             ViewBag.MaNXB = new SelectList(db.NhaXuatBans.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB", sach.MaNXB);
+            ViewBag.Moi = sach.Moi;
             return View(sach);
         }
         [HttpPost]

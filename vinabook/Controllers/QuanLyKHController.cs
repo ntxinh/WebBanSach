@@ -19,7 +19,7 @@ namespace Vinabook.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 10;
-            return View(db.KhachHangs.ToList().OrderBy(n => n.MaKH).ToPagedList(pageNumber, pageSize));
+            return View(db.KhachHangs.ToList().OrderBy(n => n.HoTen).ToPagedList(pageNumber, pageSize));
         }
         /// <summary>
         /// Tao moi
@@ -61,7 +61,7 @@ namespace Vinabook.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-
+            ViewBag.GioiTinh = kh.GioiTinh;
             return View(kh);
         }
         [HttpPost]

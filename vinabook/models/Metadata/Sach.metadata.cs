@@ -27,6 +27,7 @@ namespace Vinabook.Models
 
             [Display(Name = "Ngày cập nhật")]
             [DataType(DataType.Date)]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public DateTime NgayCapNhat { get; set; }
 
             [Display(Name = "Ảnh bìa")]

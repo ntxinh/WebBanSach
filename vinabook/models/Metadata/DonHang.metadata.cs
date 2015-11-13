@@ -23,8 +23,8 @@ namespace Vinabook.Models
 
             [Display(Name = "Ngày đặt")]
             [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
-            //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+            //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
             public DateTime NgayDat { get; set; }
 
             [Display(Name = "Đã thanh toán")]
