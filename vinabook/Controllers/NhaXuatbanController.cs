@@ -7,6 +7,7 @@ using Vinabook.Models;
 
 namespace Vinabook.Controllers
 {
+    [Authorize]
     public class NhaXuatbanController : Controller
     {
         // GET: NhaXuatban

@@ -10,6 +10,7 @@ using PagedList.Mvc;
 using System.IO;
 namespace Vinabook.Controllers
 {
+    [Authorize]
     public class QuanLyChuDeController : Controller
     {
         // GET: QuanLyChuDe

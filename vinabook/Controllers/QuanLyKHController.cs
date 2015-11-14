@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace Vinabook.Controllers
 {
+    [Authorize]
     public class QuanLyKHController : Controller
     {
         // GET: QuanLyKH

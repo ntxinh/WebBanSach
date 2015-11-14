@@ -9,6 +9,7 @@ using PagedList;
 using PagedList.Mvc;
 namespace Vinabook.Controllers
 {
+    [Authorize]
     public class QuanLyNXBController : Controller
     {
         // GET: QuanLyNXB
