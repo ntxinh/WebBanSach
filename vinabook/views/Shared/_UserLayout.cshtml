@@ -39,6 +39,22 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!--Ajax Process-->
+    @{  int i = 0; string tenkh = "Bạn";}
+    @if (Session["TaiKhoan"] == null)
+    {
+        i = 1;
+    }
+    else
+    {
+        if (Session["TaiKhoan"].ToString().Trim() == "")
+        {
+            i = 1;
+        }
+        KhachHang kh = Session["TaiKhoan"] as KhachHang;
+        tenkh = kh.TaiKhoan;
+    }
+
+
     <script>
 
 
@@ -87,23 +103,25 @@
         }
 
         function HoTro(ktdangnhap) {
-            if (ktdangnhap == 1) {
-                // alert('chua dang nhap');
-            }
-            else {
-                // alert('dang nhap r');
-                $.ajax({
-                    type: 'POST',
-                    url: '/Home/HoTro',
-                    data: {},
-                    success: function (data) {
-                        $.post(data.Url, function (partial) {
-                            $("#All_Dialog").html(partial)
-                        });
-                    }
-                });
-            }
-            $("#myModal").modal();
+            debugger;
+            //if (ktdangnhap == 1) {
+            //    // alert('chua dang nhap');
+            //}
+            //else {
+            //    // alert('dang nhap r');
+            //    $.ajax({
+            //        type: 'POST',
+            //        url: '/Home/HoTro',
+            //        data: {},
+            //        success: function (data) {
+            //            $.post(data.Url, function (partial) {
+            //                $("#All_Dialog").html(partial)
+            //            });
+            //        }
+            //    });
+            //}
+            $("#myModal").modal()
+
         }
         function HoTroDetials(maDonHang) {
             $.ajax({
@@ -145,21 +163,24 @@
                 }
             });
         }
-        function TroVe() {
-            $.ajax({
-                type: 'POST',
-                url: '/Home/TroVe',
-                data: {},
-                success: function (data) {
-                    $.post(data.Url, function (partial) {
-                        $("#All_Dialog").html(partial)
-                        $("#xemBanDo").html("<button class=\"btn btn-danger pull-right\" onclick=\"XemBanDo();\">Xem Bản Đồ</button>");
-                        madh = null;
-                        sdt = null;
-                    });
-                }
-            });
-        }
+        function TroVe(ktdangnhap) {
+           
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/TroVe',
+                    data: {},
+                    success: function (data) {
+                        $.post(data.Url, function (partial) {
+                            $("#All_Dialog").html(partial)
+                            $("#xemBanDo").html("<button class=\"btn btn-danger pull-right\" onclick=\"XemBanDo();\">Xem Bản Đồ</button>");
+                            madh = null;
+                            sdt = null;
+                        });
+                    }
+                });
+            }
+        
         //xem ban do
         function XemBanDo() {
             $.ajax({
@@ -183,18 +204,8 @@
 <body>
 
     @* Hỗ trợ Ho Tro *@
-
-    @{ int i = 0; string tenkh = "Bạn";}
-    @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")
-    {
-        i = 1;
-
-    }
-    else
-    {
-        KhachHang kh = Session["TaiKhoan"] as KhachHang;
-        tenkh = kh.TaiKhoan;
-    }
+  
+        
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog text-center">
@@ -602,7 +613,7 @@
     }
 
     .carousel-inner div img{
-        margin-left:100px;
+        margin-left:11%;
         /*max-height: 200px !important;*/
     }
 

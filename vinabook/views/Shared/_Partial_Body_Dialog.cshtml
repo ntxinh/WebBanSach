@@ -1,4 +1,13 @@
-﻿
+﻿@{ string ssdt = "";}
+@if(Session["TaiKhoan"] != null)
+{
+    if (Session["TaiKhoan"].ToString().Trim() != "")
+    {
+        Vinabook.Models.KhachHang khg = Session["TaiKhoan"] as Vinabook.Models.KhachHang;
+        ssdt = khg.DienThoai;
+    }
+
+}
 <div id="All_Dialog" class="" style="padding:20px 30px">
     <div style="color:#008340;font-size:18px">Kiểm tra đơn hàng</div>
     <hr />
@@ -11,7 +20,7 @@
 
             <div class="row margin-b margin-t">
                 <label>Số điện thoại</label>
-                <input id="soDienThoai_Dialog" type="text" placeholder="Số điện thoại" />
+                <input id="soDienThoai_Dialog" value="@ssdt" type="text" placeholder="Số điện thoại" />
             </div>
             <br />
             <div class="text-center">
