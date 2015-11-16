@@ -68,7 +68,7 @@ namespace Vinabook.Controllers
             ViewBag.TenTacGia = db.TacGias.Single(n => n.MaTacGia == matacgia).TenTacGia;
             return View(listSach.OrderBy(n => n.TenSach).ToPagedList(pageNumber, pageSize));
         }
-        public ViewResult SachTheoChuDe(int machude = 1, int? page = 1)
+        public ActionResult SachTheoChuDe(int machude = 1, int? page = 1)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 12;
@@ -76,7 +76,7 @@ namespace Vinabook.Controllers
             ViewBag.TenChuDe = db.ChuDes.Single(n => n.MaChuDe == machude).TenChuDe;
             return View(lstSach);
         }
-        public ViewResult SachTheoNhaXuatBan(int manxb = 1, int? page = 1)
+        public ActionResult SachTheoNhaXuatBan(int manxb = 1, int? page = 1)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 12;
