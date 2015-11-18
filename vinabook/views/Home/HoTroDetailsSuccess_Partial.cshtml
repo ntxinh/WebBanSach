@@ -7,7 +7,7 @@
     }
     else
     {
-          <div class="pull-right"><button class="btn btn-info" onclick="Check()">Trở Về</button></div>
+        <div class="pull-right"><button class="btn btn-info" onclick="Check()">Trở Về</button></div>
     }
 </div>
 <div class="row">
@@ -24,12 +24,24 @@
             {
                 <tr>
                     <td><img width="50" height="50" alt="poster_1_up" src="@Url.Content("/Content/HinhAnhSP/" +item.Sach.AnhBia)"></td>
-                    <td >@item.Sach.TenSach</td>
+                    <td>@item.Sach.TenSach</td>
                     <td>@item.SoLuong</td>
                     <td><span class="amount">@string.Format("{0:0,0}", item.DonGia) VNĐ</span></td>
                 </tr>
             }
-            @{double tongTien = 0;}
+            @{double tongTien = 0; int khuyenmai = 1;
+                @*QuanLyBanSachEntities db = new QuanLyBanSachEntities();
+    DonHang dh = db.DonHangs.Find(Model[0].MaDonHang);
+    if (dh.MaKM == "NULL" || dh.MaKM == "") {
+        <tr><td>aaaaa</td></tr>
+    }
+    else
+    {
+        <tr><td>@dh.MaKM</td></tr>
+        }*@
+
+            }
+
             @foreach (var item in Model)
             {
                 tongTien += (double)(item.DonGia * item.SoLuong);

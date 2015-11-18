@@ -10,6 +10,7 @@
             <th>Ngày Đặt</th>
             <th>Ngày Giao</th>
             <th>Tình trạng</th>
+            <th>Khuyến Mãi</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -19,6 +20,7 @@
                 <td>@item.NgayDat</td>
                 <td> @String.Format("{0:dd/MM/yyyy}", item.NgayGiao)</td>
                 <td>@item.DaThanhToan</td>
+                <td>@item.KhuyenMai.GiaTriKM %</td>
                 <td><button class="btn btn-danger" onclick="HoTroDetials('@item.MaDonHang')"><i class="glyphicon glyphicon-list"></i></button></td>
             </tr>
         }

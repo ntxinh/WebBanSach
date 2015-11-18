@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Web Code\Vinabook\Vinabook\Models\QuanLyBanSachModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\ttt\Project\WebsiteBanSach_Xinh_GH\Vinabook\Models\QuanLyBanSachModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -12,25 +12,21 @@ namespace Vinabook.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DonHang
+    public partial class KhuyenMai
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DonHang()
+        public KhuyenMai()
         {
-            this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
+            this.DonHangs = new HashSet<DonHang>();
         }
     
-        public int MaDonHang { get; set; }
-        public Nullable<System.DateTime> NgayGiao { get; set; }
-        public Nullable<System.DateTime> NgayDat { get; set; }
-        public string DaThanhToan { get; set; }
-        public Nullable<int> TinhTrangGiaoHang { get; set; }
-        public Nullable<int> MaKH { get; set; }
         public string MaKM { get; set; }
+        public string GiaTriKM { get; set; }
+        public Nullable<System.DateTime> NgayBDKM { get; set; }
+        public Nullable<System.DateTime> NgayKTKM { get; set; }
+        public Nullable<bool> DaSuDung { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
-        public virtual KhachHang KhachHang { get; set; }
-        public virtual KhuyenMai KhuyenMai { get; set; }
+        public virtual ICollection<DonHang> DonHangs { get; set; }
     }
 }

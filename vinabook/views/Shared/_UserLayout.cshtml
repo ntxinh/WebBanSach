@@ -39,10 +39,11 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!--Ajax Process-->
-    @{  int i = 0; string tenkh = "Bạn";}
+    @{  int i = 0; string tenkh = "Bạn";
+        }
     @if (Session["TaiKhoan"] == null)
-    {
-        i = 1;
+        {
+            i = 1;
     }
     else
     {
@@ -56,8 +57,10 @@
 
 
     <script>
-
-
+        var makm="";
+        var tbkhuyenmai = "";
+        var giatriKhuyenMai = "";
+        var tongtienlayout=0;
 
         function AddToCart(MaSach) {
             //lay controller kiem tra  dang trong gio hang k
@@ -102,8 +105,48 @@
 
         }
 
-        function HoTro(ktdangnhap) {
+        function KhuyenMai() {
             debugger;
+            var maKM= document.getElementById("coupon_code").value;
+            var s = maKM.replace(/\s+/g, '').length;
+            if (s == 0) {
+                alert('Vui lòng nhập Mã Khuyến Mãi');
+            }
+            else
+            {
+                $.ajax({
+                    type:'POST',
+                    url: '/GioHang/KhuyenMai',
+                    data: {id:maKM},
+                    success: function (data) {
+                        $("#SpanKhuyenMai").html(data.tb);
+                        $("#SpanGiaTriKhuyenMai").html(data.gt)
+
+                        
+                        
+                        makm = data.id;
+                        tbkhuyenmai = data.tb + data.gt;
+                        giatriKhuyenMai = data.gt;
+                        if(data.gt!="")
+                            $("#KhuyenMaiBadge").html("-" + giatriKhuyenMai);
+                        else
+                            $("#KhuyenMaiBadge").html();
+
+                        //var ele = document.getElementById("tongtien_div");
+                        //ele.style.setProperty("text-decoration", "line-through");
+                        //var giatrilayout = giatriKhuyenMai.split('%');
+                        //var tongtienjslayout = tongtienlayout- (giatrilayout[0]/100) * tongtienlayout ;
+                        //$("#tongtienkm").html(tongtienjslayout.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+
+                        //alert(tongtienjslayout);
+                        capNhatGiohang();
+                    }
+                });
+            }
+            
+        }
+
+        function HoTro(ktdangnhap) {
             //if (ktdangnhap == 1) {
             //    // alert('chua dang nhap');
             //}
@@ -137,7 +180,6 @@
         }
         var madh, sdt;
         function get() {
-            debugger;
             madh = document.getElementById("maDonHang_Dialog").value;
             sdt = document.getElementById("soDienThoai_Dialog").value;
             //xoa khoang trang
@@ -151,7 +193,6 @@
         }
         //goi check trong _Partial_Body_Dialog
         function Check() {
-            debugger;
             $.ajax({
                 type: 'POST',
                 url: '/Home/Check',
@@ -197,6 +238,94 @@
                 }
             });
         }
+    </script>
+    @* Đặt hàng *@
+    <script>
+
+    function CapNhat(Id) {
+        var soluong = document.getElementById("SoLuong[" + Id + "]").value;
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/CapNhat',
+            data: { id: Id, sl: soluong },
+            success: function (data) {
+                $("#Cart_Amount").html(data.sl);    //sl navbar
+                $.post(data.Url, function (partial) {
+                    $("#GioHang").html(partial);
+                    //AddToCart(-1);
+                    $("#TongTien").attr("style", "color:red");
+                    setTimeout(function () {
+                        $("#TongTien").attr("style", "color:black");
+                    }, 600);
+                });
+            }
+        });
+
+    }
+
+    function Remove(Id) {
+
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/Remove',
+            data: { id: Id },
+            success: function (data) {
+                $("#Cart_Amount").html(data.sl);    //sl navbar
+                $.post(data.Url, function (partial) {
+                    $("#GioHang").html(partial);
+                });
+            }
+        });
+
+    }
+    function RemoveNull() {
+
+    }
+    function DatHang(KtDangNhap) {
+        if (KtDangNhap == 1) {
+            window.location.href = "/NguoiDung/Login";
+        }
+        else {
+
+            $.ajax({
+                type: 'POST',
+                url: '/GioHang/DatHang',
+                data: {},
+                success: function (data) {
+                    $.post(data.Url, function (partial) {
+                        $("#GioHang").html(partial);
+                    });
+                }
+            });
+        }
+    }
+    function DathangSubmit() {
+        var ngayGiao = document.getElementById("NgayGiao").value;
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/DatHangSubmit',
+            data: { NgayGiao: ngayGiao ,MaKM:makm},
+            success: function (data) {
+                $("#success").html(data.success);
+
+                    alert(data.success+"\nKiểm tra đơn hàng tại Menu Hỗ Trợ.");
+                    window.location.href = "/Home/Index";
+
+            }
+        });
+    }
+    function BackToCart() {
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/BackToCart',
+            data: {},
+            success: function (data) {
+                $.post(data.Url, function (partial) {
+                    $("#GioHang").html(partial);
+                });
+            }
+        });
+    }
     </script>
     <!--End Ajax Process-->
 
@@ -516,7 +645,7 @@
     <!-- Latest jQuery form server -->
     @*<script src="https://code.jquery.com/jquery.min.js"></script>*@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <!-- Bootstrap JS form CDN -->
     @*<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>

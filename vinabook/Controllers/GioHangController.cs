@@ -70,7 +70,7 @@ namespace Vinabook.Controllers
             return PartialView("DatHangPartial");
         }
         [HttpPost]
-        public ActionResult DatHangSubmit(string NgayGiao)
+        public ActionResult DatHangSubmit(string NgayGiao,string MaKM)
         {
             DonHang dh = new DonHang();
             if (Session["TaiKhoan"] != null || Session["TaiKhoan"].ToString() == "")
@@ -85,7 +85,20 @@ namespace Vinabook.Controllers
 
                     dh.TinhTrangGiaoHang = 0;
                     dh.DaThanhToan = "Chưa thanh toán";
+                    if (MaKM != "" &&MaKM!="NULL")
+                        dh.MaKM = MaKM;
                     db.DonHangs.Add(dh);
+
+                    db.SaveChanges();
+                    if (MaKM != "" && MaKM != "NULL")
+                        foreach(var item in db.KhuyenMais)
+                        {
+                            if (item.MaKM == MaKM.ToUpper())
+                            {
+                                item.DaSuDung = true;
+                                break;
+                            }
+                        }
                     db.SaveChanges();
                 }
             }
@@ -118,24 +131,24 @@ namespace Vinabook.Controllers
         [HttpPost]
         public ActionResult CapNhat(int id, int sl)
         {
-                List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
-                //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
-                //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
-                //có. cập nhật vào Session["ShoppingCart"] mà
-                int cartcount = 0;
-                foreach (var item in listCartItem)
+            List<CartItem> listCartItem = (List<CartItem>)Session["ShoppingCart"];
+            //nếu người dùng thêm hàng vào giỏ và lại trở về trang chủ thêm hàng tiếp 
+            //thì session shoppingcart này có đang giữ tất cả sách trong giỏ hàng hiện tại hay không ?
+            //có. cập nhật vào Session["ShoppingCart"] mà
+            int cartcount = 0;
+            foreach (var item in listCartItem)
+            {
+                if (item.productOrder.MaSach == id)
                 {
-                    if (item.productOrder.MaSach == id)
-                    {
-                        item.Quality = sl;
-                        // break;
+                    item.Quality = sl;
+                    // break;
 
-                    }
-                    cartcount += item.Quality;
                 }
-                Session["ShoppingCart"] = listCartItem;
-            
-            return Json(new { Url = Url.Action("Success") ,sl=cartcount});
+                cartcount += item.Quality;
+            }
+            Session["ShoppingCart"] = listCartItem;
+
+            return Json(new { Url = Url.Action("Success"), sl = cartcount });
         }
         [HttpPost]
         public ActionResult Success()
@@ -157,12 +170,22 @@ namespace Vinabook.Controllers
                     break;
                 }
             }
-            foreach(var item in listCartItem)
+            foreach (var item in listCartItem)
             {
                 cartCount += item.Quality;
             }
             Session["ShoppingCart"] = listCartItem;
-            return Json(new { Url = Url.Action("Success"),sl=cartCount });
+            return Json(new { Url = Url.Action("Success"), sl = cartCount });
+        }
+        [HttpPost]
+        public ActionResult KhuyenMai(string id)
+        {
+            KhuyenMai km = db.KhuyenMais.Find(id);
+            if (km == null || km.NgayBDKM > DateTime.Now || km.NgayKTKM < DateTime.Now || km.DaSuDung==true)
+            {
+                return Json(new { tb="Lỗi!",id="",gt="" });
+            }
+            return Json(new { tb="Khuyến Mãi: ",id=id,gt=km.GiaTriKM+"%" });
         }
     }
 }

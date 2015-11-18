@@ -7,20 +7,22 @@
       <Diagram DiagramId="38cf3c72dbbe4c5d84aa5bcaad6b8ffb" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyBanSachModel.Admin" Width="1.5" PointX="5.75" PointY="7" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.Adminnistrator" Width="1.5" PointX="7.75" PointY="2" />
-        <EntityTypeShape EntityType="QuanLyBanSachModel.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="0.75" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.ChuDe" Width="1.5" PointX="0.75" PointY="4" />
-        <EntityTypeShape EntityType="QuanLyBanSachModel.DonHang" Width="1.5" PointX="3" PointY="11.5" />
-        <EntityTypeShape EntityType="QuanLyBanSachModel.KhachHang" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.DonHang" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.KhachHang" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.KhuyenMai" Width="1.5" PointX="0.75" PointY="7.5" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.NhaXuatBan" Width="1.5" PointX="0.75" PointY="0.875" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.QuanTriVien" Width="1.5" PointX="7.75" PointY="5" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.Sach" Width="1.5" PointX="3" PointY="3" />
         <EntityTypeShape EntityType="QuanLyBanSachModel.sysdiagram" Width="1.5" PointX="7.75" PointY="8" />
-        <EntityTypeShape EntityType="QuanLyBanSachModel.TacGia" Width="1.5" PointX="3" PointY="7.75" />
-        <EntityTypeShape EntityType="QuanLyBanSachModel.ThamGia" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.TacGia" Width="1.5" PointX="3" PointY="12.75" />
+        <EntityTypeShape EntityType="QuanLyBanSachModel.ThamGia" Width="1.5" PointX="5.25" PointY="3.75" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ChiTietDonHang_DonHang" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ChiTietDonHang_Sach" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_Sach_ChuDe" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_DonHang_KhachHang" />
+        <AssociationConnector Association="QuanLyBanSachModel.FK_DonHang_KhuyenMai" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_Sach_NhaXuatBan" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ThamGia_Sach" />
         <AssociationConnector Association="QuanLyBanSachModel.FK_ThamGia_TacGia" />

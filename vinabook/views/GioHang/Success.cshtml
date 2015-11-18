@@ -58,22 +58,29 @@
         <tr>
             <th class="actions" colspan="4">
                 <div class="coupon">
-                    <input type="text" placeholder="Mã khuyến mãi" value="" id="coupon_code" class="input-text" name="coupon_code">
-                    <input type="submit" value="Áp dụng" name="apply_coupon" class="button">
+                    <input type="text" placeholder="Mã khuyến mãi"  style="width:150px" id="coupon_code" class="input-text" name="coupon_code">
+                    <input type="submit" onclick="KhuyenMai()" value="Áp dụng" name="apply_coupon" class="button">
+                    <span id="SpanKhuyenMai" style="color:red"></span>
+                    <span id="SpanGiaTriKhuyenMai" style="color:red"></span>
                 </div>
 
             </th>
-            <th>Tổng:</th>
+            <th>Tổng(VNĐ):</th>
             @{double tongTien = 0;}
             @foreach (var item in Model)
             {
                 tongTien += (double)item.productOrder.GiaBan * item.Quality;
             }
             <th>
-                <span id="TongTien">
-                   @string.Format("{0:0,0}", @tongTien) VNĐ
-                </span>
+                <span id="KhuyenMaiBadge" class="badge badge-warning" style="position:relative;right:-20px;bottom:-5px;"></span>
+                <div id="tongtien_div" style="">
+                    <span id="TongTien" class="tongtien_class" >
+                        @string.Format("{0:0,0}", @tongTien)
+                    </span>
+                    
+                </div>
                 
+                <span id="tongtienkm" style="color:red"></span>
             </th>
             @{ int i = 0;}
             @if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString().Trim() == "")
@@ -86,3 +93,23 @@
         </tr>
     </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        //alert(makm);
+        // text-decoration: line-through;
+        var elem = document.getElementById("coupon_code");
+        elem.value = makm;
+        if (makm != "") {
+            $("#SpanKhuyenMai").html(tbkhuyenmai);
+            $("#KhuyenMaiBadge").html("-" + giatriKhuyenMai);
+
+            var ele = document.getElementById("tongtien_div");
+            ele.style.setProperty("text-decoration", "line-through");
+            var giatri=giatriKhuyenMai.split('%');
+            var tongtienjs =@tongTien- (giatri[0]/100) * @tongTien ;
+            $("#tongtienkm").html(tongtienjs.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            
+        }
+        tongtienlayout=@tongTien;
+    });
+</script>
