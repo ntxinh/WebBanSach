@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <h2><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">@item.TenSach</a></h2>
+                <h2><a href="@Url.Action("XemChiTiet", "Sach", new { @masach=item.MaSach })">@item.TenSach</a></h2>
 
                 <div class="product-carousel-price">
                     <ins>@string.Format("{0:0,0}", item.GiaBan) VNĐ</ins> <del>@string.Format("{0:0,0}", item.GiaBan + (10 * item.GiaBan / 100))</del>

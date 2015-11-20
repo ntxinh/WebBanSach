@@ -642,6 +642,7 @@
             </div>
         </div>
     </div> <!-- End footer bottom area -->
+    <div href="javascript:;" class="button_scroll2top" onclick="page_scroll2top()"><i class="glyphicon glyphicon-chevron-up"></i></div>
     <!-- Latest jQuery form server -->
     @*<script src="https://code.jquery.com/jquery.min.js"></script>*@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -672,6 +673,48 @@
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=810732255672019";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <style type="text/css">
+        .button_scroll2top {
+            display: none;
+            width: 80px;
+            height: 70px;
+            padding-top: 20px;
+            padding-left: 10px;
+            position: fixed;
+            z-index: 999;
+            right: -45px;
+            top: 45%;
+            background: #fb3;
+            border-radius: 999px;
+            cursor: pointer;
+            opacity: 0.6;
+            color: #fff;
+            font-size: 2.0em;
+        }
+
+            .button_scroll2top:hover {
+                opacity: 1.0;
+            }
+    </style>
+    <script type="text/javascript">
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 10) {
+		    //$('.button_scroll2top').show();
+		    $('.button_scroll2top').fadeIn();
+		} else {
+		    //$('.button_scroll2top').hide();
+		    $('.button_scroll2top').fadeOut();
+		}
+	});
+
+	function page_scroll2top()
+	{
+		$('html,body').animate({
+			scrollTop: 0
+	    }, 800);
+	}
     </script>
 </body>
 </html>
