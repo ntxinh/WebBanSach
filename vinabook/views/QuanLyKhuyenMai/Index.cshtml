@@ -1,0 +1,89 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<Vinabook.Models.KhuyenMai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="@Url.Action("Create")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Thêm NXB</a>
+</p>
+<div class="table-responsive">
+
+    <table class="table table-condensed table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().MaKM)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().GiaTriKM)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().NgayBDKM)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().NgayKTKM)</span>
+                </th>
+                <th>
+                    <span class="text-primary">@Html.DisplayNameFor(model => model.First().DaSuDung)</span>
+                </th>
+                <th>
+                    <span class="text-primary">Sửa</span>
+                </th>
+                <th>
+                    <span class="text-primary">Chi tiết</span>
+                </th>
+                <th>
+                    <span class="text-primary">Xóa</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaTriKM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayBDKM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayKTKM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DaSuDung)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { @MaNXB = item.MaNXB }) |
+                        @Html.ActionLink("Details", "Details", new { @MaNXB = item.MaNXB }) |
+                        @Html.ActionLink("Delete", "Delete", new { @MaNXB = item.MaNXB })*@
+                        <a href="@Url.Action("Edit", new { @MaNXB = item.MaKM })" class="btn btn-warning btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", new { @MaNXB = item.MaKM })" class="btn btn-primary btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { @MaNXB = item.MaKM })" class="btn btn-danger btn-sm btn-color-primary">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

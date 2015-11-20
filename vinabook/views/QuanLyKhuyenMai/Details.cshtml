@@ -1,0 +1,57 @@
+﻿@model Vinabook.Models.KhuyenMai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KhuyenMai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaKM)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaKM)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTriKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTriKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayBDKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayBDKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKTKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKTKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DaSuDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DaSuDung)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { @MaNXB = Model.MaKM }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

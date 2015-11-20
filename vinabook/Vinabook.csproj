@@ -310,6 +310,7 @@
     <Compile Include="Controllers\QLDonHangController.cs" />
     <Compile Include="Controllers\QuanLyChuDeController.cs" />
     <Compile Include="Controllers\QuanLyKHController.cs" />
+    <Compile Include="Controllers\QuanLyKhuyenMaiController.cs" />
     <Compile Include="Controllers\QuanLyNXBController.cs" />
     <Compile Include="Controllers\QuanLySachController.cs" />
     <Compile Include="Controllers\TacGiaController.cs" />
@@ -384,6 +385,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\KhuyenMai.metadata.cs" />
     <Compile Include="Models\Metadata\NhaXuatBan.metadata.cs" />
     <Compile Include="Models\Metadata\Sach.metadata.cs" />
     <Compile Include="Models\NhaXuatBan.cs">
@@ -521,6 +523,11 @@
     <Content Include="Views\QuanLyKH\XemCTKHPartial.cshtml" />
     <Content Include="Views\QuanLyChuDe\IndexPartial.cshtml" />
     <Content Include="Views\QuanLyChuDe\XemCTCDPartial.cshtml" />
+    <Content Include="Views\QuanLyKhuyenMai\Index.cshtml" />
+    <Content Include="Views\QuanLyKhuyenMai\Create.cshtml" />
+    <Content Include="Views\QuanLyKhuyenMai\Edit.cshtml" />
+    <Content Include="Views\QuanLyKhuyenMai\Details.cshtml" />
+    <Content Include="Views\QuanLyKhuyenMai\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
