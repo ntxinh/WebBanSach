@@ -337,7 +337,6 @@
 
     @* Hỗ trợ Ho Tro *@
   
-        
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog text-center">
@@ -645,6 +644,9 @@
             </div>
         </div>
     </div> <!-- End footer bottom area -->
+    <!--Scroll to top-->
+    <div href="javascript:;" class="button_scroll2top" onclick="page_scroll2top()"><i class="glyphicon glyphicon-chevron-up"></i></div> <!--End scroll to top-->
+    
     <!-- Latest jQuery form server -->
     @*<script src="https://code.jquery.com/jquery.min.js"></script>*@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -676,6 +678,92 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+    <style type="text/css">
+        .button_scroll2top {
+            display: none;
+            width: 80px;
+            height: 70px;
+            padding-top: 20px;
+            padding-left: 10px;
+            position: fixed;
+            z-index: 999;
+            right: -45px;
+            top: 45%;
+            background: #fb3;
+            border-radius: 999px;
+            cursor: pointer;
+            opacity: 0.6;
+            color: #fff;
+            font-size: 2.0em;
+        }
+
+            .button_scroll2top:hover {
+                opacity: 1.0;
+            }
+    </style>
+    <script type="text/javascript">
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 10) {
+		    //$('.button_scroll2top').show();
+		    $('.button_scroll2top').fadeIn();
+		} else {
+		    //$('.button_scroll2top').hide();
+		    $('.button_scroll2top').fadeOut();
+		}
+	});
+
+	function page_scroll2top()
+	{
+		$('html,body').animate({
+			scrollTop: 0
+	    }, 800);
+	}
+    </script>
+    <!--Banner doc 2 ben-->
+    @*<script type="text/javascript" src="~/content/userlayout/js/BannerFloat.js"></script>
+    <style>
+        .divAdLeft{width: 40px; line-height:30px; position: fixed;overflow:hidden; left:0px !important;}
+    </style>
+    <div class="divAdLeft" id="divBannerFloatLeft">
+        <p><a href="#" target="_blank"><img src="~/content/HinhAnh/Contact.png" alt=""/></a></p>
+    </div>*@
+    
+    @*<script>
+$(function(){
+$('html').append(
+'<div id="ban_left" class="ban_scroll">NỘI DUNG BANNER Trái</div>',
+'<div id="ban_right" class="ban_scroll">NỘI DUNG BANNER PHẢI</div>'
+)
+$(window).scroll(function(){
+var $toado_old=0;
+var $toado_curr=$(window).scrollTop()
+$('.ban_scroll').stop().animate({'top':$toado_curr-$toado_old+100},400)//Cách TOP 100px
+$toado_old=$toado_curr
+})
+})
+    </script>
+    <style>
+        div.ban_scroll {
+            width: 100px;
+            height: 300px;
+            position: absolute;
+            bottom: 100px;
+            background: green;
+            z-index: -1;
+            cursor: pointer;
+        }
+
+        div#ban_left {
+            left: 1px;
+        }
+
+        div#ban_right {
+            right: 1px;
+        }
+    </style>*@
+    
+    <!--End banner doc 2 ben-->
 </body>
 </html>
 
