@@ -127,8 +127,10 @@
                         makm = data.id;
                         tbkhuyenmai = data.tb + data.gt;
                         giatriKhuyenMai = data.gt;
-                        if(data.gt!="")
+                        if (data.gt != "") {
                             $("#KhuyenMaiBadge").html("-" + giatriKhuyenMai);
+                            capNhatGiohang();
+                        }
                         else
                             $("#KhuyenMaiBadge").html();
 
@@ -139,7 +141,8 @@
                         //$("#tongtienkm").html(tongtienjslayout.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
 
                         //alert(tongtienjslayout);
-                        capNhatGiohang();
+
+                        
                     }
                 });
             }
