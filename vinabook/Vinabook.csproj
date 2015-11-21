@@ -182,6 +182,7 @@
     <Content Include="Content\HinhAnh\Anh1.png" />
     <Content Include="Content\HinhAnh\Anh2.png" />
     <Content Include="Content\HinhAnh\Anh3.png" />
+    <Content Include="Content\HinhAnh\go-top-button.png" />
     <Content Include="Content\HinhAnh\icon_google_plus.png" />
     <Content Include="Content\HinhAnh\icon_hotline.png" />
     <Content Include="Content\HinhAnh\icon_printerest.png" />
@@ -282,11 +283,13 @@
     <Content Include="Content\UserLayout\img\product-thumb-2.jpg" />
     <Content Include="Content\UserLayout\img\product-thumb-3.jpg" />
     <Content Include="Content\UserLayout\img\product-thumb-4.jpg" />
+    <Content Include="Content\UserLayout\js\BannerFloat.js" />
     <Content Include="Content\UserLayout\js\bxslider.min.js" />
     <Content Include="Content\UserLayout\js\jquery.easing.1.3.min.js" />
     <Content Include="Content\UserLayout\js\jquery.sticky.js" />
     <Content Include="Content\UserLayout\js\main.js" />
     <Content Include="Content\UserLayout\js\owl.carousel.min.js" />
+    <Content Include="Content\UserLayout\js\quangcaotruot.js" />
     <Content Include="Content\UserLayout\js\script.slider.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

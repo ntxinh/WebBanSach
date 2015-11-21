@@ -36,109 +36,181 @@
             <img src="~/Content/Register/img/iphone.png" alt="">
         </div>
         <div class="register span6">
-            <form action="" method="post">
-                <h2>REGISTER TO <span class="red"><strong>VINABOOK</strong></span></h2>
-                @*<label for="firstname">Họ Tên</label>
-                    <input type="text" id="firstname" name="hoten" placeholder="enter your full name...">
-                    <label for="lastname">Ngày Sinh</label>
-                    <input type="text" id="lastname" name="ngaysinh" placeholder="enter your date of birth...">
-                    <label for="username">Giới Tính</label>
-                    <input type="text" id="username" name="gioitinh" placeholder="choose a sex...">
-                    <label for="email">Điện Thoại</label>
-                    <input type="text" id="email" name="dienthoai" placeholder="enter your phone...">
-                    <label for="account">Tài Khoản</label>
-                    <input type="text" id="password" name="taikhoan" placeholder="enter a account...">
-                    <label for="password">Mật Khẩu</label>
-                    <input type="password" id="password" name="matkhau" placeholder="enter a password...">
-                    <label for="repassword">Nhập lại mật khẩu</label>
-                    <input type="password" id="password" name="repassword" placeholder="retype the password...">
-                    <label for="email">Email</label>
-                    <input type="text" id="password" name="email" placeholder="enter your email...">
-                    <label for="address">Địa Chỉ</label>
-                    <input type="text" id="password" name="diachi" placeholder="enter your address...">
-                    <button type="submit">REGISTER</button>*@
-                @Html.ValidationSummary(false)
+            <form action="" id='input_form' method="post">
+                <fieldset>
+                    <h2>REGISTER TO <span class="red"><strong>VINABOOK</strong></span></h2>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.HoTen)
-                        <span id="loiHoTen"></span>
-                        @Html.ValidationMessageFor(model => model.HoTen)
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.NgaySinh, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.NgaySinh)
-                        @Html.ValidationMessageFor(model => model.NgaySinh)
-                    </div>
-                    <span id="loiNgaySinh"></span>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.GioiTinh, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.GioiTinh)
-                        @Html.ValidationMessageFor(model => model.GioiTinh)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" value="" name="HoTen" id="HoTen" size="25" class="required form-control" placeholder="Họ và tên..." autofocus/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DienThoai)
-                        @Html.ValidationMessageFor(model => model.DienThoai)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NgaySinh, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="date" class="form-control required" id="NgaySinh" name="NgaySinh" max="2015-12-30">
+                        </div>
+                        <span id="loiNgaySinh"></span>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TaiKhoan, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TaiKhoan)
-                        @Html.ValidationMessageFor(model => model.TaiKhoan)
-                    </div>
-                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GioiTinh, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select class="selectpicker show-tick" name="GioiTinh" id="GioiTinh">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                     </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MatKhau, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MatKhau)
-                        @Html.ValidationMessageFor(model => model.MatKhau)
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email)
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="number" value="" name="DienThoai" id="DienThoai" size="25" class="required form-control" placeholder="Điện thoại..." />
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DiaChi)
-                        @Html.ValidationMessageFor(model => model.DiaChi)
-                    </div>
-                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TaiKhoan, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="text" value="" name="TaiKhoan" id="TaiKhoan" size="25" class="required form-control" placeholder="Tài khoản..." />
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input id="btnSubmit" type="submit" value="Đăng ký" class="btn btn-group-vertical" />
-                    </div>
-                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MatKhau, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="password" value="" name="MatKhau" id="MatKhau" size="25" class="required form-control" placeholder="Mật khẩu..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpassword" class="control-label col-md-3">Nhập lại mật khẩu :</label>
+                            <div class="col-md-6">
+                                <input type="password" value="" name="cpassword" id="cpassword" size="25" equalTo="#MatKhau" class="form-control" placeholder="Nhập lại mật khẩu..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="email" value="" name="Email" id="Email" size="25" class="required form-control" placeholder="Email..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="text" value="" name="DiaChi" id="DiaChi" size="25" class="required form-control" placeholder="Địa chỉ..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input id="btnSubmit" type="submit" value="Đăng ký" class="btn btn-group-vertical" />
+                            </div>
+                        </div>
+                </fieldset>
             </form>
+
+            </div>
         </div>
     </div>
-</div>
-<!-- Javascript -->
-<script src="~/Content/Register/js/jquery-1.8.2.min.js"></script>
-<script src="~/Content/Register/bootstrap/js/bootstrap.min.js"></script>
-<script src="~/Content/Register/js/jquery.backstretch.min.js"></script>
-<script src="~/Content/Register/js/scripts.js"></script>
+    <!-- Javascript -->
+    <script src="~/Content/Register/js/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/AdminLayout/js/jquery.validate.min.js"></script>
+    <script src="~/Content/Register/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/Register/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/Register/js/scripts.js"></script>
+<script>
+    var date = new Date();
+
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    document.getElementById("NgaySinh").value = today;
+</script>
+<script>
+		$(document).ready(function(){
+		    var validator = $("#input_form").validate({
+		        rules: {
+		            username: "required",
+		            password: {
+		                required: true,
+		                minlength: 6,
+		            },
+		            cpassword: {
+		                equalTo: "#MatKhau"
+		            },
+		            //email: {
+		            //    required: true,
+		            //    email: true
+		            //},
+		            //Email: {
+		            //    required: true,
+		            //    Email: true
+		            //},
+		            
+		            DiaChi: "required",
+		            DienThoai: "required",
+                    
+                    HoTen: "required",
+                    NgaySinh: "required",
+                    TaiKhoan: "required",
+                    MatKhau: "required"
+                    
+                    
+
+		        },
+		        messages: {
+		            username: "Hãy điền tên đăng nhập.",
+		            password: {
+		                required: "Hãy điền mật khẩu",
+		                minlength: "Mật khẩu ít nhất 6 ký tự"
+		            },
+		            cpassword: {
+		                equalTo: "Mật khẩu xác nhận không chính xác"
+		            },
+		            //email: {
+		            //    required: "Hãy nhập 1 địa chỉ email hợp lệ",
+		            //    email:"Địa chỉ email không hợp lệ"
+		            //},
+		            //Email: {
+		            //    required: "Hãy nhập địa chỉ email",
+		            //    Email: "Địa chỉ email không hợp lệ"
+		            //},
+		            
+		            DiaChi: "Hãy điền địa chỉ.",
+                    DienThoai: "Hãy điền số điện thoại.",
+                    
+                    HoTen: "Hãy điền họ tên.",
+                    NgaySinh: "Hãy chọn ngày sinh.",
+                    TaiKhoan: "Hãy điền tài khoản.",
+                    MatKhau: "Hãy điền mật khẩu."
+                    
+                    
+		        }
+		    });
+	});
+</script> 
+<style>
+    /*các thông báo lỗi sẽ được chứa trong các label với class là error*/
+    label.error {
+        color: red;
+    }
+</style>
+
+
+
 
 
 

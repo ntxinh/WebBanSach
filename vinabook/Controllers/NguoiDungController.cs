@@ -84,7 +84,7 @@ namespace Vinabook.Controllers
             return View();
         }
         [HttpPost]
-        // [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Register(KhachHang kh)
         {
             if (ModelState.IsValid)

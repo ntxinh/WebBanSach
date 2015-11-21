@@ -5,24 +5,54 @@
     <thead>
         <tr>
             <th>Mã đơn hàng:</th>
-            <th>Số lượng:</th>
-            <th>Đơn giá:</th>
-            <th>Mã đơn hàng:</th>
-            <th>Mã sách:</th>
             <th>Tên sách:</th>
+            <th>Số lượng:</th>
+            
+            <th>Mã sách:</th>
+            <th>Đơn giá:</th>
         </tr>
     </thead>
+    @{double tongTien = 0;} 
+    @foreach (var item in Model)
+            {
+                tongTien += (double)(item.DonGia * item.SoLuong);
+            }
+    @{
+
+        string tongtienkhuyenmai = "";
+        double tongtienkm = 0;
+        QuanLyBanSachEntities db = new QuanLyBanSachEntities();
+        DonHang dh = db.DonHangs.Find(Model[0].MaDonHang);
+        KhuyenMai km = db.KhuyenMais.Find(dh.MaKM);
+        if (km == null)
+        {
+            tongtienkhuyenmai = "0";
+        }
+        else
+        {
+            tongtienkhuyenmai = km.GiaTriKM;
+        }
+        tongtienkm = tongTien - Convert.ToInt16(tongtienkhuyenmai) * tongTien / 100;
+    }
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>@item.MaDonHang</td>
-                <td>@item.SoLuong</td>
-                <td>@item.DonGia</td>
-                <td>@item.MaDonHang</td>
-                <td>@item.MaSach</td>
                 <td>@Html.DisplayFor(modelItem => item.Sach.TenSach)</td>
+                <td>@item.SoLuong</td>
+                <td>@item.MaSach</td>
+                <td>@item.DonGia</td>
             </tr>
         }
+        <tr>
+            <th colspan="4">Tong Tien:</th>
+            <th> @string.Format("{0:0,0}", tongTien)</th>
+        </tr>
+        <tr>
+            <th colspan="4">Tong Tien Da KM(-@tongtienkhuyenmai %):</th>
+            <th>@string.Format("{0:0,0}",tongtienkm)</th>
+        </tr>
+
     </tbody>
 </table>
