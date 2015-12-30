@@ -46,9 +46,30 @@
             {
                 tongTien += (double)(item.DonGia * item.SoLuong);
             }
+            @{ 
+                string tongtienkhuyenmai="";
+                double tongtienkm = 0;
+                QuanLyBanSachEntities db = new QuanLyBanSachEntities();
+                DonHang dh = db.DonHangs.Find(Model[0].MaDonHang);
+
+                KhuyenMai km = db.KhuyenMais.Find(dh.MaKM);
+                if (km == null)
+                {
+                    tongtienkhuyenmai = "0";
+                }
+                else
+                {
+                    tongtienkhuyenmai = km.GiaTriKM;
+                }
+                tongtienkm = tongTien - Convert.ToInt16(tongtienkhuyenmai) * tongTien / 100;
+            }
             <tr>
                 <td colspan="2" class="text-right"><strong>Tổng Tiền:</strong></td>
                 <td colspan="2" style="color:red" class="text-center"><strong>@string.Format("{0:0,0}", @tongTien) VNĐ</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-right"><strong>Tổng Tiền Đã KM(-@tongtienkhuyenmai %):</strong></td>
+                <td colspan="2" style="color:red" class="text-center"><strong> @string.Format("{0:0,0}", tongtienkm ) VNĐ</strong></td>
             </tr>
         </table>
     </div>
